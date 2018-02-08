@@ -1,3 +1,4 @@
+export { default as SideStack } from './common/SideStack/SideStack'
 export { default as ModalStack } from './common/ModalStack/ModalStack'
 export { default as Points } from './common/Points/Points'
 export { default as IPFSImage } from './common/IPFSImage/IPFSImage'
@@ -5,6 +6,7 @@ export { default as FileSelect } from './common/FileSelect/FileSelect'
 export { default as Snackbar } from './common/Snackbar/Snackbar'
 export { default as DocumentsList } from './common/DocumentsList/DocumentsList'
 
+export { default as ProfileSidePanel } from './dashboard/ProfileSidePanel/ProfileSidePanel'
 export { default as SendTokens } from './dashboard/SendTokens/SendTokens'
 export { default as DepositTokens } from './dashboard/DepositTokens/DepositTokens'
 export { default as Rewards } from './dashboard/Rewards/Rewards'

@@ -7,7 +7,7 @@ import {
 } from '@chronobank/login/network/MonitorService'
 import { getNetworkById } from '@chronobank/login/network/settings'
 import { TOKEN_ICONS } from 'assets'
-import { CopyIcon, IPFSImage, QRIcon, TokenValue, UpdateProfileDialog } from 'components'
+import { IPFSImage, TokenValue, ProfileSidePanel } from 'components'
 import Moment from 'components/common/Moment'
 import { CircularProgress, FlatButton, FontIcon, IconButton, Popover } from 'material-ui'
 import menu from 'menu'
@@ -19,10 +19,11 @@ import { connect } from 'react-redux'
 import { Translate } from 'react-redux-i18n'
 import { Link } from 'react-router'
 import { drawerToggle } from 'redux/drawer/actions'
-import { modalsOpen } from 'redux/modals/actions'
+import { sidesOpen } from 'redux/sides/actions'
 import { readNotices } from 'redux/notifier/actions'
 import { logout } from 'redux/session/actions'
 import Value from 'components/common/Value/Value'
+import { PROFILE_SIDE_PANEL_KEY } from 'components/dashboard/ProfileSidePanel/ProfileSidePanel'
 import ls from 'utils/LocalStorage'
 import GasSlider from 'components/common/GasSlider/GasSlider'
 import styles from '../styles'
@@ -56,9 +57,9 @@ function mapDispatchToProps (dispatch) {
   return {
     handleLogout: () => dispatch(logout()),
     handleDrawerToggle: () => dispatch(drawerToggle()),
-    handleProfileEdit: (data) => dispatch(modalsOpen({
-      component: UpdateProfileDialog,
-      data,
+    handleProfileOpen: () => dispatch(sidesOpen({
+      component: ProfileSidePanel,
+      key: PROFILE_SIDE_PANEL_KEY,
     })),
     readNotices: () => dispatch(readNotices()),
   }
@@ -82,6 +83,7 @@ export default class HeaderPartial extends PureComponent {
     handleLogout: PropTypes.func,
     handleProfileEdit: PropTypes.func,
     handleDrawerToggle: PropTypes.func,
+    handleProfileOpen: PropTypes.func,
     readNotices: PropTypes.func,
   }
 
@@ -186,19 +188,8 @@ export default class HeaderPartial extends PureComponent {
             {this.renderNotifications()}
           </Popover>
         </div>
-        <div styleName='account'>
-          <div styleName='info'>
-            <span styleName='badge-green'>{this.props.network}</span>
-            <span styleName='highlight0'>{this.props.profile.name() || 'Your Name'}</span>
-          </div>
-          <div styleName='extra'>
-            <span styleName='highlight1'>{this.props.account}</span>
-            <QRIcon value={this.props.account} />
-            <CopyIcon value={this.props.account} />
-          </div>
-        </div>
         <div styleName='right'>
-          <div styleName='rightIcon' onTouchTap={this.handleProfileOpen}>
+          <div styleName='rightIcon' onTouchTap={this.props.handleProfileOpen}>
             <IPFSImage
               styleName='rightIconContent'
               multihash={this.props.profile.icon()}
@@ -206,19 +197,6 @@ export default class HeaderPartial extends PureComponent {
                 <FontIcon style={{ fontSize: 54 }} color='white' className='material-icons'>account_circle</FontIcon>)}
             />
           </div>
-          <Popover
-            ref={this.refPopover}
-            styleName='popover'
-            className='popover'
-            zDepth={3}
-            open={this.state.isProfileOpen}
-            anchorEl={this.state.profileAnchorEl}
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-            onRequestClose={this.handleProfileClose}
-          >
-            {this.renderProfile()}
-          </Popover>
         </div>
       </div>
     )
@@ -465,14 +443,6 @@ export default class HeaderPartial extends PureComponent {
     this.setState({
       isNotificationsOpen: false,
       notificationsAnchorEl: null,
-    })
-  }
-
-  handleProfileOpen = (e) => {
-    e.preventDefault()
-    this.setState({
-      isProfileOpen: true,
-      profileAnchorEl: e.currentTarget,
     })
   }
 
