@@ -115,14 +115,7 @@ export const resetPasswordAccount = (wallet, mnemonic, password) => async (dispa
 export const createAccount = ({ name, password, privateKey, mnemonic, numberOfAccounts = 0, types = {} }) => async (dispatch, getState) => {
   let wallet, hex = privateKey || bip39.mnemonicToSeedHex(mnemonic) || ''
 
-  const settings = networkService.getProviderSettings()
-  const host = settings.url
-
-  // const web3 = new Web3()
-  // web3Provider.reinit(web3, web3Utils.createStatusEngine(settings))
-  // web3Provider.resolve()
-
-  const accounts = new Accounts(host)
+  const accounts = new Accounts()
   accounts.wallet.clear()
   if (privateKey){
     hex = `0x${privateKey}`
