@@ -254,10 +254,6 @@ export default class CommonNetworkSelector extends PureComponent {
     )
   }
 
-  getFullNetworkName (item){
-    return `${item.provider.name} - ${item.network.name}`
-  }
-
   resolveNetwork = () => {
     const web3 = new Web3Legacy()
     web3Provider.reinit(web3, web3Utils.createStatusEngine(this.props.getProviderURL()))
@@ -314,9 +310,12 @@ export default class CommonNetworkSelector extends PureComponent {
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
+          transformOrigin={{
+            horizontal: 'right', vertical: 'bottom',
+          }}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-          onRequestClose={this.handleRequestClose}
+          onClose={this.handleRequestClose}
           style={{
             background: 'transparent',
             borderRadius: 20,

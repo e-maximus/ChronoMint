@@ -39,7 +39,6 @@ import styles from 'layouts/Splash/styles'
 import spinner from 'assets/img/spinningwheel-1.gif'
 import './LoginForm.scss'
 
-
 function mapStateToProps (state) {
   const network = state.get(DUCK_NETWORK)
   const selectedWallet = state.get('persistAccount').selectedWallet
