@@ -10,8 +10,9 @@ import Accounts from 'web3-eth-accounts'
 import {
   AccountEntryModel,
   AccountProfileModel,
+  AccountModel,
   AccountCustomNetwork,
-} from '../../models/wallet/persistAccount'
+} from '@chronobank/core/models/wallet/persistAccount'
 import {
   getWalletsListAddresses,
   getAccountAddress,
@@ -20,7 +21,9 @@ import networkService from '@chronobank/login/network/NetworkService'
 import profileService from '@chronobank/login/network/ProfileService'
 import web3Provider from '@chronobank/login/network/Web3Provider'
 import web3Utils from '@chronobank/login/network/Web3Utils'
-import mnemonicProvider from '../../../login/network/mnemonicProvider'
+import mnemonicProvider from '@chronobank/login/network/mnemonicProvider'
+
+export const DUCK_PERSIST_ACCOUNT = 'persistAccount'
 
 export const WALLETS_ADD = 'persistAccount/WALLETS_ADD'
 export const WALLETS_SELECT = 'persistAccount/WALLETS_SELECT'
@@ -30,8 +33,6 @@ export const WALLETS_REMOVE = 'persistAccount/WALLETS_REMOVE'
 export const CUSTOM_NETWORKS_LIST_ADD = 'persistAccount/CUSTOM_NETWORKS_LIST_ADD'
 export const CUSTOM_NETWORKS_LIST_UPDATE = 'persistAccount/CUSTOM_NETWORKS_LIST_UPDATE'
 export const CUSTOM_NETWORKS_LIST_RESET = 'persistAccount/CUSTOM_NETWORKS_LIST_RESET'
-
-export const DUCK_PERSIST_ACCOUNT = 'persistAccount'
 
 export const accountAdd = (wallet) => (dispatch) => {
   dispatch({ type: WALLETS_ADD, wallet })
@@ -70,7 +71,6 @@ export const decryptAccount = (encrypted, password) => async () => {
 
   let wallet = await accounts.wallet.decrypt(encrypted, password)
 
-  console.log('decrypt', networkService.getProviderSettings().url, wallet)
   return wallet
 
 }
@@ -115,18 +115,20 @@ export const resetPasswordAccount = (wallet, mnemonic, password) => async (dispa
 export const createAccount = ({ name, password, privateKey, mnemonic, numberOfAccounts = 0, types = {} }) => async (dispatch, getState) => {
   let wallet, hex = privateKey || bip39.mnemonicToSeedHex(mnemonic) || ''
 
-  const settings = networkService.getProviderSettings()
-  const host = settings.url
-
-  // const web3 = new Web3()
-  // web3Provider.reinit(web3, web3Utils.createStatusEngine(settings))
-  // web3Provider.resolve()
-
-  const accounts = new Accounts(host)
+  const accounts = new Accounts()
   accounts.wallet.clear()
+  if (privateKey){
+    hex = `0x${privateKey}`
+  }
+
+  if (mnemonic){
+    const hdWallet = mnemonicProvider.createEthereumWallet(mnemonic)
+    hex = hdWallet.getPrivateKeyString()
+  }
+
 
   wallet = await accounts.wallet.create(numberOfAccounts)
-  const account = accounts.privateKeyToAccount(`0x${hex}`)
+  const account = accounts.privateKeyToAccount(hex)
   wallet.add(account)
 
   const entry = new AccountEntryModel({
@@ -154,7 +156,6 @@ export const createHWAccount = ({ name, password, privateKey, mnemonic, numberOf
   wallet = await accounts.wallet.create(numberOfAccounts)
   const account = accounts.privateKeyToAccount(hex)
   wallet.add(account)
-  console.log('create account', accounts, account, wallet)
 
   const entry = new AccountEntryModel({
     key: uuid(),

@@ -87,6 +87,7 @@ export const FORM_CREATE_ACCOUNT = 'CreateAccountForm'
 export const FORM_RECOVER_ACCOUNT = 'RecoverAccountPage'
 export const FORM_RESET_PASSWORD = 'ResetPasswordPage'
 export const FORM_WALLET_UPLOAD = 'FormWalletUploadPage'
+
 export const FORM_NETWORK_CREATE = 'FormNetworkCreate'
 export const FORM_NETWORK_CONFIRM_DELETE = 'FormNetworkConfirmDelete'
 export const FORM_FOOTER_EMAIL_SUBSCRIPTION = 'FooterEmailSubscriptionForm'
@@ -376,6 +377,10 @@ export const navigateToWalletUploadMethod = () => (dispatch) => {
   dispatch(push('/login/upload-wallet'))
 }
 
+export const navigateToAccountName = () => (dispatch) => {
+  dispatch(push('/login/account-name'))
+}
+
 export const handleLoginTrezorAccountClick = (address) => (dispatch) => {
   console.log(address)
   dispatch(navigateToCreateAccountFromHW(address))
@@ -389,11 +394,7 @@ export const navigateBack = () => (dispatch) => {
   dispatch(goBack())
 }
 
-export const navigateToAccountName = () => (dispatch) => {
-  dispatch(push('/login/account-name'))
-}
-
-export const onSubmitMnemonicLoginForm = (mnemonic) => async (dispatch) => {
+export const onSubmitMnemonicLoginForm = (mnemonic) => (dispatch) => {
   let mnemonicValue = (mnemonic || '').trim()
 
   if (!mnemonicProvider.validateMnemonic(mnemonicValue)) {
@@ -458,14 +459,13 @@ export const getProfileSignature = (wallet) => async (dispatch) => {
 
 export const onSubmitLoginForm = (password) => async (dispatch, getState) => {
   const state = getState()
-  let wallet
 
   dispatch({ type: NETWORK_SET_LOGIN_SUBMITTING })
 
   const { selectedWallet } = state.get(DUCK_PERSIST_ACCOUNT)
 
   try {
-    wallet = await dispatch(decryptAccount(selectedWallet.encrypted, password))
+    let wallet = await dispatch (decryptAccount(selectedWallet.encrypted, password))
 
     let privateKey = wallet && wallet[0] && wallet[0].privateKey
 
@@ -478,7 +478,6 @@ export const onSubmitLoginForm = (password) => async (dispatch, getState) => {
   } catch (e) {
     throw new SubmissionError({ password: e && e.message })
   }
-
 }
 
 export const onSubmitLoginFormSuccess = () => () => {
@@ -562,8 +561,6 @@ export const onSubmitResetAccountPasswordFail = (error, dispatch, submitError) =
 export const onSubmitWalletUpload = (walletString, password) => async (dispatch, getState) => {
   const state = getState()
 
-  const { selectedWallet } = state.get('persistAccount')
-
   let restoredWalletJSON
 
   try {
@@ -608,12 +605,13 @@ export const onSubmitWalletUpload = (walletString, password) => async (dispatch,
       dispatch(navigateToAccountName())
 
     }
+  } else {
+    throw new SubmissionError({ _error: 'Wrong wallet address' })
   }
 
 }
 
 export const onSubmitWalletUploadSuccess = () => (dispatch) => {
-  dispatch(navigateToAccountName())
 
 }
 
@@ -743,6 +741,10 @@ export const initAccountsSignature = () => async (dispatch, getState) => {
   dispatch(updateSelectedAccount())
 
   dispatch(resetLoadingAccountsSignatures())
+
+}
+
+export const initAccountNamePage = () => (dispatch) => {
 
 }
 

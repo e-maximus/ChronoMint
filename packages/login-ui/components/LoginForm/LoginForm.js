@@ -35,6 +35,7 @@ import './LoginForm.scss'
 function mapStateToProps (state) {
   const network = state.get(DUCK_NETWORK)
   const selectedWallet = state.get('persistAccount').selectedWallet
+  const formSelector = formValueSelector(FORM_LOGIN_PAGE)
 
   return {
     selectedWallet: selectedWallet,
@@ -44,6 +45,7 @@ function mapStateToProps (state) {
     selectedAccount: network.selectedAccount,
     accounts: network.accounts,
     isLocalNode: isLocalNode(network.selectedProviderId, network.selectedNetworkId),
+    successMessage: formSelector(state, FORM_LOGIN_PAGE_FIELD_SUCCESS_MESSAGE),
   }
 }
 
@@ -71,6 +73,7 @@ class LoginPage extends React.Component {
     selectedAccount: PropTypes.string,
     selectedWallet: PropTypes.object,
     isLocalNode: PropTypes.bool,
+    successMessage: PropTypes.string,
   }
 
   componentWillMount () {
