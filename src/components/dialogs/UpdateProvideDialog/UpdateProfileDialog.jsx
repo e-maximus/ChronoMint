@@ -25,6 +25,10 @@ import ModalDialog from '../ModalDialog'
 import validate from './validate'
 import './UpdateProfileDialog.scss'
 import { prefix } from './lang'
+import {
+  getAccountName,
+  getAccountAvatar,
+} from '@chronobank/core/redux/persistAccount/utils'
 
 const FORM_UPDATE_PROFILE_DIALOG = 'UpdateProfileDialog'
 
