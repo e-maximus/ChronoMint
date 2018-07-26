@@ -7,6 +7,7 @@ import networkService from '@chronobank/login/network/NetworkService'
 import { getNetworkById, LOCAL_ID, LOCAL_PROVIDER_ID, NETWORK_MAIN_ID } from '@chronobank/login/network/settings'
 import { DUCK_NETWORK } from '@chronobank/login/redux/network/actions'
 import { daoByType } from '../../refactor/redux/daos/selectors'
+import profileService from '@chronobank/login/network/ProfileService'
 import { push, replace } from '@chronobank/core-dependencies/router'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import web3Factory from '../../refactor/web3/index'
@@ -24,6 +25,7 @@ export const SESSION_DESTROY = 'session/DESTROY'
 
 export const SESSION_PROFILE = 'session/PROFILE'
 export const SESSION_PROFILE_UPDATE = 'session/PROFILE_UPDATE'
+export const SET_PROFILE_SIGNATURE = 'session/SET_PROFILE_SIGNATURE'
 
 export const DEFAULT_USER_URL = '/wallets'
 export const DEFAULT_CBE_URL = '/wallets'
@@ -152,4 +154,32 @@ export const updateUserProfile = (newProfile: ProfileModel) => async (dispatch, 
 export const watchInitProfile = () => async (dispatch, getState) => {
   const userManagerDAO = daoByType('UserManager')(getState())
   return userManagerDAO.watchProfile((notice) => dispatch(notify(notice)))
+}
+
+export const setProfileSignature = (signature) => (dispatch) => {
+  dispatch({ type: SET_PROFILE_SIGNATURE, signature })
+}
+
+export const getProfileSignature = (wallet) => async (dispatch) => {
+  if (!wallet) {
+    return
+  }
+
+  let signDataString = profileService.getSignData()
+
+  let signData = wallet.sign(signDataString)
+
+  let profileSignature = await profileService.getProfile(signData.signature)
+
+  dispatch(setProfileSignature(profileSignature))
+
+  return profileSignature
+}
+
+export const updateUserProfile = (profile) => async (dispatch, getState) => {
+  const { profileSignature } = getState().get(DUCK_SESSION)
+
+  const newProfile = await profileService.updateUserProfile({ ...profile }, profileSignature.token)
+
+  dispatch(setProfileSignature(newProfile))
 }
