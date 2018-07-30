@@ -17,11 +17,12 @@ import { WALLETS_UPDATE_WALLET } from '../wallets/actions'
 import WalletModel from '../../models/wallet/WalletModel'
 import AllowanceCollection from '../../refactor/models/AllowanceCollection'
 
-export const DUCK_ASSETS_HOLDER = 'assetsHolder'
-
-export const ASSET_HOLDER_INIT = 'assetHolder/INIT'
-export const ASSET_HOLDER_ADDRESS = 'assetHolder/timeHolderAddress'
-export const ASSET_HOLDER_ASSET_UPDATE = 'assetHolder/assetUpdate'
+import {
+  DUCK_ASSETS_HOLDER,
+  ASSET_HOLDER_INIT,
+  ASSET_HOLDER_ADDRESS,
+  ASSET_HOLDER_ASSET_UPDATE,
+} from './constants'
 
 const handleToken = (token: TokenModel) => async (dispatch, getState) => {
   const assetHolder = getState().get(DUCK_ASSETS_HOLDER)

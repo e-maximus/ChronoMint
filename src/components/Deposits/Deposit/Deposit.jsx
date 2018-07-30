@@ -18,7 +18,7 @@ import DepositTokensModal from 'components/dashboard/DepositTokens/DepositTokens
 import { DUCK_TOKENS } from '@chronobank/core/redux/tokens/constants'
 import TokenModel from '@chronobank/core/models/tokens/TokenModel'
 import { TOKEN_ICONS } from 'assets'
-import { DUCK_ASSETS_HOLDER } from '@chronobank/core/redux/assetsHolder/actions'
+import { DUCK_ASSETS_HOLDER } from '@chronobank/core/redux/assetsHolder/constants'
 import TransactionsTable from 'components/dashboard/TransactionsTable/TransactionsTable'
 import TransactionsCollection from '@chronobank/core/models/wallet/TransactionsCollection'
 import { getWallet } from '@chronobank/core/redux/wallets/selectors/models'
