@@ -12,7 +12,6 @@ import {
 } from '@chronobank/login/network/settings'
 import {
   DUCK_NETWORK,
-  DUCK_SESSION,
 } from '@chronobank/login/redux/network/actions'
 import profileService from '@chronobank/login/network/ProfileService'
 import { push, replace } from '@chronobank/core-dependencies/router'
@@ -25,6 +24,8 @@ import { cbeWatcher, watcher } from '../watcher/actions'
 import { watchStopMarket } from '../market/actions'
 import { notify } from '../notifier/actions'
 import { WEB3_SETUP } from '../web3/reducer'
+
+export const DUCK_SESSION = 'session'
 
 export const SESSION_CREATE = 'session/CREATE'
 export const SESSION_DESTROY = 'session/DESTROY'
