@@ -11,7 +11,8 @@ import { BLOCKCHAIN_BITCOIN, BLOCKCHAIN_LITECOIN } from '@chronobank/login/netwo
 import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/EthereumDAO'
 import { BLOCKCHAIN_NEM } from '@chronobank/core/dao/NemDAO'
 import WidgetContainer from 'components/WidgetContainer/WidgetContainer'
-import { FORM_ADD_NEW_WALLET, resetWalletsForm } from '@chronobank/core/redux/mainWallet/actions'
+import { resetWalletsForm } from '@chronobank/core/redux/mainWallet/actions'
+import { FORM_ADD_NEW_WALLET } from '@chronobank/core/redux/mainWallet/constants'
 
 import './AddWalletWidget.scss'
 import SelectWalletType from './SelectWalletType/SelectWalletType'

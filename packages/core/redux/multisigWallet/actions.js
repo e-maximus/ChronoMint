@@ -28,7 +28,8 @@ import {
   EE_SINGLE_TRANSACTION,
 } from '../../services/constants'
 import multisigWalletService from '../../services/MultisigWalletService'
-import { ETH, getTransactionsForWallet } from '../mainWallet/actions'
+import { getTransactionsForWallet } from '../mainWallet/actions'
+import { ETH } from '../mainWallet/constants'
 import { getMultisigWallets } from '../wallet/selectors/models'
 import { getWallets } from './selectors/models'
 import DerivedWalletModel from '../../models/wallet/DerivedWalletModel'

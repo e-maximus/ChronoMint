@@ -31,7 +31,7 @@ import tokenService, { EVENT_NEW_TOKEN } from '../../services/TokenService'
 import { notifyError } from '../notifier/actions'
 import { EVENT_NEW_BLOCK } from '../../dao/AbstractContractDAO'
 import Amount from '../../models/Amount'
-import { ETH } from '../mainWallet/actions'
+import { ETH } from '../mainWallet/constants'
 import { EVENT_UPDATE_LAST_BLOCK } from '../../dao/constants'
 import { daoByType } from '../../refactor/redux/daos/selectors'
 import TxExecModel from '../../refactor/models/TxExecModel'
@@ -40,9 +40,7 @@ import { DUCK_TOKENS, TOKENS_FAILED, TOKENS_FETCHED, TOKENS_FETCHING, TOKENS_INI
 
 const submitTxHandler = (dao, dispatch) => async (tx: TransferExecModel | TxExecModel) => {
   try {
-    console.log('submitTxHandler: ', tx)
     if (tx.blockchain === BLOCKCHAIN_ETHEREUM) {
-      console.log('submitTxHandler BLOCKCHAIN_ETHEREUM: ', tx)
       dispatch(modalsOpenConfirmDialog({
         props: {
           tx,
@@ -61,14 +59,9 @@ const submitTxHandler = (dao, dispatch) => async (tx: TransferExecModel | TxExec
 
 const acceptTxHandler = (dao, dispatch) => async (tx: TransferExecModel | TxExecModel) => {
   try {
-    // eslint-disable-next-line
-    console.log('acceptTxHandler start: ', tx, dao)
     if (tx.blockchain === BLOCKCHAIN_ETHEREUM) {
       dispatch({ type: WATCHER_TX_SET, tx })
       const txData = await dao.immediateTransfer(tx)
-      // eslint-disable-next-line
-      console.log('acceptTxHandler mained: ', txData, dao, tx)
-
       dao.emit('mained', new TxExecModel({ ...tx, hash: txData.transactionHash }))
     } else {
       const txOptions = tx.options()

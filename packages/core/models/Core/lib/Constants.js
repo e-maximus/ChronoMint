@@ -1,3 +1,8 @@
+/**
+ * Copyright 2017–2018, LaborX PTY
+ * Licensed under the AGPL Version 3 license.
+ */
+
 const SECOND = 1000
 const MINUTE = SECOND * 60
 const HOUR = MINUTE * 60
@@ -9,10 +14,10 @@ const SolidityTypes = Object.freeze({
   Address: 'address',
   Uint256: 'uint256',
   Uint8: 'uint8',
-  Uint: 'uint'
+  Uint: 'uint',
 })
 
-module.exports = {
+export default {
   SolidityTypes,
   ADDRESS_PATTERN: /^0x[0-9a-fA-F]{40}$/,
   EC_SIGN_PARAMETER: /^0[xX][0-9A-Fa-f]{64}$/,
@@ -28,26 +33,26 @@ module.exports = {
       '1H': HOUR,
       '1D': DAY,
       '1W': WEEK,
-      '1M': MONTH
-    }
+      '1M': MONTH,
+    },
   },
   OrderBook: {
     aggregate: {
       'no': 0,
-      '2.5': 0.025
-    }
+      '2.5': 0.025,
+    },
   },
   auth: {
     header: {
-      prefix: 'Signature'
-    }
+      prefix: 'Signature',
+    },
   },
   cryptoCurrency: {
     BTC: 'BTC',
-    ETH: 'ETH'
+    ETH: 'ETH',
   },
   wrappedCryptoCurrency: {
     WBTC: 'WBTC',
-    WETH: 'WETH'
-  }
+    WETH: 'WETH',
+  },
 }

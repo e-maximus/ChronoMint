@@ -17,6 +17,7 @@ import { reducer as formReducer } from 'redux-form/immutable'
 import { I18n, i18nReducer, loadTranslations, setLocale } from '@chronobank/core-dependencies/i18n'
 import { DUCK_I18N, loadI18n } from 'redux/i18n/actions'
 import saveAccountMiddleWare from '@chronobank/core/redux/session/saveAccountMiddleWare'
+import { DUCK_MAIN_WALLET } from '@chronobank/core/redux/mainWallet/constants'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import * as ducks from './ducks'
 import routingReducer from './routing'
@@ -59,7 +60,7 @@ const configureStore = () => {
 
     if (action.type === SESSION_DESTROY) {
       const i18nState = state.get('i18n')
-      const mainWalletsState = state.get('mainWallet')
+      const mainWalletsState = state.get(DUCK_MAIN_WALLET)
       const walletsState = state.get('ethMultisigWallet')
       const persistAccount = state.get('persistAccount')
       state = new Immutable.Map()
