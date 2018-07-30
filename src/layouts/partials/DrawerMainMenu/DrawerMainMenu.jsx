@@ -28,7 +28,7 @@ import MenuAssetsManagerMoreInfo from './MenuAssetsManagerMoreInfo/MenuAssetsMan
 import { MENU_TOKEN_MORE_INFO_PANEL_KEY } from './MenuTokenMoreInfo/MenuTokenMoreInfo'
 import MenuTokensList from './MenuTokensList/MenuTokensList'
 import { prefix } from './lang'
-import { default as packageJson } from '../../../../package.json'
+import packageJson from '../../../../package.json'
 
 import './DrawerMainMenu.scss'
 
