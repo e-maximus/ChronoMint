@@ -34,18 +34,18 @@ import PausedModel from '../../models/tokens/PausedModel'
 import BlacklistModel from '../../models/tokens/BlacklistModel'
 import { daoByType } from '../../refactor/redux/daos/selectors'
 
-export const DUCK_ASSETS_MANAGER = 'assetsManager'
-
-export const GET_PLATFORMS = 'AssetsManager/GET_PLATFORMS'
-export const SET_ASSETS = 'AssetsManager/SET_ASSETS'
-export const GET_ASSETS_MANAGER_COUNTS = 'AssetsManager/GET_ASSETS_MANAGER_COUNTS'
-export const GET_ASSETS_MANAGER_COUNTS_START = 'AssetsManager/GET_ASSETS_MANAGER_COUNTS_START'
-export const GET_ASSET_DATA = 'AssetsManager/GET_ASSET_DATA'
-export const SELECT_TOKEN = 'AssetsManager/SELECT_TOKEN'
-export const SELECT_PLATFORM = 'AssetsManager/SELECT_PLATFORM'
-export const GET_TRANSACTIONS_START = 'AssetsManager/GET_TRANSACTIONS_START'
-export const GET_TRANSACTIONS_DONE = 'AssetsManager/GET_TRANSACTIONS_DONE'
-export const SET_NEW_MANAGERS_LIST = 'AssetsManager/SET_NEW_MANAGERS_LIST'
+import {
+  DUCK_ASSETS_MANAGER,
+  GET_ASSET_DATA,
+  GET_ASSETS_MANAGER_COUNTS_START,
+  GET_ASSETS_MANAGER_COUNTS,
+  GET_PLATFORMS,
+  GET_TRANSACTIONS_DONE,
+  GET_TRANSACTIONS_START,
+  SELECT_PLATFORM,
+  SELECT_TOKEN,
+  SET_ASSETS,
+} from './constants'
 
 export const setTxFromMiddlewareForBlackList = (address, symbol) => async (dispatch, getState) => {
   const { account } = getState().get(DUCK_SESSION)
