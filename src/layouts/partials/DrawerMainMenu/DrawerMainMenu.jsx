@@ -28,6 +28,7 @@ import MenuAssetsManagerMoreInfo from './MenuAssetsManagerMoreInfo/MenuAssetsMan
 import { MENU_TOKEN_MORE_INFO_PANEL_KEY } from './MenuTokenMoreInfo/MenuTokenMoreInfo'
 import MenuTokensList from './MenuTokensList/MenuTokensList'
 import { prefix } from './lang'
+import { default as packageJson } from '../../../../package.json'
 
 import './DrawerMainMenu.scss'
 
@@ -181,7 +182,7 @@ export default class DrawerMainMenu extends PureComponent {
           >
             <div styleName='chronWalletLogo'>
               <img src={chronWalletLogoSVG} alt='ChronoWallet logo' />
-              <div styleName='subtitle'>{require('../../../../package.json').version}</div>
+              <div styleName='subtitle'>{packageJson.version}</div>
             </div>
 
             <div styleName={classnames('account-info', 'item')}>
