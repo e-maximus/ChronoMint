@@ -10,7 +10,6 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { TextField } from 'redux-form-material-ui'
 import { connect } from 'react-redux'
-import { ACCEPT_IMAGES } from '@chronobank/core/models/FileSelect/FileExtension'
 import { DUCK_SESSION, updateUserProfile } from '@chronobank/core/redux/session/actions'
 import { getAccountProfileSummary } from '@chronobank/core/redux/session/selectors'
 import {
