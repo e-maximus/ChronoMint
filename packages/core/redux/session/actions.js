@@ -80,7 +80,8 @@ export const logout = () => async (dispatch, getState) => {
 
 export const login = (account) => async (dispatch, getState) => {
   const { selectedNetworkId, selectedProviderId } = getState().get(DUCK_NETWORK)
-  if (!getState().get(DUCK_SESSION).isSession) {
+  const isSession = getState().get(DUCK_SESSION) ? getState().get(DUCK_SESSION).isSession : null
+  if (!isSession) {
     // setup and check network first and create session
     throw new Error('Session has not been created')
   }

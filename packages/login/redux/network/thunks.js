@@ -146,7 +146,7 @@ export const getProfileSignature = (wallet) =>
       const signData = wallet.sign(signDataString)
       const profileSignature = await profileService.getProfile(signData.signature)
 
-      dispatch(NetworkActions.setProfileSignature(profileSignature))
+      dispatch(PersistAccountActions.setProfileSignature(profileSignature))
     }
   }
 
