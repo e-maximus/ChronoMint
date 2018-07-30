@@ -11,14 +11,13 @@ import * as erc20Manager from '@chronobank/core/dao/ERC20ManagerDAO'
 import * as eth from '@chronobank/core/dao/EthereumDAO'
 import * as exchange from '@chronobank/core/dao/ExchangeDAO'
 import * as loc from '@chronobank/core/dao/LOCManagerDAO'
-import * as operations from '@chronobank/core/dao/PendingManagerDAO'
+import { TX_CONFIRM, TX_REVOKE, TX_CREATE_POLL } from '@chronobank/core/dao/constants'
 import * as platformsManager from '@chronobank/core/dao/PlatformsManagerDAO'
 import * as pollInterface from '@chronobank/core/dao/PollInterfaceDAO'
 import * as rewards from '@chronobank/core/dao/RewardsDAO'
 import * as time from '@chronobank/core/dao/AssetHolderDAO'
 import * as user from '@chronobank/core/dao/UserManagerDAO'
 import layouts from 'layouts/lang'
-import * as votingManager from '@chronobank/core/dao/VotingManagerDAO'
 import * as chronoBankAsset from '@chronobank/core/dao/ChronoBankAssetDAO'
 
 export default {
@@ -344,10 +343,10 @@ export default {
       },
     },
     PendingManager: {
-      [operations.TX_CONFIRM]: {
+      [TX_CONFIRM]: {
         title: 'Confirm Operation',
       },
-      [operations.TX_REVOKE]: {
+      [TX_REVOKE]: {
         title: 'Revoke Operation',
       },
     },
@@ -513,7 +512,7 @@ export default {
       },
     },
     VotingManager: {
-      [votingManager.TX_CREATE_POLL]: {
+      [TX_CREATE_POLL]: {
         title: 'Create Poll',
       },
     },

@@ -3,8 +3,8 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import TokenModel from '../models/tokens/TokenModel'
 import type BigNumber from 'bignumber.js'
+import TokenModel from '../models/tokens/TokenModel'
 import contractsManagerDAO from './ContractsManagerDAO'
 import ERC20DAO from './ERC20DAO'
 import { ChronoBankAssetWithFeeProxyABI } from './abi'

@@ -6,8 +6,6 @@
 import BigNumber from 'bignumber.js'
 import resultCodes from 'chronobank-smart-contracts/common/errors'
 import ethABI from 'ethereumjs-abi'
-import type PendingManagerDAO from './PendingManagerDAO'
-import type AbstractModel from '../models/AbstractModel'
 import TxError from '../models/TxError'
 import TxExecModel from '../models/TxExecModel'
 import { DEFAULT_TX_OPTIONS, TX_FRONTEND_ERROR_CODES } from './AbstractContractDAO'
@@ -33,8 +31,8 @@ export default class AbstractMultisigContractDAO extends AbstractContractDAO {
    * @param options
    * @protected
    */
-  async _multisigTx (func: string, args: Array = [], infoArgs: Object | AbstractModel = null, options = DEFAULT_TX_OPTIONS): Promise<Object> {
-    const dao: PendingManagerDAO = await contractsManagerDAO.getPendingManagerDAO()
+  async _multisigTx (func: string, args: Array = [], infoArgs = null, options = DEFAULT_TX_OPTIONS): Promise<Object> {
+    const dao = await contractsManagerDAO.getPendingManagerDAO()
 
     const web3 = await this._web3Provider.getWeb3()
     const data = await this.getData(func, args)
@@ -75,6 +73,7 @@ export default class AbstractMultisigContractDAO extends AbstractContractDAO {
     const methodId = dataBuf.slice(0, 4).toString('hex')
     const inputsBuf = dataBuf.slice(4)
 
+    // eslint-disable-next-line complexity
     const tx = await this._json.abi.reduce((acc, obj) => {
       if (!obj.hasOwnProperty('inputs')) {
         return acc
