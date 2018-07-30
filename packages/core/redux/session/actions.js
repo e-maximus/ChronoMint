@@ -4,15 +4,21 @@
  */
 
 import networkService from '@chronobank/login/network/NetworkService'
-import { getNetworkById, LOCAL_ID, LOCAL_PROVIDER_ID, NETWORK_MAIN_ID } from '@chronobank/login/network/settings'
-import { DUCK_NETWORK } from '@chronobank/login/redux/network/actions'
-import { daoByType } from '../../refactor/redux/daos/selectors'
+import {
+  getNetworkById,
+  LOCAL_ID,
+  LOCAL_PROVIDER_ID,
+  NETWORK_MAIN_ID,
+} from '@chronobank/login/network/settings'
+import {
+  DUCK_NETWORK,
+} from '@chronobank/login/redux/network/actions'
 import profileService from '@chronobank/login/network/ProfileService'
+import { removeWatchersUserMonitor } from '@chronobank/core-dependencies/redux/ui/actions'
 import { push, replace } from '@chronobank/core-dependencies/router'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import web3Factory from '../../refactor/web3/index'
-import { removeWatchersUserMonitor } from '@chronobank/core-dependencies/redux/ui/actions'
-import ProfileModel from '../../models/ProfileModel'
+import { daoByType } from '../../refactor/redux/daos/selectors'
 import { cbeWatcher, watcher } from '../watcher/actions'
 import { watchStopMarket } from '../market/actions'
 import { notify } from '../notifier/actions'

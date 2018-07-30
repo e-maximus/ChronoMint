@@ -34,6 +34,7 @@ export const CUSTOM_NETWORKS_LIST_ADD = 'persistAccount/CUSTOM_NETWORKS_LIST_ADD
 export const CUSTOM_NETWORKS_LIST_UPDATE = 'persistAccount/CUSTOM_NETWORKS_LIST_UPDATE'
 export const CUSTOM_NETWORKS_LIST_RESET = 'persistAccount/CUSTOM_NETWORKS_LIST_RESET'
 export const DUCK_PERSIST_ACCOUNT = 'persistAccount'
+export const NETWORK_SET_PROFILE_SIGNATURE = '@login/network/SET_PROFILE_SIGNATURE'
 
 export const accountAdd = (wallet) => (dispatch) => {
   dispatch({ type: WALLETS_ADD, wallet })
@@ -286,3 +287,8 @@ export const customNetworksListUpdate = (list) => (dispatch) => {
 export const customNetworksListReset = () => (dispatch) => {
   dispatch({ type: CUSTOM_NETWORKS_LIST_RESET })
 }
+
+export const setProfileSignature = (signature) => ({
+  type: NETWORK_SET_PROFILE_SIGNATURE,
+  signature,
+})
