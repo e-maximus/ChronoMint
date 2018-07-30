@@ -18,7 +18,7 @@ export default class PollInterfaceManagerDAO extends EventEmitter {
     console.log('[PollInterfaceManagerDAO] Created')
   }
 
-  async getPollInterfaceDAO (address: String) {
+  async getPollInterfaceDAO (address: string) {
     const pollInterfaceDao = new PollInterfaceDAO({ abi: PollInterfaceABI, address, history: this.history })
     pollInterfaceDao.connect(this.web3)
     this.subscribe(pollInterfaceDao)

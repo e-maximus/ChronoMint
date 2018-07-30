@@ -199,7 +199,7 @@ export default class MultisigWalletDAO extends AbstractMultisigContractDAO {
     return result.tx
   }
 
-  async transfer (wallet: MultisigEthWalletModel, token: TokenModel, amount, to, feeMultiplier: Number = 1, value) {
+  async transfer (wallet: MultisigEthWalletModel, token: TokenModel, amount, to, feeMultiplier: number = 1, value) {
     // const tokenDAO = tokenService.getDAO(token.id())
     // const value = tokenDAO.addDecimals(amount)
     /*
@@ -237,7 +237,7 @@ export default class MultisigWalletDAO extends AbstractMultisigContractDAO {
     return result.tx
   }
 
-  async changeRequirement (newRequired: Number) {
+  async changeRequirement (newRequired: number) {
     const result = await this._tx('changeRequirement', [
       newRequired,
     ], {

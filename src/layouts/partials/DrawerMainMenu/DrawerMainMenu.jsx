@@ -106,7 +106,7 @@ export default class DrawerMainMenu extends PureComponent {
     const callback = function () {
       clearTimeout(timeoutId)
       timeoutId = setTimeout(() => {
-        const styleTop = Number.parseFloat(mainMenu.style.top || 0)
+        const styleTop = parseFloat(mainMenu.style.top || 0)
 
         const downBackspace = window.innerHeight - (mainMenu.offsetHeight - window.pageYOffset + styleTop)
         const isStart = (mainMenu.getBoundingClientRect().top + document.body.scrollTop) > 0

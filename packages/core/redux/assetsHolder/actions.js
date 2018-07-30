@@ -135,7 +135,7 @@ export const initAssetsHolder = () => async (dispatch, getState) => {
   dispatch(subscribeOnTokens(handleToken))
 }
 
-export const depositAsset = (amount: Amount, token: TokenModel, feeMultiplier: Number = 1, advancedOptions = undefined) => async (dispatch, getState) => {
+export const depositAsset = (amount: Amount, token: TokenModel, feeMultiplier: number = 1, advancedOptions = undefined) => async (dispatch, getState) => {
   try {
     const assetHolderDAO = daoByType('TimeHolder')(getState())
     const { account } = getState().get(DUCK_SESSION)
@@ -147,7 +147,7 @@ export const depositAsset = (amount: Amount, token: TokenModel, feeMultiplier: N
   }
 }
 
-export const withdrawAsset = (amount: Amount, token: TokenModel, feeMultiplier: Number = 1, advancedOptions = undefined) => async (dispatch, getState) => {
+export const withdrawAsset = (amount: Amount, token: TokenModel, feeMultiplier: number = 1, advancedOptions = undefined) => async (dispatch, getState) => {
   try {
     const assetHolderDAO = daoByType('TimeHolder')(getState())
     const { account } = getState().get(DUCK_SESSION)

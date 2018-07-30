@@ -31,11 +31,11 @@ export default class ContractsManagerDAO extends EventEmitter {
     }
   }
 
-  async getContractAddressByType (type: String) {
+  async getContractAddressByType (type: string) {
     return this.contract.methods.getContractAddressByType(this.web3.utils.stringToHex(type)).call()
   }
 
-  async isExists (address: String) {
+  async isExists (address: string) {
     return this.contract.methods.isExists(address).call()
   }
 }

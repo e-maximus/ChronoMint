@@ -43,7 +43,7 @@ export default class AssetHolderDAO extends AbstractContractDAO {
     return this.contract.methods.wallet().call()
   }
 
-  async deposit (token, amount: Amount, feeMultiplier: Number = 1, advancedOptions = undefined) {
+  async deposit (token, amount: Amount, feeMultiplier: number = 1, advancedOptions = undefined) {
     return this._tx(TX_DEPOSIT, [
       token.address(),
       new BigNumber(amount),
@@ -66,7 +66,7 @@ export default class AssetHolderDAO extends AbstractContractDAO {
     return this.contract.methods.defaultShareholdersCount().call()
   }
 
-  async withdraw (token, amount: Amount, feeMultiplier: Number = 1, advancedOptions = undefined) {
+  async withdraw (token, amount: Amount, feeMultiplier: number = 1, advancedOptions = undefined) {
     return this._tx(TX_WITHDRAW_SHARES, [
       token.address(),
       new BigNumber(amount),
@@ -86,7 +86,7 @@ export default class AssetHolderDAO extends AbstractContractDAO {
     })
   }
 
-  getDeposit (tokenAddress: String, account: String): Promise {
+  getDeposit (tokenAddress: string, account: string): Promise {
     return this.contract.methods.getDepositBalance(tokenAddress, account).call()
   }
 }

@@ -282,7 +282,7 @@ export const initMainWallet = () => async (dispatch) => {
   })
 }
 
-export const mainTransfer = (wallet: WalletModel, token: TokenModel, amount: Amount, recipient: string, feeMultiplier: Number = 1, additionalOptions = {}) => async (dispatch) => {
+export const mainTransfer = (wallet: WalletModel, token: TokenModel, amount: Amount, recipient: string, feeMultiplier: number = 1, additionalOptions = {}) => async (dispatch) => {
   try {
     const tokenDAO = tokenService.getDAO(token.id())
 
@@ -319,7 +319,7 @@ const updateAllowance = (allowance) => (dispatch, getState) => {
   }
 }
 
-export const mainApprove = (token: TokenModel, amount: Amount, spender: string, feeMultiplier: Number, additionalOptions = undefined) => async (dispatch, getState) => {
+export const mainApprove = (token: TokenModel, amount: Amount, spender: string, feeMultiplier: number, additionalOptions = undefined) => async (dispatch, getState) => {
   const wallet = getMainEthWallet(getState())
   const allowance = wallet.allowances.list[`${spender}-${token.id()}`]
   const { account } = getState().get(DUCK_SESSION)
@@ -337,7 +337,7 @@ export const mainApprove = (token: TokenModel, amount: Amount, spender: string, 
   }
 }
 
-export const mainRevoke = (token: TokenModel, spender: string, feeMultiplier: Number = 1, additionalOptions = undefined) => async (dispatch, getState) => {
+export const mainRevoke = (token: TokenModel, spender: string, feeMultiplier: number = 1, additionalOptions = undefined) => async (dispatch, getState) => {
   const wallet = getMainEthWallet(getState())
   const allowance = wallet.allowances.list[`${spender}-${token.id()}`]
   dispatch(updateAllowance(allowance.isFetching(true)))

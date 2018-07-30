@@ -11,7 +11,6 @@ import type MultisigTransactionModel from '../models/wallet/MultisigTransactionM
 import type MultisigWalletModel from '../models/wallet/MultisigWalletModel'
 import MultisigWalletPendingTxModel from '../models/wallet/MultisigWalletPendingTxModel'
 import {
-  EE_CONFIRMATIO,
   EE_CONFIRMATION,
   EE_CONFIRMATION_NEEDED,
   EE_DEPOSIT,

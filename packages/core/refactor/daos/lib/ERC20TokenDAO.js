@@ -48,15 +48,15 @@ export default class ERC20TokenDAO extends AbstractTokenDAO {
     }
   }
 
-  async getName (): Promise<String> {
+  async getName (): Promise<string> {
     return this.contract.methods.symbol().call()
   }
 
-  async getSymbol (): Promise<String> {
+  async getSymbol (): Promise<string> {
     return this.contract.methods.symbol().call()
   }
 
-  async getDecimals (): Promise<Number> {
+  async getDecimals (): Promise<number> {
     const response = await this.contract.methods.decimals().call()
     return Number(response.toString())
   }
@@ -161,7 +161,7 @@ export default class ERC20TokenDAO extends AbstractTokenDAO {
    * @param advancedOptions {object} - other options, maybe useless
    * @returns {TxExecModel}
    */
-  transfer (from: string, to: string, amount: Amount, token, feeMultiplier: Number = 1, additionalOptions): Promise {
+  transfer (from: string, to: string, amount: Amount, token, feeMultiplier: number = 1, additionalOptions): Promise {
     this.submit(from, to, amount, token, feeMultiplier, additionalOptions)
   }
 
@@ -221,7 +221,7 @@ export default class ERC20TokenDAO extends AbstractTokenDAO {
     }
   }
 
-  async approve (spender: string, amount: Amount, feeMultiplier: Number = 1, advancedOptions = undefined): Promise {
+  async approve (spender: string, amount: Amount, feeMultiplier: number = 1, advancedOptions = undefined): Promise {
 
     const {
       from,
@@ -260,7 +260,7 @@ export default class ERC20TokenDAO extends AbstractTokenDAO {
     })
   }
 
-  async revoke (spender: string, symbol: String, feeMultiplier: Number = 1, advancedOptions = undefined): Promise {
+  async revoke (spender: string, symbol: string, feeMultiplier: number = 1, advancedOptions = undefined): Promise {
     const {
       from,
     } = Object.assign({}, DEFAULT_TX_OPTIONS, advancedOptions)

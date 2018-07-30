@@ -39,7 +39,7 @@ export default ({ web3 }) => ({
     [WALLETS_CREATE] (state, entry: WalletEntryModel) {
       state.list.push(entry)
     },
-    [WALLETS_REMOVE] (state, name: String) {
+    [WALLETS_REMOVE] (state, name: string) {
       remove(state.list, entry => entry.name === name)
       if (state.active && state.active.entry.name === name) {
         state.active = null

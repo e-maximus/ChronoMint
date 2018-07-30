@@ -81,7 +81,7 @@ function mapStateToProps (state) {
     deposit: assets.item(token.address()).deposit(),
     allowance: wallet.allowances.list[`${spender}-${token.id()}`] || new AllowanceModel(),
     spender,
-    amount: Number.parseFloat(amount) || 0,
+    amount: parseFloat(amount) || 0,
     token,
     feeMultiplier,
     tokens,

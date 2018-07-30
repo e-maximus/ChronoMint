@@ -31,7 +31,7 @@ export default class TransferExecModel extends abstractModel({
     })
   }
 
-  contract (): String {
+  contract (): string {
     return this.get('contract')
   }
 
@@ -44,11 +44,11 @@ export default class TransferExecModel extends abstractModel({
     return typeof options.advancedParams === 'object'
   }
 
-  from (value: String): String {
+  from (value: string): string {
     return this._getSet('from', value)
   }
 
-  to (value: String): String {
+  to (value: string): string {
     return this._getSet('to', value)
   }
 
@@ -68,11 +68,11 @@ export default class TransferExecModel extends abstractModel({
     return this._getSet('feeToken', value)
   }
 
-  feeMultiplier (value: Number): Number {
+  feeMultiplier (value: number): number {
     return this._getSet('feeMultiplier', value)
   }
 
-  timestamp (value: Number): Number {
+  timestamp (value: number): number {
     return this._getSet('timestamp', value)
   }
 
@@ -85,15 +85,15 @@ export default class TransferExecModel extends abstractModel({
     return time && moment.unix(time).format(format || 'HH:mm, MMMM Do, YYYY') || null
   }
 
-  title (): String {
+  title (): string {
     return I18n.t(this.get('title'))
   }
 
-  operation (value: String): String {
+  operation (value: string): string {
     return this._getSet('operation', value)
   }
 
-  hash (value: String): String {
+  hash (value: string): string {
     return this._getSet('hash', value)
   }
 

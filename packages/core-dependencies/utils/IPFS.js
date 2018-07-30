@@ -26,7 +26,7 @@ class IPFS {
 
   /**
    * @param value Object that you want to put
-   * @returns {Promise<String>} hash of added value
+   * @returns {Promise<string>} hash of added value
    * @deprecated
    */
   put (value) {

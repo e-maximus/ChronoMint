@@ -134,7 +134,7 @@ export const removePoll = (pollObject: PTPoll) => async (dispatch, getState) => 
   }
 }
 
-export const vote = (choice: Number) => async (dispatch, getState) => {
+export const vote = (choice: number) => async (dispatch, getState) => {
   console.log('vote: ', choice)
 
   const poll = getSelectedPollFromDuck(getState())
@@ -198,7 +198,7 @@ export const handlePollCreated = (poll: PollDetailsModel) => async (dispatch) =>
   poll && dispatch({ type: POLLS_CREATE, poll })
 }
 
-export const handlePollRemoved = (id: Number) => async (dispatch) => {
+export const handlePollRemoved = (id: number) => async (dispatch) => {
   dispatch({ type: POLLS_REMOVE, id })
 }
 
