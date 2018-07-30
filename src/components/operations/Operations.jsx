@@ -13,6 +13,7 @@ import { getBlockExplorerUrl } from '@chronobank/login/network/settings'
 import { connect } from 'react-redux'
 import { confirmOperation, listOperations, loadMoreCompletedOperations, revokeOperation, setupOperationsSettings } from '@chronobank/core/redux/operations/actions'
 import { modalsOpen } from 'redux/modals/actions'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import OperationsSettingsDialog from 'components/dialogs/OperationsSettingsDialog'
 import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/EthereumDAO'
 import Value from 'components/common/Value/Value'
@@ -186,7 +187,7 @@ export default class PendingOperations extends PureComponent {
 
 function mapStateToProps (state) {
   const operations = state.get('operations')
-  const network = state.get('network')
+  const network = state.get(DUCK_NETWORK)
   return {
     list: operations.list,
     isFetched: operations.isFetched,

@@ -11,6 +11,7 @@ import React, { Component } from 'react'
 import QRCode from 'qrcode'
 import PrintIcon from 'assets/img/icons/print-white.svg'
 import LogoPrintVersion from 'assets/img/logo-chrono-wallet-bw.svg'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import {
   initMnemonicPage,
 } from '../../redux/thunks'
@@ -24,7 +25,7 @@ import './GenerateMnemonic.scss'
 function mapStateToProps (state) {
 
   return {
-    mnemonic: state.get('network').newAccountMnemonic,
+    mnemonic: state.get(DUCK_NETWORK).newAccountMnemonic,
   }
 }
 

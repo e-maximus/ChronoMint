@@ -9,18 +9,18 @@ import contractsManagerDAO from '@chronobank/core/dao/ContractsManagerDAO'
 import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/actions'
 import { AccountCustomNetwork } from '@chronobank/core/models/wallet/persistAccount'
 import EventEmitter from 'events'
-// import Web3 from 'web3'
 import { store } from '@chronobank/core-dependencies/configureStore'
 import {
-  addError,
-  clearErrors,
   DUCK_NETWORK,
-  loading,
   NETWORK_ADD_ERROR,
   NETWORK_SELECT_ACCOUNT,
   NETWORK_SET_ACCOUNTS,
   NETWORK_SET_TEST_METAMASK,
-  // NETWORK_SET_TEST_RPC,
+} from '../redux/network/constants'
+import {
+  addError,
+  clearErrors,
+  loading,
   networkSetNetwork,
   networkResetNetwork,
   networkSetProvider,
@@ -37,12 +37,10 @@ import {
   LOCAL_PRIVATE_KEYS,
   LOCAL_PROVIDER_ID,
   NETWORK_MAIN_ID,
-  // TESTRPC_URL,
 } from './settings'
 import uportProvider, { UPortAddress } from './uportProvider'
-import web3Provider/*, { Web3Provider }*/ from './Web3Provider'
+import web3Provider from './Web3Provider'
 import setup from './EngineUtils'
-// import web3Utils from './Web3Utils'
 
 // #endregion imports
 
@@ -59,10 +57,6 @@ class NetworkService extends EventEmitter {
     this._store = store
     this._dispatch = store.dispatch
   }
-  // connectStore (store) {
-  //   this._store = store
-  //   this._dispatch = store.dispatch
-  // }
 
   createNetworkSession = (account, provider, network) => {
     if (!this._account) {

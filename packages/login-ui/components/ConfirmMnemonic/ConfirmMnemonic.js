@@ -12,6 +12,7 @@ import { Field, reduxForm } from 'redux-form/immutable'
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 import Button from 'components/common/ui/Button/Button'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import {
   navigateToConfirmMnemonicPage,
   FORM_CONFIRM_MNEMONIC,
@@ -28,7 +29,7 @@ import './ConfirmMnemonic.scss'
 function mapStateToProps (state) {
 
   return {
-    mnemonic: state.get('network').newAccountMnemonic,
+    mnemonic: state.get(DUCK_NETWORK).newAccountMnemonic,
   }
 }
 
@@ -70,7 +71,7 @@ class ConfirmMnemonicPage extends Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount () {
     this.props.initConfirmMnemonicPage()
   }
 
@@ -78,7 +79,7 @@ class ConfirmMnemonicPage extends Component {
     return this.state.confirmPhrase.map((item) => item.word).join(' ')
   }
 
-  getWordsButtons (){
+  getWordsButtons () {
     return this.state.currentWordsArray.map((item, index) => {
       const wordSelected = this.state.confirmPhrase.includes(item)
 
@@ -95,7 +96,7 @@ class ConfirmMnemonicPage extends Component {
     )
   }
 
-  onClickWord (word, e){
+  onClickWord (word, e) {
     const { change } = this.props
 
     if (!this.state.confirmPhrase.includes(word)) {
@@ -106,7 +107,7 @@ class ConfirmMnemonicPage extends Component {
     }
   }
 
-  clearMnemonic (){
+  clearMnemonic () {
     const { change } = this.props
 
     this.setState(
@@ -115,7 +116,7 @@ class ConfirmMnemonicPage extends Component {
     )
   }
 
-  clearLastWord (){
+  clearLastWord () {
     const { dispatch, change } = this.props
 
     this.setState(

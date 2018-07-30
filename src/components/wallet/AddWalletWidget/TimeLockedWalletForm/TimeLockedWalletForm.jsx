@@ -15,7 +15,7 @@ import { connect } from 'react-redux'
 import { Translate } from 'react-redux-i18n'
 import { change, Field, formPropTypes, formValueSelector, reduxForm } from 'redux-form/immutable'
 import { goToWallets, resetWalletsForm } from '@chronobank/core/redux/mainWallet/actions'
-import { DUCK_SESSION } from '@chronobank/core/redux/session/actions'
+import { DUCK_SESSION } from '@chronobank/core/redux/session/constants'
 import { prefix } from './lang'
 import './TimeLockedWalletForm.scss'
 

@@ -11,6 +11,7 @@ const PROFILE_BACKEND_REST_URL = 'https://backend.profile.tp.ntr1x.com'
 const basePath = '/api/v1'
 const GET_PERSONS_REST = `${basePath}/security/persons/query`
 const GET_SIGNATURE_REST = `${basePath}/security/signin/signature`
+const UPDATE_PROFILE_COMBINE = `${basePath}/security/me/profile/combine/update`
 const UPDATE_LEVEL_1 = `${basePath}/security/me/profile/level1`
 const UPDATE_LEVEL_2 = `${basePath}/security/me/profile/level2`
 const UPDATE_LEVEL_3 = `${basePath}/security/me/profile/level3`
@@ -20,6 +21,9 @@ const VALIDATE_LEVEL_2_PHONE = `${basePath}/security/me/profile/level2/validate/
 const VALIDATE_LEVEL_2_EMAIL = `${basePath}/security/me/profile/level2/validate/email`
 const PROFILE_NOTIFICATIONS = `${basePath}/security/me/profile/notifications`
 
+const MEDIA_IMAGE_UPLOAD = `${basePath}/media/image/upload`
+const MEDIA_IMAGE_DOWNLOAD = (imageId = '') => `${basePath}/media/image/${imageId}`
+
 const PURPOSE_VALUE = 'exchange'
 
 class ProfileService extends EventEmitter {
@@ -28,10 +32,6 @@ class ProfileService extends EventEmitter {
     this._store = store
     this._dispatch = store.dispatch
   }
-  // connectStore (store) {
-  //   this._store = store
-  //   this._dispatch = store.dispatch
-  // }
 
   getProfileHost () {
     return PROFILE_BACKEND_REST_URL
@@ -90,13 +90,16 @@ class ProfileService extends EventEmitter {
     return personInfo
   }
 
-  async updateUserProfile ({ avatar, userName, email }, token){
+  async updateUserProfile({ avatar, userName, email, company, website, phone }, token){
     const service = this.getServerProvider()
 
-    const { data } = await service.post(UPDATE_LEVEL_1, {
+    const { data } = await service.post(UPDATE_PROFILE_COMBINE, {
       avatar,
       userName,
       email,
+      company,
+      website,
+      phone,
     }, this.withAuthorization(token))
 
     return data
@@ -198,6 +201,36 @@ class ProfileService extends EventEmitter {
       name,
       value,
     }, this.withAuthorization(token))
+
+    return data
+  }
+
+  async avatarUpload (file, token) {
+    const service = this.getServerProvider()
+
+    const formData = new FormData()
+    formData.append('image', file, file.name)
+
+    const { data } = await service.post(
+      MEDIA_IMAGE_UPLOAD,
+      formData,
+      this.withAuthorization(token, {
+        headers: {
+          'content-type': 'multipart/form-data',
+        },
+      })
+    )
+
+    return data
+  }
+
+  async avatarDownload (imgId, token) {
+    const service = this.getServerProvider()
+
+    const { data } = await service.get(
+      MEDIA_IMAGE_DOWNLOAD(imgId),
+      this.withAuthorization(token)
+    )
 
     return data
   }

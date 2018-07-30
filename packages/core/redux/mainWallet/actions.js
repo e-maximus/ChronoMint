@@ -35,7 +35,7 @@ import AllowanceModel from '../../models/wallet/AllowanceModel'
 import { TXS_PER_PAGE } from '../../models/wallet/TransactionsCollection'
 import { addMarketToken } from '../market/actions'
 import { notify, notifyError } from '../notifier/actions'
-import { DUCK_SESSION } from '../session/actions'
+import { DUCK_SESSION } from '../session/constants'
 import { subscribeOnTokens } from '../tokens/actions'
 import { DUCK_TOKENS } from '../tokens/constants'
 import tokenService from '../../services/TokenService'
@@ -51,45 +51,38 @@ import { BLOCKCHAIN_NEM } from '../../dao/NemDAO'
 import { BLOCKCHAIN_WAVES } from '../../dao/WavesDAO'
 import WalletModel from '../../models/wallet/WalletModel'
 import { daoByType } from '../../refactor/redux/daos/selectors'
-import { WALLETS_SET_IS_TIME_REQUIRED, WALLETS_UPDATE_WALLET } from '../wallets/actions'
+import { WALLETS_SET_IS_TIME_REQUIRED, WALLETS_UPDATE_WALLET } from '../wallets/constants'
 import { getMainAddresses, getMainEthWallet, getMainWalletForBlockchain, getWallet } from '../wallets/selectors/models'
 import { getAccount } from '../session/selectors/models'
 import AllowanceCollection from '../../refactor/models/AllowanceCollection'
 import TxHistoryModel from '../../models/wallet/TxHistoryModel'
-
-export const DUCK_MAIN_WALLET = 'mainWallet'
-export const FORM_ADD_NEW_WALLET = 'FormAddNewWallet'
-
-// TODO @ipavlenko: Odd code, remove WALLET_BALANCE
-export const WALLET_BALANCE = 'mainWallet/BALANCE'
-export const WALLET_ALLOWANCE = 'mainWallet/ALLOWANCE'
-export const WALLET_ADDRESS = 'mainWallet/WALLET_ADDRESS'
-export const WALLET_CURRENT_BLOCK_HEIGHT = 'mainWallet/WALLET_CURRENT_BLOCK_HEIGHT'
-export const WALLET_TRANSACTIONS_FETCH = 'mainWallet/TRANSACTIONS_FETCH'
-export const WALLET_TRANSACTION_UPDATED = 'mainWallet/TRANSACTION_UPDATED'
-export const WALLET_TRANSACTION = 'mainWallet/TRANSACTION'
-export const WALLET_TRANSACTIONS = 'mainWallet/TRANSACTIONS'
-export const WALLET_IS_TIME_REQUIRED = 'mainWallet/IS_TIME_REQUIRED'
-export const WALLET_TOKEN_BALANCE = 'mainWallet/TOKEN_BALANCE'
-export const WALLET_INIT = 'mainWallet/INIT'
-export const WALLET_SET_NAME = 'mainWallet/SET_NAME'
-export const WALLET_ESTIMATE_GAS_FOR_DEPOSIT = 'mainWallet/ESTIMATE_GAS_FOR_DEPOSIT'
-
-export const ETH = 'ETH'
-export const TIME = 'TIME'
-export const LHT = 'LHT'
-export const BTC = 'BTC'
-export const BCC = 'BCC'
-export const BTG = 'BTG'
-export const LTC = 'LTC'
-export const XEM = 'XEM'
-export const WAVES = 'WAVES'
-
-export const FEE_RATE_MULTIPLIER = {
-  min: 0.1,
-  max: 1.9,
-  step: 0.1,
-}
+import {
+  // DUCK_MAIN_WALLET,
+  BCC,
+  BTC,
+  BTG,
+  ETH,
+  // FEE_RATE_MULTIPLIER,
+  FORM_ADD_NEW_WALLET,
+  // LHT,
+  LTC,
+  TIME,
+  WALLET_ADDRESS,
+  WALLET_ALLOWANCE,
+  // WALLET_BALANCE,
+  // WALLET_CURRENT_BLOCK_HEIGHT,
+  WALLET_ESTIMATE_GAS_FOR_DEPOSIT,
+  WALLET_INIT,
+  // WALLET_IS_TIME_REQUIRED,
+  // WALLET_SET_NAME,
+  WALLET_TOKEN_BALANCE,
+  WALLET_TRANSACTION,
+  WALLET_TRANSACTION_UPDATED,
+  // WALLET_TRANSACTIONS,
+  // WALLET_TRANSACTIONS_FETCH,
+  WAVES,
+  XEM,
+} from './constants'
 
 export const goToWallets = () => (dispatch) => dispatch(push('/wallets'))
 

@@ -13,8 +13,12 @@ import {
 } from 'redux-form'
 import axios from 'axios'
 import * as NetworkActions from '@chronobank/login/redux/network/actions'
+import {
+  DUCK_NETWORK,
+} from '@chronobank/login/redux/network/constants'
 import * as NetworkThunks from '@chronobank/login/redux/network/thunks'
 import * as PersistAccountActions from '@chronobank/core/redux/persistAccount/actions'
+import * as SessionActions from '@chronobank/core/redux/session/actions'
 import privateKeyProvider from '@chronobank/login/network/privateKeyProvider'
 import mnemonicProvider from '@chronobank/login/network/mnemonicProvider'
 import PublicBackendProvider from '@chronobank/login/network/PublicBackendProvider'
@@ -143,7 +147,7 @@ export const navigateToCreateAccountWithoutImport = () => (dispatch) => {
  */
 export const initResetPasswordPage = () => (dispatch, getState) => {
   const state = getState()
-  const { accountRecoveryMode } = state.get(NetworkActions.DUCK_NETWORK)
+  const { accountRecoveryMode } = state.get(DUCK_NETWORK)
 
   if (!accountRecoveryMode) {
     dispatch(LoginUIActions.navigateToRecoverAccountPage())
@@ -162,7 +166,7 @@ export const initResetPasswordPage = () => (dispatch, getState) => {
 export const initCommonNetworkSelector = () => (dispatch, getState) => {
   const state = getState()
 
-  const { isLocal } = state.get(NetworkActions.DUCK_NETWORK)
+  const { isLocal } = state.get(DUCK_NETWORK)
 
   networkService.autoSelect()
 
@@ -201,7 +205,7 @@ export const onSubmitSubscribeNewsletter = (email) => async () => {
  */
 export const onSubmitConfirmMnemonic = (confirmMnemonic) => (dispatch, getState) => {
   const state = getState()
-  const { newAccountMnemonic } = state.get(NetworkActions.DUCK_NETWORK)
+  const { newAccountMnemonic } = state.get(DUCK_NETWORK)
 
   if (confirmMnemonic !== newAccountMnemonic) {
     throw new SubmissionError({ _error: 'Please enter correct mnemonic phrase' })
@@ -223,7 +227,7 @@ export const onSubmitLoginForm = (password) => async (dispatch, getState) => {
     const wallet = await dispatch(PersistAccountActions.decryptAccount(selectedWallet.encrypted, password))
     const privateKey = wallet && wallet[0] && wallet[0].privateKey
 
-    dispatch(NetworkThunks.getProfileSignature(wallet[0]))
+    dispatch(SessionActions.getProfileSignature(wallet[0]))
 
     if (privateKey) {
       await dispatch(NetworkThunks.handleWalletLogin(selectedWallet.encrypted, password))
@@ -248,7 +252,7 @@ export const onSubmitCreateAccountPage = (walletName, walletPassword) =>
       newAccountMnemonic,
       newAccountPrivateKey,
       walletFileImportMode,
-    } = state.get(NetworkActions.DUCK_NETWORK)
+    } = state.get(DUCK_NETWORK)
     const validateName = dispatch(PersistAccountActions.validateAccountName(walletName))
 
     if (!validateName) {
@@ -306,7 +310,7 @@ export const onSubmitCreateHWAccountPage = (walletName) =>
     const {
       importAccountMode,
       newAccountPrivateKey,
-    } = state.get(NetworkActions.DUCK_NETWORK)
+    } = state.get(DUCK_NETWORK)
 
     if (importAccountMode) {
       try {
@@ -402,7 +406,7 @@ export const initLoginLocal = () =>
     const {
       selectedNetworkId,
       selectedProviderId,
-    } = state.get(NetworkActions.DUCK_NETWORK)
+    } = state.get(DUCK_NETWORK)
 
     if (isLocalNode(selectedProviderId, selectedNetworkId)) {
       await networkService.loadAccounts()
@@ -417,7 +421,7 @@ export const initLoginLocal = () =>
  */
 export const initConfirmMnemonicPage = () => (dispatch, getState) => {
   const state = getState()
-  const { newAccountMnemonic } = state.get(NetworkActions.DUCK_NETWORK)
+  const { newAccountMnemonic } = state.get(DUCK_NETWORK)
 
   if (!newAccountMnemonic) {
     dispatch(LoginUIActions.navigateToCreateAccount())
@@ -433,7 +437,7 @@ export const initMnemonicPage = () => (dispatch, getState) => {
   const {
     newAccountName,
     newAccountPassword,
-  } = state.get(NetworkActions.DUCK_NETWORK)
+  } = state.get(DUCK_NETWORK)
   const emptyAccountCredentials = !newAccountName || !newAccountPassword
 
   if (emptyAccountCredentials) {
@@ -559,7 +563,7 @@ export const onWalletSelect = (wallet) => (dispatch, getState) => {
   dispatch(PersistAccountActions.accountSelect(wallet))
 
   const state = getState()
-  const { accountRecoveryMode } = state.get(NetworkActions.DUCK_NETWORK)
+  const { accountRecoveryMode } = state.get(DUCK_NETWORK)
   if (accountRecoveryMode) {
     dispatch(LoginUIActions.navigateToRecoverAccountPage())
   }

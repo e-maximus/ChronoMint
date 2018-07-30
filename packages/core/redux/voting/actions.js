@@ -5,7 +5,7 @@
 
 import BigNumber from 'bignumber.js'
 import { push } from '@chronobank/core-dependencies/router'
-import { DUCK_SESSION } from '../session/actions'
+import { DUCK_SESSION } from '../session/constants'
 import votingService from '../../services/VotingService'
 import { EVENT_POLL_ACTIVATED, EVENT_POLL_ENDED, EVENT_POLL_VOTED } from '../../dao/PollEmitterDAO'
 import type PollNoticeModel from '../../models/notices/PollNoticeModel'
@@ -18,16 +18,17 @@ import { getSelectedPollFromDuck, getVoting } from './selectors/models'
 import { daoByType } from '../../refactor/redux/daos/selectors'
 import PollModel from '../../models/PollModel'
 import TxExecModel from '../../refactor/models/TxExecModel'
+import {
+  DUCK_VOTING,
+  POLLS_CREATE,
+  POLLS_LIST,
+  POLLS_LOAD,
+  POLLS_REMOVE,
+  // POLLS_SELECTED,
+  POLLS_UPDATE,
+  POLLS_VOTE_LIMIT,
+} from './constants'
 
-export const POLLS_VOTE_LIMIT = 'voting/POLLS_LIMIT'
-export const POLLS_LOAD = 'voting/POLLS_LOAD'
-export const POLLS_LIST = 'voting/POLLS_LIST'
-export const POLLS_CREATE = 'voting/POLLS_CREATE'
-export const POLLS_REMOVE = 'voting/POLLS_REMOVE'
-export const POLLS_UPDATE = 'voting/POLLS_UPDATE'
-export const POLLS_SELECTED = 'voting/POLLS_SELECTED'
-
-export const DUCK_VOTING = 'voting'
 const PAGE_SIZE = 20
 
 // used to create unique ID for fetching models

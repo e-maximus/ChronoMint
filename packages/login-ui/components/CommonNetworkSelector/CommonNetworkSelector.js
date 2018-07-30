@@ -10,9 +10,11 @@ import {
   selectProviderWithNetwork,
 } from '@chronobank/login/redux/network/thunks'
 import {
-  DUCK_NETWORK,
   clearErrors,
 } from '@chronobank/login/redux/network/actions'
+import {
+  DUCK_NETWORK,
+} from '@chronobank/login/redux/network/constants'
 import { getNetworkWithProviderNames, getProviderById, isLocalNode, getNetworksSelectorGroup } from '@chronobank/login/network/settings'
 import { AccountCustomNetwork } from '@chronobank/core/models/wallet/persistAccount'
 import { customNetworksListAdd } from '@chronobank/core/redux/persistAccount/actions'
@@ -285,7 +287,7 @@ export default class CommonNetworkSelector extends PureComponent {
     return (
       <div styleName='root'>
         <Button
-          styleName='langButton'
+          styleName='networkButton'
           onClick={this.handleClickButton}
         >
           {this.getSelectedNetwork()}
@@ -294,7 +296,7 @@ export default class CommonNetworkSelector extends PureComponent {
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}
-          anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           onClose={this.handleRequestClose}
           classes={{
             paper: styles.popover,

@@ -15,7 +15,7 @@ import type MultisigWalletModel from '../../models/wallet/MultisigWalletModel'
 import type MultisigWalletPendingTxModel from '../../models/wallet/MultisigWalletPendingTxModel'
 import OwnerModel from '../../models/wallet/OwnerModel'
 import { notify, notifyError } from '../notifier/actions'
-import { DUCK_SESSION } from '../session/actions'
+import { DUCK_SESSION } from '../session/constants'
 import { alternateTxHandlingFlow, subscribeOnTokens } from '../tokens/actions'
 import {
   EE_CONFIRMATION,
@@ -28,7 +28,8 @@ import {
   EE_SINGLE_TRANSACTION,
 } from '../../services/constants'
 import multisigWalletService from '../../services/MultisigWalletService'
-import { ETH, getTransactionsForWallet } from '../mainWallet/actions'
+import { getTransactionsForWallet } from '../mainWallet/actions'
+import { ETH } from '../mainWallet/constants'
 import { getMultisigWallets } from '../wallet/selectors/models'
 import { getWallets } from './selectors/models'
 import DerivedWalletModel from '../../models/wallet/DerivedWalletModel'

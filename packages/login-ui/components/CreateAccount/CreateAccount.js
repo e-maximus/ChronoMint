@@ -11,6 +11,7 @@ import { reduxForm, Field } from 'redux-form/immutable'
 import { TextField } from 'redux-form-material-ui'
 import { Translate } from 'react-redux-i18n'
 import Button from 'components/common/ui/Button/Button'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import {
   onSubmitCreateAccountPage,
   onSubmitCreateAccountPageSuccess,
@@ -24,7 +25,7 @@ import './CreateAccount.scss'
 
 function mapStateToProps (state) {
   return {
-    isImportMode: state.get('network').importAccountMode,
+    isImportMode: state.get(DUCK_NETWORK).importAccountMode,
   }
 }
 

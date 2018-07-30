@@ -4,14 +4,13 @@
  */
 
 import { isTestingNetwork } from '@chronobank/login/network/settings'
-import { DUCK_NETWORK } from '@chronobank/login/redux/network/actions'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { DUCK_WALLET } from '@chronobank/core/redux/wallet/actions'
 import WalletWidgetDetail from 'components/wallet/WalletWidgetDetail/WalletWidgetDetail'
 import TokensListWidget from 'components/wallet/TokensListWidget/TokensListWidget'
-import PendingTxWidget from 'components/wallet/PendingTxWidget/PendingTxWidget'
 import OwnersListWidget from 'components/wallet/OwnersListWidget/OwnersListWidget'
 import { getTransactionsForWallet, goToWallets } from '@chronobank/core/redux/mainWallet/actions'
 import { getWalletInfo } from '@chronobank/core/redux/wallets/selectors/wallet'

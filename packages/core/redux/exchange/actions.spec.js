@@ -3,17 +3,17 @@
  * Licensed under the AGPL Version 3 license.
  */
 
+import BigNumber from 'bignumber.js'
+import networkService from '@chronobank/login/network/NetworkService'
+import Immutable from 'immutable'
+import { accounts, mockStore } from 'specsInit'
 import contractsManagerDAO from '../../dao/ContractsManagerDAO'
 import tokenService from '../../services/TokenService'
 import MainWalletModel from '../../models/wallet/MainWalletModel'
 import ExchangesCollection from '../../models/exchange/ExchangesCollection'
-import BigNumber from 'bignumber.js'
 import { mainTransfer, WALLET_ALLOWANCE } from '../mainWallet/actions'
-import Immutable from 'immutable'
-import networkService from '@chronobank/login/network/NetworkService'
 import exchangeService from '../../services/ExchangeService'
-import { DUCK_SESSION } from '../session/actions'
-import { accounts, mockStore } from 'specsInit'
+import { DUCK_SESSION } from '../session/constants'
 import ExchangeOrderModel from '../../models/exchange/ExchangeOrderModel'
 import ExchangeModel from '../../models/exchange/ExchangeModel'
 import TokensCollection from '../../models/tokens/TokensCollection'

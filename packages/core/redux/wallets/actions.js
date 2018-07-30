@@ -32,12 +32,14 @@ import MultisigWalletModel from '../../models/wallet/MultisigWalletModel'
 import { ethDAO } from '../../refactor/daos/index'
 import { getWallets } from './selectors/models'
 
-export const DUCK_WALLETS = 'wallets'
-export const WALLETS_SET = 'wallet/set'
-export const WALLETS_UPDATE_BALANCE = 'wallet/updateBalance'
-export const WALLETS_TWO_FA_CONFIRMED = 'wallet/twoFaConfirmed'
-export const WALLETS_UPDATE_WALLET = 'wallet/updateWallet'
-export const WALLETS_SET_IS_TIME_REQUIRED = 'wallet/isTimeRequired'
+import {
+  // DUCK_WALLETS,
+  WALLETS_SET,
+  WALLETS_UPDATE_BALANCE,
+  WALLETS_TWO_FA_CONFIRMED,
+  // WALLETS_UPDATE_WALLET,
+  // WALLETS_SET_IS_TIME_REQUIRED,
+} from './constants'
 
 let walletsManagerDAO
 const isOwner = (wallet, account) => {

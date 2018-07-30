@@ -127,8 +127,8 @@ export default class AssetsManagerDAO extends AbstractContractDAO {
     if (block && time) {
       return this.createTxModel(tx, account, block, time)
     }
-    block = await web3Provider.getBlock(tx.blockHash)
-    return this.createTxModel(tx, account, tx.blockNumber, block.timestamp)
+    const nBlock = await web3Provider.getBlock(tx.blockHash)
+    return this.createTxModel(tx, account, tx.blockNumber, nBlock.timestamp)
   }
 
   async getTransactions (account) {
@@ -137,6 +137,7 @@ export default class AssetsManagerDAO extends AbstractContractDAO {
     const chronoBankPlatformDAO = await contractManager.getChronoBankPlatformDAO()
     const platformTokenExtensionGatewayManagerDAO = await contractManager.getPlatformTokenExtensionGatewayManagerEmitterDAO()
 
+    /* eslint-disable no-underscore-dangle */
     transactionsPromises.push(platformTokenExtensionGatewayManagerDAO._get(TX_ASSET_CREATED, 0, 'latest', { by: account }))
     transactionsPromises.push(platformManagerDao._get(TX_PLATFORM_REQUESTED, 0, 'latest', { by: account }))
     transactionsPromises.push(platformManagerDao._get(TX_PLATFORM_ATTACHED, 0, 'latest', { by: account }))
@@ -145,6 +146,7 @@ export default class AssetsManagerDAO extends AbstractContractDAO {
     transactionsPromises.push(chronoBankPlatformDAO._get(TX_REVOKE, 0, 'latest', { by: account }))
     transactionsPromises.push(chronoBankPlatformDAO._get(TX_OWNERSHIP_CHANGE, 0, 'latest', { to: account }))
     transactionsPromises.push(chronoBankPlatformDAO._get(TX_OWNERSHIP_CHANGE, 0, 'latest', { from: account }))
+    /* eslint-enable no-underscore-dangle */
     const transactionsLists = await Promise.all(transactionsPromises)
     const promises = []
     transactionsLists.map((transactionsList) => transactionsList.map((tx) => promises.push(this.getTxModel(tx, account))))
@@ -173,7 +175,9 @@ export default class AssetsManagerDAO extends AbstractContractDAO {
     const transactionsPromises = []
     const chronoBankAssetDAO = await contractManager.getChronoBankAssetDAO(address)
 
+    // eslint-disable-next-line no-underscore-dangle
     transactionsPromises.push(chronoBankAssetDAO._get(TX_RESTRICTED, 0, 'latest', { symbol }))
+    // eslint-disable-next-line no-underscore-dangle
     transactionsPromises.push(chronoBankAssetDAO._get(TX_UNRESTRICTED, 0, 'latest', { symbol }))
 
     const transactionsLists = await Promise.all(transactionsPromises)
@@ -191,7 +195,9 @@ export default class AssetsManagerDAO extends AbstractContractDAO {
     const transactionsPromises = []
     const chronoBankAssetDAO = await contractManager.getChronoBankAssetDAO(address)
 
+    // eslint-disable-next-line no-underscore-dangle
     transactionsPromises.push(chronoBankAssetDAO._get(TX_PAUSED, 0, 'latest', { symbol }))
+    // eslint-disable-next-line no-underscore-dangle
     transactionsPromises.push(chronoBankAssetDAO._get(TX_UNPAUSED, 0, 'latest', { symbol }))
 
     const transactionsLists = await Promise.all(transactionsPromises)

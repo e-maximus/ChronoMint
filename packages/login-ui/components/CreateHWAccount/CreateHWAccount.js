@@ -13,6 +13,7 @@ import { TextField } from 'redux-form-material-ui'
 import { Translate } from 'react-redux-i18n'
 import styles from 'layouts/Splash/styles'
 import Button from 'components/common/ui/Button/Button'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import {
   onSubmitCreateHWAccountPage,
   onSubmitCreateHWAccountPageSuccess,
@@ -29,7 +30,7 @@ export const FORM_CREATE_HW_ACCOUNT = 'CreateAccountForm'
 function mapStateToProps (state) {
 
   return {
-    isImportMode: state.get('network').importAccountMode,
+    isImportMode: state.get(DUCK_NETWORK).importAccountMode,
   }
 }
 

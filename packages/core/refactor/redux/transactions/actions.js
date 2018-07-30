@@ -6,7 +6,7 @@
 import Tx from 'ethereumjs-tx'
 import { modalsOpenConfirmDialog } from '@chronobank/core-dependencies/redux/modals/actions'
 import { ethereumProvider } from '@chronobank/login/network/EthereumProvider'
-import { WATCHER_TX_SET } from '../../../redux/watcher/actions'
+import { WATCHER_TX_SET } from '../../../redux/watcher/constants'
 import CurrentTransactionNotificationModel from '../../../models/CurrentTransactionNotificationModel'
 
 export const DUCK_TRANSACTIONS = 'transactions'

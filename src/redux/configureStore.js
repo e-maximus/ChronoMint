@@ -5,24 +5,27 @@
 
 import Immutable from 'immutable'
 // import { globalWatcher } from '@chronobank/core/redux/watcher/actions'
-import { SESSION_DESTROY } from '@chronobank/core/redux/session/actions'
+
 import { combineReducers } from 'redux-immutable'
 import { applyMiddleware, compose, createStore } from 'redux'
 import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistStore } from 'redux-persist-immutable'
-import { reducer as formReducer } from 'redux-form/immutable'
-import { DUCK_I18N, loadI18n } from 'redux/i18n/actions'
-import { I18n, i18nReducer, loadTranslations, setLocale } from '@chronobank/core-dependencies/i18n'
 import moment from 'moment'
-import saveAccountMiddleWare from '@chronobank/core/redux/session/saveAccountMiddleWare'
 import thunk from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form/immutable'
+import { I18n, i18nReducer, loadTranslations, setLocale } from '@chronobank/core-dependencies/i18n'
+import { DUCK_I18N, loadI18n } from 'redux/i18n/actions'
+import saveAccountMiddleWare from '@chronobank/core/redux/session/saveAccountMiddleWare'
+import { DUCK_MAIN_WALLET } from '@chronobank/core/redux/mainWallet/constants'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import * as ducks from './ducks'
 import routingReducer from './routing'
 import transformer from './serialize'
 import createHistory, { historyMiddleware } from './browserHistoryStore'
 import translations from '../i18n'
+
+const SESSION_DESTROY = 'session/DESTROY'
 
 // eslint-disable-next-line no-unused-vars
 let i18nJson // declaration of a global var for the i18n object for a standalone version
@@ -57,7 +60,7 @@ const configureStore = () => {
 
     if (action.type === SESSION_DESTROY) {
       const i18nState = state.get('i18n')
-      const mainWalletsState = state.get('mainWallet')
+      const mainWalletsState = state.get(DUCK_MAIN_WALLET)
       const walletsState = state.get('ethMultisigWallet')
       const persistAccount = state.get('persistAccount')
       state = new Immutable.Map()
