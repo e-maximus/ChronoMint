@@ -5,8 +5,6 @@
 
 import BigNumber from 'bignumber.js'
 import OwnerCollection from '../wallet/OwnerCollection'
-import type AbstractTokenDAO from '../../dao/AbstractTokenDAO'
-import type ERC20DAO from '../../dao/ERC20DAO'
 import Amount from '../Amount'
 import { abstractFetchingModel } from '../AbstractFetchingModel'
 import FeeModel from './FeeModel'
@@ -40,7 +38,8 @@ export default class TokenModel extends abstractFetchingModel({
     return this.get('transactionHash') || this.symbol() || this.address()
   }
 
-  dao (): AbstractTokenDAO | ERC20DAO {
+  // TODO: to specify type but wothout circilar dependencies
+  dao (): any {
     return this.get('dao')
   }
 
