@@ -21,7 +21,6 @@ import web3Factory from '../../refactor/web3/index'
 import { daoByType } from '../../refactor/redux/daos/selectors'
 import { cbeWatcher, watcher } from '../watcher/actions'
 import { watchStopMarket } from '../market/actions'
-import { notify } from '../notifier/actions'
 import { WEB3_SETUP } from '../web3/reducer'
 
 import {
@@ -134,11 +133,6 @@ export const updateUserProfile = (profile) => async (dispatch, getState) => {
     ...profileSignature,
     profile: newProfile,
   }))
-}
-
-export const watchInitProfile = () => async (dispatch, getState) => {
-  const userManagerDAO = daoByType('UserManager')(getState())
-  return userManagerDAO.watchProfile((notice) => dispatch(notify(notice)))
 }
 
 export const uploadAvatar = (img) => (dispatch) => {

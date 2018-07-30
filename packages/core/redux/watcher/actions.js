@@ -19,9 +19,9 @@ import { watchInitCBE } from '../settings/user/cbe/actions'
 import { initTokens } from '../tokens/actions'
 import { initDAOs } from '../../refactor/redux/daos/actions'
 import { watchInitPolls } from '../voting/actions'
-import { watchInitProfile } from '../session/actions'
 import { initMultisigWalletManager } from '../multisigWallet/actions'
 import { initWallets } from '../wallets/actions'
+import { daoByType } from '../../refactor/redux/daos/selectors'
 import {
   // DUCK_WATCHER,
   WATCHER_CBE,
@@ -69,6 +69,11 @@ export const txHandlingFlow = () => (dispatch) => {
 // for all users on all pages
 export const globalWatcher = () => async (dispatch) => {
   dispatch(watchInitMonitor())
+}
+
+export const watchInitProfile = () => async (dispatch, getState) => {
+  const userManagerDAO = daoByType('UserManager')(getState())
+  return userManagerDAO.watchProfile((notice) => dispatch(notify(notice)))
 }
 
 // for all logged in users
