@@ -4,7 +4,7 @@
  */
 
 import { createSelector } from 'reselect'
-import { PROFILE_PANEL_TOKENS, DUCK_SESSION } from '../actions'
+import { PROFILE_PANEL_TOKENS, DUCK_SESSION } from '../constants'
 import { getMainWallets } from '../../wallets/selectors/models'
 import { getGasSliderCollection, getIsCBE } from './models'
 import WalletModel from '../../../models/wallet/WalletModel'

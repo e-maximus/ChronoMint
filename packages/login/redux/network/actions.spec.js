@@ -5,7 +5,8 @@
 
 import AbstractContractDAO from '@chronobank/core/dao/AbstractContractDAO'
 import Immutable from 'immutable'
-import { createSession, destroySession, SESSION_CREATE, SESSION_DESTROY } from '@chronobank/core/redux/session/actions'
+import { createSession, destroySession } from '@chronobank/core/redux/session/actions'
+import { SESSION_CREATE, SESSION_DESTROY } from '@chronobank/core/redux/session/constants'
 import { accounts, mockStore, store } from 'specsInit'
 import Web3Legacy from 'web3legacy'
 import metaMaskResolver from '../../network/metaMaskResolver'

@@ -20,7 +20,7 @@ import {
   MIDDLEWARE_EVENT_PAUSED,
   MIDDLEWARE_EVENT_UNPAUSED,
 } from '../../dao/AssetsManagerDAO'
-import { DUCK_SESSION } from '../session/actions'
+import { DUCK_SESSION } from '../session/constants'
 import { DUCK_TOKENS, TOKENS_FETCHED, TOKENS_UPDATE } from '../tokens/constants'
 import AssetsManagerNoticeModel, {
   ASSET_PAUSED,

@@ -32,10 +32,6 @@ class ProfileService extends EventEmitter {
     this._store = store
     this._dispatch = store.dispatch
   }
-  // connectStore (store) {
-  //   this._store = store
-  //   this._dispatch = store.dispatch
-  // }
 
   getProfileHost () {
     return PROFILE_BACKEND_REST_URL

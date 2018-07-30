@@ -5,7 +5,7 @@
 
 import BigNumber from 'bignumber.js'
 import { push } from '@chronobank/core-dependencies/router'
-import { DUCK_SESSION } from '../session/actions'
+import { DUCK_SESSION } from '../session/constants'
 import votingService from '../../services/VotingService'
 import { EVENT_POLL_ACTIVATED, EVENT_POLL_ENDED, EVENT_POLL_VOTED } from '../../dao/PollEmitterDAO'
 import type PollNoticeModel from '../../models/notices/PollNoticeModel'

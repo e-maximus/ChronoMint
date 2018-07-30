@@ -15,7 +15,7 @@ import type MultisigWalletModel from '../../models/wallet/MultisigWalletModel'
 import type MultisigWalletPendingTxModel from '../../models/wallet/MultisigWalletPendingTxModel'
 import OwnerModel from '../../models/wallet/OwnerModel'
 import { notify, notifyError } from '../notifier/actions'
-import { DUCK_SESSION } from '../session/actions'
+import { DUCK_SESSION } from '../session/constants'
 import { alternateTxHandlingFlow, subscribeOnTokens } from '../tokens/actions'
 import {
   EE_CONFIRMATION,

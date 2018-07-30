@@ -24,7 +24,7 @@ import OwnerModel from '@chronobank/core/models/wallet/OwnerModel'
 import MultisigWalletModel from '@chronobank/core/models/wallet/MultisigWalletModel'
 import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/EthereumDAO'
 import { getMarket } from '@chronobank/core/redux/market/selectors'
-import { DUCK_SESSION } from '@chronobank/core/redux/session/actions'
+import { DUCK_SESSION } from '@chronobank/core/redux/session/constants'
 import { prefix } from './lang'
 import './TwoFaWalletForm.scss'
 

@@ -4,7 +4,7 @@
  */
 
 import { Button } from 'components'
-import { CircularProgress, Divider, Paper, Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui'
+import { CircularProgress, Divider, Paper, Table, TableBody, TableFooter, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from '@material-ui/core'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { Translate } from 'react-redux-i18n'
@@ -13,7 +13,7 @@ import { getBlockExplorerUrl } from '@chronobank/login/network/settings'
 import { DUCK_TOKENS } from '@chronobank/core/redux/tokens/constants'
 import TokensCollection from '@chronobank/core/models/tokens/TokensCollection'
 import TokenModel from '@chronobank/core/models/tokens/TokenModel'
-import { DUCK_SESSION } from '@chronobank/core/redux/session/actions'
+import { DUCK_SESSION } from '@chronobank/core/redux/session/constants'
 import globalStyles from '../../../styles'
 import styles from './styles'
 
