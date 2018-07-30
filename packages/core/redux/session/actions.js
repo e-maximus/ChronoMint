@@ -4,21 +4,27 @@
  */
 
 import networkService from '@chronobank/login/network/NetworkService'
-import { getNetworkById, LOCAL_ID, LOCAL_PROVIDER_ID, NETWORK_MAIN_ID } from '@chronobank/login/network/settings'
-import { DUCK_NETWORK } from '@chronobank/login/redux/network/actions'
-import { daoByType } from '../../refactor/redux/daos/selectors'
+import {
+  getNetworkById,
+  LOCAL_ID,
+  LOCAL_PROVIDER_ID,
+  NETWORK_MAIN_ID,
+} from '@chronobank/login/network/settings'
+import {
+  DUCK_NETWORK,
+  DUCK_SESSION,
+} from '@chronobank/login/redux/network/actions'
 import profileService from '@chronobank/login/network/ProfileService'
 import { push, replace } from '@chronobank/core-dependencies/router'
+import { removeWatchersUserMonitor } from '@chronobank/core-dependencies/redux/ui/actions'
+import { setProfileSignature } from '@chronobank/core/redux/persistAccount/actions'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import web3Factory from '../../refactor/web3/index'
-import { removeWatchersUserMonitor } from '@chronobank/core-dependencies/redux/ui/actions'
-import ProfileModel from '../../models/ProfileModel'
+import { daoByType } from '../../refactor/redux/daos/selectors'
 import { cbeWatcher, watcher } from '../watcher/actions'
 import { watchStopMarket } from '../market/actions'
 import { notify } from '../notifier/actions'
 import { WEB3_SETUP } from '../web3/reducer'
-
-export const DUCK_SESSION = 'session'
 
 export const SESSION_CREATE = 'session/CREATE'
 export const SESSION_DESTROY = 'session/DESTROY'
@@ -133,49 +139,6 @@ export const bootstrap = (relogin = true) => async (dispatch, getState) => {
   }
 }
 
-export const updateUserProfile = (newProfile: ProfileModel) => async (dispatch, getState) => {
-  const { isSession, account, profile } = getState().get(DUCK_SESSION)
-  if (!isSession) {
-    // setup and check network first and create session
-    throw new Error('Session has not been created')
-  }
-
-  dispatch({ type: SESSION_PROFILE_UPDATE, profile: newProfile })
-  try {
-    const dao = daoByType('UserManager')(getState())
-    await dao.setMemberProfile(account, newProfile.version(CURRENT_PROFILE_VERSION))
-  } catch (e) {
-    // eslint-disable-next-line
-    console.error('update profile error', e.message)
-    dispatch({ type: SESSION_PROFILE_UPDATE, profile })
-  }
-}
-
-export const watchInitProfile = () => async (dispatch, getState) => {
-  const userManagerDAO = daoByType('UserManager')(getState())
-  return userManagerDAO.watchProfile((notice) => dispatch(notify(notice)))
-}
-
-export const setProfileSignature = (signature) => (dispatch) => {
-  dispatch({ type: SET_PROFILE_SIGNATURE, signature })
-}
-
-export const getProfileSignature = (wallet) => async (dispatch) => {
-  if (!wallet) {
-    return
-  }
-
-  let signDataString = profileService.getSignData()
-
-  let signData = wallet.sign(signDataString)
-
-  let profileSignature = await profileService.getProfile(signData.signature)
-
-  dispatch(setProfileSignature(profileSignature))
-
-  return profileSignature
-}
-
 export const updateUserProfile = (profile) => async (dispatch, getState) => {
   const { profileSignature } = getState().get(DUCK_SESSION)
 
@@ -185,6 +148,11 @@ export const updateUserProfile = (profile) => async (dispatch, getState) => {
     ...profileSignature,
     profile: newProfile,
   }))
+}
+
+export const watchInitProfile = () => async (dispatch, getState) => {
+  const userManagerDAO = daoByType('UserManager')(getState())
+  return userManagerDAO.watchProfile((notice) => dispatch(notify(notice)))
 }
 
 export const uploadAvatar = (img) => (dispatch) => {

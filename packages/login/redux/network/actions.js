@@ -35,7 +35,6 @@ export const NETWORK_SET_LOGIN_SUBMITTING = '@login/network/SET_LOGIN_SUBMITTING
 export const NETWORK_RESET_LOGIN_SUBMITTING = '@login/network/RESET_LOGIN_SUBMITTING'
 export const NETWORK_SET_ACCOUNT_RECOVERY_MODE = '@login/network/SET_ACCOUNT_RECOVERY_MODE'
 export const NETWORK_RESET_ACCOUNT_RECOVERY_MODE = '@login/network/RESET_ACCOUNT_RECOVERY_MODE'
-export const NETWORK_SET_PROFILE_SIGNATURE = '@login/network/SET_PROFILE_SIGNATURE'
 
 export const NETWORK_ACCOUNTS_SIGNATURES_LOADING = '@login/network/ACCOUNTS_SIGNATURES_LOADING'
 export const NETWORK_ACCOUNTS_SIGNATURES_RESET_LOADING = '@login/network/ACCOUNTS_SIGNATURES_RESET_LOADING'
@@ -135,11 +134,6 @@ export const setAccountCredentials = (walletName, walletPassword) => ({
 export const networkSetImportPrivateKey = (privateKey) => ({
   type: NETWORK_SET_IMPORT_PRIVATE_KEY,
   privateKey,
-})
-
-export const setProfileSignature = (signature) => ({
-  type: NETWORK_SET_PROFILE_SIGNATURE,
-  signature,
 })
 
 export const networkSetLoginSubmitting = () => ({
