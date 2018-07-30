@@ -15,14 +15,18 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Translate } from 'react-redux-i18n'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import AccountSelector from '../../components/AccountSelector/AccountSelector'
 import BackButton from '../../components/BackButton/BackButton'
 import styles from '../../components/stylesLoginPage'
 
-const mapStateToProps = (state) => ({
-  selectedNetworkId: state.get('network').selectedNetworkId,
-  providers: state.get('network').providers,
-})
+const mapStateToProps = (state) => {
+  const netState = state.get(DUCK_NETWORK)
+  return {
+    selectedNetworkId: netState.selectedNetworkId,
+    providers: netState.providers,
+  }
+}
 
 const mapDispatchToProps = (dispatch) => ({
   addError: (error) => dispatch(addError(error)),

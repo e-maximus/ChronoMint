@@ -24,7 +24,7 @@ import {
 } from '@chronobank/core/redux/persistAccount/utils'
 import {
   DUCK_NETWORK,
-} from '@chronobank/login/redux/network/actions'
+} from '@chronobank/login/redux/network/constants'
 import {
   initAccountsSignature,
 } from '@chronobank/login/redux/network/thunks'

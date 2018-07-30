@@ -7,7 +7,7 @@ import { Button, IPFSImage } from 'components'
 import { TextField } from 'redux-form-material-ui'
 
 import { isTestingNetwork } from '@chronobank/login/network/settings'
-import { DUCK_NETWORK } from '@chronobank/login/redux/network/actions'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import web3Converter from '@chronobank/core/utils/Web3Converter'
 import { TOKEN_ICONS } from 'assets'
 import { modalsOpen } from 'redux/modals/actions'

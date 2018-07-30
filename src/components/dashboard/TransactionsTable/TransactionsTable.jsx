@@ -6,7 +6,7 @@
 import classnames from 'classnames'
 import { Button, TxConfirmations } from 'components'
 import { getBlockExplorerUrl } from '@chronobank/login/network/settings'
-import { DUCK_NETWORK } from '@chronobank/login/redux/network/actions'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import Moment from 'components/common/Moment/index'
 import TokenValue from 'components/common/TokenValue/TokenValue'
 import moment from 'moment'

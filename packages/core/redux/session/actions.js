@@ -12,7 +12,7 @@ import {
 } from '@chronobank/login/network/settings'
 import {
   DUCK_NETWORK,
-} from '@chronobank/login/redux/network/actions'
+} from '@chronobank/login/redux/network/constants'
 import profileService from '@chronobank/login/network/ProfileService'
 import { push, replace } from '@chronobank/core-dependencies/router'
 import { removeWatchersUserMonitor } from '@chronobank/core-dependencies/redux/ui/actions'

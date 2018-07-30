@@ -22,6 +22,7 @@ import DeleteIcon from 'assets/img/icons/delete-white.svg'
 import SpinnerGif from 'assets/img/spinningwheel.gif'
 import CheckIcon from 'assets/img/icons/check-green.svg'
 import spinner from 'assets/img/spinningwheel-1.gif'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import {
   FORM_WALLET_UPLOAD,
 } from '../../redux/actions'
@@ -32,7 +33,7 @@ import {
 import './LoginWithWallet.scss'
 
 const mapStateToProps = (state) => ({
-  isLoading: state.get('network').isLoading,
+  isLoading: state.get(DUCK_NETWORK).isLoading,
 })
 
 const mapDispatchToProps = (dispatch) => {

@@ -9,11 +9,11 @@
 
 import * as PersistAccountActions from '@chronobank/core/redux/persistAccount/actions'
 import { createAccountEntry } from '@chronobank/core/redux/persistAccount/utils'
-import { login, setProfileSignature } from '@chronobank/core/redux/session/actions'
+import { login } from '@chronobank/core/redux/session/actions'
 import * as NetworkActions from './actions'
+import { DUCK_NETWORK } from './constants'
 import mnemonicProvider from '../../network/mnemonicProvider'
 import privateKeyProvider from '../../network/privateKeyProvider'
-import profileService from '../../network/ProfileService'
 import networkService from '../../network/NetworkService'
 import {
   LOCAL_PRIVATE_KEYS,
@@ -70,7 +70,7 @@ export const initAccountsSignature = () =>
   async (dispatch, getState) => {
     const state = getState()
 
-    const { loadingAccountSignatures } = state.get(NetworkActions.DUCK_NETWORK)
+    const { loadingAccountSignatures } = state.get(DUCK_NETWORK)
     const { walletsList } = state.get(PersistAccountActions.DUCK_PERSIST_ACCOUNT)
 
     if (loadingAccountSignatures || !walletsList.length) {
@@ -121,7 +121,7 @@ export const onSubmitConfirmMnemonicSuccess = () =>
       newAccountMnemonic,
       newAccountName,
       newAccountPassword,
-    } = state.get(NetworkActions.DUCK_NETWORK)
+    } = state.get(DUCK_NETWORK)
 
     let wallet = await dispatch(PersistAccountActions.createAccount({
       name: newAccountName,
@@ -149,7 +149,7 @@ export const handleWalletLogin = (wallet, password) => async (dispatch, getState
     selectedAccount,
     selectedProviderId,
     selectedNetworkId,
-  } = state.get(NetworkActions.DUCK_NETWORK)
+  } = state.get(DUCK_NETWORK)
 
   dispatch(NetworkActions.clearErrors())
 
@@ -182,7 +182,7 @@ export const initRecoverAccountPage = () => (dispatch) => {
 export const onSubmitResetAccountPasswordForm = (password) =>
   async (dispatch, getState) => {
     const state = getState()
-    const { newAccountMnemonic } = state.get(NetworkActions.DUCK_NETWORK)
+    const { newAccountMnemonic } = state.get(DUCK_NETWORK)
     const { selectedWallet } = state.get(PersistAccountActions.DUCK_PERSIST_ACCOUNT)
 
     dispatch(PersistAccountActions.resetPasswordAccount(selectedWallet, newAccountMnemonic, password))
@@ -194,7 +194,7 @@ export const onSubmitResetAccountPasswordForm = (password) =>
  */
 export const onSubmitAccountName = (name) => (dispatch, getState) => {
   const state = getState()
-  const { walletFileImportObject } = state.get(NetworkActions.DUCK_NETWORK)
+  const { walletFileImportObject } = state.get(DUCK_NETWORK)
   const account = createAccountEntry(name, walletFileImportObject)
 
   dispatch(PersistAccountActions.accountAdd(account))
@@ -227,7 +227,7 @@ export const handlePrivateKeyLogin = (privateKey) =>
       selectedAccount,
       selectedProviderId,
       selectedNetworkId,
-    } = state.get(NetworkActions.DUCK_NETWORK)
+    } = state.get(DUCK_NETWORK)
 
     dispatch(NetworkActions.clearErrors())
 
@@ -251,7 +251,7 @@ export const handlePrivateKeyLogin = (privateKey) =>
 export const handleLoginLocalAccountClick = (account = '') =>
   async (dispatch, getState) => {
     let state = getState()
-    const { accounts } = state.get(NetworkActions.DUCK_NETWORK)
+    const { accounts } = state.get(DUCK_NETWORK)
     const wallets = state.get('ethMultisigWallet') // FIXME: to use constant
 
     const index = Math.max(accounts.indexOf(account), 0)
@@ -268,7 +268,7 @@ export const handleLoginLocalAccountClick = (account = '') =>
       selectedAccount,
       selectedProviderId,
       selectedNetworkId,
-    } = state.get(NetworkActions.DUCK_NETWORK)
+    } = state.get(DUCK_NETWORK)
 
     dispatch(NetworkActions.clearErrors())
 

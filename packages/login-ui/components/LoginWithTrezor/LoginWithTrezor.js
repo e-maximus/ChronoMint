@@ -14,6 +14,7 @@ import Divider from '@material-ui/core/Divider'
 import Typography from '@material-ui/core/Typography'
 import ChevronRight from '@material-ui/icons/ChevronRight'
 import PropTypes from 'prop-types'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Translate } from 'react-redux-i18n'
@@ -33,7 +34,7 @@ const trezorStates = [ {
 } ]
 
 const mapStateToProps = (state) => {
-  const network = state.get('network')
+  const network = state.get(DUCK_NETWORK)
   return {
     trezor: state.get('trezor'),
     isLoading: network.isLoading,

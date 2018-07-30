@@ -14,6 +14,7 @@ import Button from 'components/common/ui/Button/Button'
 import {
   onSubmitAccountName,
 } from '@chronobank/login/redux/network/thunks'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import styles from 'layouts/Splash/styles'
 import spinner from 'assets/img/spinningwheel-1.gif'
 import {
@@ -32,7 +33,7 @@ function mapStateToProps (state) {
 
   return {
     selectedWallet: selectedWallet,
-    isLoginSubmitting: state.get('network').isLoginSubmitting,
+    isLoginSubmitting: state.get(DUCK_NETWORK).isLoginSubmitting,
   }
 }
 
@@ -55,7 +56,7 @@ class LoginPage extends PureComponent {
     isLoginSubmitting: PropTypes.bool,
   }
 
-  componentWillMount(){
+  componentWillMount () {
     this.props.initAccountNamePage()
   }
 
@@ -92,15 +93,20 @@ class LoginPage extends PureComponent {
               styleName='button'
               buttonType='login'
               type='submit'
-              label={isLoginSubmitting
-                ? <span styleName='spinner-wrapper'>
-                  <img
-                    src={spinner}
-                    alt=''
-                    width={24}
-                    height={24}
-                  />
-                </span> : <Translate value='AccountName.submit' />}
+              label={
+                isLoginSubmitting
+                  ? (
+                    <span styleName='spinner-wrapper'>
+                      <img
+                        src={spinner}
+                        alt=''
+                        width={24}
+                        height={24}
+                      />
+                    </span>
+                  )
+                  : <Translate value='AccountName.submit' />
+              }
               disabled={isLoginSubmitting}
             />
 

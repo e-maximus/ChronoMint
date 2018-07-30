@@ -10,6 +10,7 @@ import networkService from '@chronobank/login/network/NetworkService'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import Subheader from 'material-ui/Subheader'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
@@ -41,11 +42,11 @@ const ledgerStates = [ {
 } ]
 
 const mapStateToProps = (state) => {
-  const network = state.get('network')
+  const network = state.get(DUCK_NETWORK)
   return {
     ledger: state.get('ledger'),
     isLoading: network.isLoading,
-    account: network.accounts
+    account: network.accounts,
   }
 }
 

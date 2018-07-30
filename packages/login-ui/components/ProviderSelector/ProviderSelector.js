@@ -10,10 +10,11 @@ import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { Translate } from 'react-redux-i18n'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import styles from '../../components/stylesLoginPage'
 
 const mapStateToProps = (state) => {
-  const network = state.get('network')
+  const network = state.get(DUCK_NETWORK)
   return {
     selectedProviderId: network.selectedProviderId,
     providers: network.providers,

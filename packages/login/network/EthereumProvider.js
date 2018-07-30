@@ -15,7 +15,7 @@ import {
 } from './settings'
 import {
   DUCK_NETWORK,
-} from '../redux/network/actions'
+} from '../redux/network/constants'
 
 export class EthereumProvider extends AbstractProvider {
   constructor () {
