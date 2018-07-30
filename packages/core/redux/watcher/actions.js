@@ -22,15 +22,13 @@ import { watchInitPolls } from '../voting/actions'
 import { watchInitProfile } from '../session/actions'
 import { initMultisigWalletManager } from '../multisigWallet/actions'
 import { initWallets } from '../wallets/actions'
-
-export const DUCK_WATCHER = 'watcher'
-
-// next two actions represents start of the events watching
-export const WATCHER = 'watcher/USER'
-export const WATCHER_CBE = 'watcher/CBE'
-
-export const WATCHER_TX_SET = 'watcher/TX_SET'
-export const WATCHER_TX_END = 'watcher/TX_END'
+import {
+  // DUCK_WATCHER,
+  WATCHER_CBE,
+  WATCHER_TX_END,
+  WATCHER_TX_SET,
+  WATCHER,
+} from './constants'
 
 export const txHandlingFlow = () => (dispatch) => {
   AbstractContractDAO.txStart = async (tx: TxExecModel, estimateGas, localFeeMultiplier) => {

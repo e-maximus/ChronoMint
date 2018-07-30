@@ -35,7 +35,7 @@ import { ETH } from '../mainWallet/constants'
 import { EVENT_UPDATE_LAST_BLOCK } from '../../dao/constants'
 import { daoByType } from '../../refactor/redux/daos/selectors'
 import TxExecModel from '../../refactor/models/TxExecModel'
-import { WATCHER_TX_END, WATCHER_TX_SET } from '../watcher/actions'
+import { WATCHER_TX_END, WATCHER_TX_SET } from '../watcher/constants'
 import { DUCK_TOKENS, TOKENS_FAILED, TOKENS_FETCHED, TOKENS_FETCHING, TOKENS_INIT, TOKENS_UPDATE_LATEST_BLOCK } from './constants'
 
 const submitTxHandler = (dao, dispatch) => async (tx: TransferExecModel | TxExecModel) => {

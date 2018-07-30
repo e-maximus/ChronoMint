@@ -10,7 +10,7 @@ import Immutable from 'immutable'
 import { Button, TopButtons } from 'components'
 import { sidesPush } from 'redux/sides/actions'
 import { pendingTransactionsSelector } from '@chronobank/core/redux/mainWallet/selectors/tokens'
-import { DUCK_WATCHER } from '@chronobank/core/redux/watcher/actions'
+import { DUCK_WATCHER } from '@chronobank/core/redux/watcher/constants'
 
 import NotificationContent, { NOTIFICATION_PANEL_KEY } from 'layouts/partials/NotificationContent/NotificationContent'
 import LocaleDropDown from 'layouts/partials/LocaleDropDown/LocaleDropDown'

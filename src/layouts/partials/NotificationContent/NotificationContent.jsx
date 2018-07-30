@@ -6,7 +6,7 @@
 import classnames from 'classnames'
 import { Translate } from 'react-redux-i18n'
 import PropTypes from 'prop-types'
-import { DUCK_WATCHER } from '@chronobank/core/redux/watcher/actions'
+import { DUCK_WATCHER } from '@chronobank/core/redux/watcher/constants'
 import { DUCK_NOTIFIER } from '@chronobank/core/redux/notifier/actions'
 import TxExecModel from '@chronobank/core/refactor/models/TxExecModel'
 import TxModel from '@chronobank/core/models/TxModel'
