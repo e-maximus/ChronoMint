@@ -9,7 +9,7 @@
 
 import * as PersistAccountActions from '@chronobank/core/redux/persistAccount/actions'
 import { createAccountEntry } from '@chronobank/core/redux/persistAccount/utils'
-import { login } from '@chronobank/core/redux/session/actions'
+import { login, setProfileSignature } from '@chronobank/core/redux/session/actions'
 import * as NetworkActions from './actions'
 import mnemonicProvider from '../../network/mnemonicProvider'
 import privateKeyProvider from '../../network/privateKeyProvider'
@@ -132,22 +132,6 @@ export const onSubmitConfirmMnemonicSuccess = () =>
 
     dispatch(PersistAccountActions.accountAdd(wallet))
     dispatch(PersistAccountActions.accountSelect(wallet))
-  }
-
-/*
- * Thunk dispatched by "" screen.
- * TODO: to add description
- * TODO: to extract profileService and other logic from here
- */
-export const getProfileSignature = (wallet) =>
-  async (dispatch) => {
-    if (wallet) {
-      const signDataString = profileService.getSignData()
-      const signData = wallet.sign(signDataString)
-      const profileSignature = await profileService.getProfile(signData.signature)
-
-      dispatch(PersistAccountActions.setProfileSignature(profileSignature))
-    }
   }
 
 export const handleWalletLogin = (wallet, password) => async (dispatch, getState) => {

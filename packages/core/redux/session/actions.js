@@ -16,7 +16,6 @@ import {
 import profileService from '@chronobank/login/network/ProfileService'
 import { push, replace } from '@chronobank/core-dependencies/router'
 import { removeWatchersUserMonitor } from '@chronobank/core-dependencies/redux/ui/actions'
-import { setProfileSignature } from '@chronobank/core/redux/persistAccount/actions'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import web3Factory from '../../refactor/web3/index'
 import { daoByType } from '../../refactor/redux/daos/selectors'
@@ -49,6 +48,7 @@ export const PROFILE_PANEL_TOKENS = [
   { symbol: 'XEM', blockchain: 'NEM', title: 'NEM' },
   { symbol: 'WAVES', blockchain: 'WAVES', title: 'WAVES' },
 ]
+export const NETWORK_SET_PROFILE_SIGNATURE = '@login/network/SET_PROFILE_SIGNATURE'
 
 export const createSession = ({ account, provider, network, dispatch }) => {
   ls.createSession(account, provider, network)
@@ -163,3 +163,24 @@ export const uploadAvatar = (img) => (dispatch) => {
 
   return img
 }
+
+export const setProfileSignature = (signature) => ({
+  type: NETWORK_SET_PROFILE_SIGNATURE,
+  signature,
+})
+
+/*
+ * Thunk dispatched by "" screen.
+ * TODO: to add description
+ * TODO: to extract profileService and other logic from here
+ */
+export const getProfileSignature = (wallet) =>
+  async (dispatch) => {
+    if (wallet) {
+      const signDataString = profileService.getSignData()
+      const signData = wallet.sign(signDataString)
+      const profileSignature = await profileService.getProfile(signData.signature)
+
+      dispatch(setProfileSignature(profileSignature))
+    }
+  }

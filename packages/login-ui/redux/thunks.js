@@ -15,6 +15,7 @@ import axios from 'axios'
 import * as NetworkActions from '@chronobank/login/redux/network/actions'
 import * as NetworkThunks from '@chronobank/login/redux/network/thunks'
 import * as PersistAccountActions from '@chronobank/core/redux/persistAccount/actions'
+import * as SessionActions from '@chronobank/core/redux/session/actions'
 import privateKeyProvider from '@chronobank/login/network/privateKeyProvider'
 import mnemonicProvider from '@chronobank/login/network/mnemonicProvider'
 import PublicBackendProvider from '@chronobank/login/network/PublicBackendProvider'
@@ -223,7 +224,7 @@ export const onSubmitLoginForm = (password) => async (dispatch, getState) => {
     const wallet = await dispatch(PersistAccountActions.decryptAccount(selectedWallet.encrypted, password))
     const privateKey = wallet && wallet[0] && wallet[0].privateKey
 
-    dispatch(NetworkThunks.getProfileSignature(wallet[0]))
+    dispatch(SessionActions.getProfileSignature(wallet[0]))
 
     if (privateKey) {
       await dispatch(NetworkThunks.handleWalletLogin(selectedWallet.encrypted, password))
