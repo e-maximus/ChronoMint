@@ -13,7 +13,7 @@ import tokenService from '../../services/TokenService'
 import { daoByType } from '../../refactor/redux/daos/selectors'
 import TxExecModel from '../../models/TxExecModel'
 import { getWallet } from '../wallets/selectors/models'
-import { WALLETS_UPDATE_WALLET } from '../wallets/actions'
+import { WALLETS_UPDATE_WALLET } from '../wallets/constants'
 import WalletModel from '../../models/wallet/WalletModel'
 import AllowanceCollection from '../../refactor/models/AllowanceCollection'
 
