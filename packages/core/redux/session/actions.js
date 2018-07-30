@@ -48,8 +48,6 @@ export const PROFILE_PANEL_TOKENS = [
   { symbol: 'XEM', blockchain: 'NEM', title: 'NEM' },
   { symbol: 'WAVES', blockchain: 'WAVES', title: 'WAVES' },
 ]
-export const NETWORK_SET_PROFILE_SIGNATURE = '@login/network/SET_PROFILE_SIGNATURE'
-
 export const createSession = ({ account, provider, network, dispatch }) => {
   ls.createSession(account, provider, network)
   dispatch({ type: SESSION_CREATE, account })
@@ -165,7 +163,7 @@ export const uploadAvatar = (img) => (dispatch) => {
 }
 
 export const setProfileSignature = (signature) => ({
-  type: NETWORK_SET_PROFILE_SIGNATURE,
+  type: SET_PROFILE_SIGNATURE,
   signature,
 })
 
