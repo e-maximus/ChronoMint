@@ -177,7 +177,7 @@ export default class ERC20DAO extends AbstractTokenDAO {
     return this._createTxModel(tx, accounts, tx.blockNumber, minedBlock.timestamp)
   }
 
-  watch (accounts: Array<string>): Promise {
+  watch (accounts: string[]): Promise {
     // return Promise.all([
     //   this.watchTransfer(accounts),
     //   this.watchApproval(accounts),

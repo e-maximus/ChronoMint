@@ -6,6 +6,7 @@
 let path = require('path')
 let webpack = require('webpack')
 let babel = require('./babel.dev')
+const CircularDependencyPlugin = require('circular-dependency-plugin')
 
 let config = require('./webpack.config.base.js')
 
@@ -33,6 +34,22 @@ module.exports = config.buildConfig(
     },
     babel,
     plugins: [
+      new CircularDependencyPlugin({
+        // `onStart` is called before the cycle detection starts
+        onStart ({ compilation }) {
+          console.log('start detecting webpack modules cycles')
+        },
+        // `onDetected` is called for each module that is cyclical
+        onDetected ({ module: webpackModuleRecord, paths, compilation }) {
+          if (!/node_modules/.test(webpackModuleRecord.resource)) {
+            compilation.errors.push(new Error(paths.join(' -> ')))
+          }
+        },
+        // `onEnd` is called before the cycle detection ends
+        onEnd ({ compilation }) {
+          console.log('end detecting webpack modules cycles')
+        },
+      }),
       new HtmlWebpackPlugin({
         inject: true,
         template: indexHtmlPath,

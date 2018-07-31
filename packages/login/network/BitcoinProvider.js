@@ -102,6 +102,7 @@ export class BitcoinProvider extends AbstractProvider {
 
   async onTransactionUpdated (txData, address, blockchain, symbol) {
     const node = this._selectNode(this._engine)
+    // eslint-disable-next-line no-underscore-dangle
     const tx = node._createTxModel(txData, address)
     const txModel = new TxModel({
       txHash: tx.txHash,
@@ -151,11 +152,13 @@ export class BitcoinProvider extends AbstractProvider {
 
     switch (this._id) {
       case BLOCKCHAIN_BITCOIN:
+        // eslint-disable-next-line no-underscore-dangle
         coinType = this._engine._network === bitcoin.networks.testnet
           ? COIN_TYPE_BTC_TESTNET
           : COIN_TYPE_BTC_MAINNET
         break
       case BLOCKCHAIN_LITECOIN:
+        // eslint-disable-next-line no-underscore-dangle
         coinType = this._engine._network === bitcoin.networks.litecoin_testnet
           ? COIN_TYPE_LTC_TESTNET
           : COIN_TYPE_LTC_MAINNET

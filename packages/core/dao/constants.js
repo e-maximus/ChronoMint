@@ -37,3 +37,9 @@ export const EVENT_POLL_UPDATED = 'PollUpdated'
 export const EVENT_POLL_REMOVED = 'PollRemoved'
 
 // #endregion VotingManagerDao.js
+
+// #region LHTDAO.js
+
+export const LHT = 'LHT'
+
+// #endregion LHTDAO.js
