@@ -17,6 +17,8 @@ process.traceDeprecation = true
 let srcAppArg = process.argv.find((e) => e.startsWith('--src-app='))
 const srcApp = srcAppArg ? srcAppArg.substr('--src-app='.length) : 'index'
 
+let numCyclesDetected = 0
+
 module.exports = config.buildConfig(
   ({ srcPath, buildPath, indexHtmlPath, faviconPath }) => ({
     devtool: process.env.SOURCE_MAP || 'source-map',
@@ -37,16 +39,22 @@ module.exports = config.buildConfig(
       new CircularDependencyPlugin({
         // `onStart` is called before the cycle detection starts
         onStart ({ compilation }) {
+          numCyclesDetected = 0
           console.log('start detecting webpack modules cycles')
         },
         // `onDetected` is called for each module that is cyclical
         onDetected ({ module: webpackModuleRecord, paths, compilation }) {
-          if (!/node_modules/.test(webpackModuleRecord.resource)) {
+          if (!/src\/components|node_modules|src\/layouts/.test(webpackModuleRecord.resource)) {
+            numCyclesDetected++
             compilation.errors.push(new Error(paths.join(' -> ')))
           }
         },
         // `onEnd` is called before the cycle detection ends
         onEnd ({ compilation }) {
+          console.log('Detected %s cycles', numCyclesDetected)
+          // compilation.errors.forEach( function (err, index) {
+          //   console.log(index, ')', err.message)
+          // })
           console.log('end detecting webpack modules cycles')
         },
       }),
