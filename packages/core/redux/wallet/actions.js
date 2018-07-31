@@ -3,10 +3,9 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-export const DUCK_WALLET = 'wallet'
-export const WALLET_SWITCH_WALLET = 'WALLET/switch_wallet'
-export const WALLET_SELECT_WALLET = 'WALLET/select_wallet'
+import { WALLET_SELECT_WALLET } from './constants'
 
+// eslint-disable-next-line import/prefer-default-export
 export const selectWallet = (blockchain: string, address: string) => (dispatch) => {
   dispatch({ type: WALLET_SELECT_WALLET, blockchain, address })
 }

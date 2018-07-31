@@ -3,5 +3,6 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-export i18n from './reducer'
+// eslint-disable-next-line import/prefer-default-export
+export const DUCK_I18N = 'i18n'
 

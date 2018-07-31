@@ -4,13 +4,13 @@
  */
 
 import trezorProvider from '../../network/TrezorProvider'
-import web3Provider from '../../network/Web3Provider'
 import networkService from '../../network/NetworkService'
-import { NETWORK_SET_ACCOUNTS } from '../../redux/network/actions'
-
-export const TREZOR_SET_U2F = 'trezor/SET_U2F'
-export const TREZOR_FETCHING = 'trezor/FETCHING'
-export const TREZOR_FETCHED = 'trezor/FETCHED'
+import { NETWORK_SET_ACCOUNTS } from '../../redux/network/constants'
+import {
+  TREZOR_FETCHED,
+  TREZOR_FETCHING,
+  TREZOR_SET_U2F,
+} from './constants'
 
 export const initTrezor = () => async (dispatch) => {
   const isInited = await trezorProvider.init()

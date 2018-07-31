@@ -10,14 +10,14 @@ import RewardsPeriodModel from '../../models/rewards/RewardsPeriodModel'
 import TokenModel from '../../models/tokens/TokenModel'
 import { DUCK_SESSION } from '../session/constants'
 import { subscribeOnTokens } from '../tokens/actions'
-
-export const DUCK_REWARDS = 'rewards'
-
-export const REWARDS_INIT = 'rewards/init'
-export const REWARDS_ASSET = 'rewards/ASSET'
-export const REWARDS_BASE_INFO = 'rewards/baseInfo'
-export const REWARDS_PERIOD = 'rewards/period'
-export const REWARDS_PERIOD_COUNT = 'rewards/periodCount'
+import {
+  DUCK_REWARDS,
+  REWARDS_ASSET,
+  REWARDS_BASE_INFO,
+  REWARDS_INIT,
+  REWARDS_PERIOD_COUNT,
+  REWARDS_PERIOD,
+} from './constants'
 
 let rewardDAO = null
 

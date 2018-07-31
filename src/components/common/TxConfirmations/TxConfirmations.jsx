@@ -9,7 +9,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import TxModel from '@chronobank/core/models/TxModel'
 import { TX_CONFIRMATIONS } from 'assets'
-import { DUCK_WALLET } from '@chronobank/core/redux/wallet/actions'
+import { DUCK_WALLET } from '@chronobank/core/redux/wallet/constants'
 import { makeGetLastBlockForBlockchain } from '@chronobank/core/redux/tokens/selectors'
 import {
   BLOCKCHAIN_BITCOIN,

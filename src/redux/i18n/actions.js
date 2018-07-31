@@ -6,8 +6,7 @@
 import { loadTranslations, setLocale } from '@chronobank/core-dependencies/i18n'
 import { merge } from 'lodash'
 import PublicBackendProvider from '@chronobank/login/network/PublicBackendProvider'
-
-export const DUCK_I18N = 'i18n'
+import { DUCK_I18N } from './constants'
 
 export const loadI18n = (locale) => async (dispatch, getState) => {
   const publicBackendProvider = new PublicBackendProvider()

@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import ledger from './reducer'
-
-export {
-  ledger,
-}
+export ledger from './reducer'

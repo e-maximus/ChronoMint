@@ -6,11 +6,12 @@
 import ledgerProvider from '../../network/LedgerProvider'
 import networkService from '../../network/NetworkService'
 import { NETWORK_SET_ACCOUNTS } from '../../redux/network/constants'
-
-export const LEDGER_SET_U2F = 'ledger/SET_U2F'
-export const LEDGER_SET_ETH_APP_OPENED = 'ledger/SET_ETH_APP_OPENED'
-export const LEDGER_FETCHING = 'ledger/FETCHING'
-export const LEDGER_FETCHED = 'ledger/FETCHED'
+import {
+  LEDGER_FETCHED,
+  LEDGER_FETCHING,
+  LEDGER_SET_ETH_APP_OPENED,
+  LEDGER_SET_U2F,
+} from './constants'
 
 export const initLedger = () => async (dispatch) => {
   const isInited = await ledgerProvider.init()
