@@ -18,6 +18,9 @@ import {
 } from '@chronobank/login/redux/network/constants'
 import * as NetworkThunks from '@chronobank/login/redux/network/thunks'
 import * as PersistAccountActions from '@chronobank/core/redux/persistAccount/actions'
+import {
+  DUCK_PERSIST_ACCOUNT,
+} from '@chronobank/core/redux/persistAccount/constants'
 import * as SessionActions from '@chronobank/core/redux/session/actions'
 import privateKeyProvider from '@chronobank/login/network/privateKeyProvider'
 import mnemonicProvider from '@chronobank/login/network/mnemonicProvider'
@@ -221,7 +224,7 @@ export const onSubmitLoginForm = (password) => async (dispatch, getState) => {
   dispatch(NetworkActions.networkSetLoginSubmitting)
 
   const state = getState()
-  const { selectedWallet } = state.get(PersistAccountActions.DUCK_PERSIST_ACCOUNT)
+  const { selectedWallet } = state.get(DUCK_PERSIST_ACCOUNT)
 
   try {
     const wallet = await dispatch(PersistAccountActions.decryptAccount(selectedWallet.encrypted, password))
@@ -457,7 +460,7 @@ export const initLoginPage = () =>
     const {
       selectedWallet,
       walletsList,
-    } = state.get(PersistAccountActions.DUCK_PERSIST_ACCOUNT)
+    } = state.get(DUCK_PERSIST_ACCOUNT)
 
     if (walletsList && !walletsList.length) {
       dispatch(LoginUIActions.navigateToCreateAccount())

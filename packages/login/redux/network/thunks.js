@@ -8,6 +8,7 @@
 // #region imports
 
 import * as PersistAccountActions from '@chronobank/core/redux/persistAccount/actions'
+import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import { createAccountEntry } from '@chronobank/core/redux/persistAccount/utils'
 import { login } from '@chronobank/core/redux/session/actions'
 import * as NetworkActions from './actions'
@@ -50,7 +51,7 @@ export const updateSelectedAccount = () => (dispatch, getState) => {
   const {
     selectedWallet,
     walletsList,
-  } = state.get(PersistAccountActions.DUCK_PERSIST_ACCOUNT)
+  } = state.get(DUCK_PERSIST_ACCOUNT)
 
   const foundAccount = walletsList
     .find((account) =>
@@ -71,7 +72,7 @@ export const initAccountsSignature = () =>
     const state = getState()
 
     const { loadingAccountSignatures } = state.get(DUCK_NETWORK)
-    const { walletsList } = state.get(PersistAccountActions.DUCK_PERSIST_ACCOUNT)
+    const { walletsList } = state.get(DUCK_PERSIST_ACCOUNT)
 
     if (loadingAccountSignatures || !walletsList.length) {
       return
@@ -183,7 +184,7 @@ export const onSubmitResetAccountPasswordForm = (password) =>
   async (dispatch, getState) => {
     const state = getState()
     const { newAccountMnemonic } = state.get(DUCK_NETWORK)
-    const { selectedWallet } = state.get(PersistAccountActions.DUCK_PERSIST_ACCOUNT)
+    const { selectedWallet } = state.get(DUCK_PERSIST_ACCOUNT)
 
     dispatch(PersistAccountActions.resetPasswordAccount(selectedWallet, newAccountMnemonic, password))
   }

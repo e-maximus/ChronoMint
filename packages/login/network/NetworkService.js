@@ -6,7 +6,7 @@
 // #region imports
 
 import contractsManagerDAO from '@chronobank/core/dao/ContractsManagerDAO'
-import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/actions'
+import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import { AccountCustomNetwork } from '@chronobank/core/models/wallet/persistAccount'
 import EventEmitter from 'events'
 import { store } from '@chronobank/core-dependencies/configureStore'
