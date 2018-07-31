@@ -1,1 +1,1 @@
-var i18nJson = {}
+let i18nJson = {}

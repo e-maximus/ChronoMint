@@ -86,12 +86,11 @@ export default class AbstractContractDAO extends EventEmitter {
 
   createApproveTx (owner, spender, amount) {
     const data = this.contract.methods.approve(spender, amount).encodeABI()
-    const tx = {
+    return {
       from: owner,
       to: this.token.address(),
       data,
     }
-    return tx
   }
 
   handleTransferData (data) {

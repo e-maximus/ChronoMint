@@ -26,9 +26,6 @@ import { push } from '@chronobank/core-dependencies/router'
 import { wavesProvider } from '@chronobank/login/network/WavesProvider'
 
 import { addMarketToken } from '../market/actions'
-import { BLOCKCHAIN_ETHEREUM } from '../../dao/constants'
-import { BLOCKCHAIN_NEM } from '../../dao/NemDAO'
-import { BLOCKCHAIN_WAVES } from '../../dao/WavesDAO'
 import { daoByType } from '../../refactor/redux/daos/selectors'
 import {
   DUCK_ETH_MULTISIG_WALLET,
@@ -38,6 +35,9 @@ import {
 import { DUCK_SESSION } from '../session/constants'
 import { DUCK_TOKENS } from '../tokens/constants'
 import {
+  BLOCKCHAIN_ETHEREUM,
+  BLOCKCHAIN_NEM,
+  BLOCKCHAIN_WAVES,
   EVENT_APPROVAL_TRANSFER,
   EVENT_NEW_TRANSFER,
   EVENT_UPDATE_BALANCE,
@@ -83,7 +83,7 @@ import TokenModel from '../../models/tokens/TokenModel'
 import tokenService from '../../services/TokenService'
 import TransferNoticeModel from '../../models/notices/TransferNoticeModel'
 import TxHistoryModel from '../../models/wallet/TxHistoryModel'
-import validator from '../../models/validator'
+import { address as validateAddress } from '../../models/validator'
 import WalletModel from '../../models/wallet/WalletModel'
 
 import {
@@ -415,7 +415,7 @@ export const requireTIME = () => async (dispatch, getState) => {
 }
 
 export const getSpendersAllowance = (tokenId: string, spender: string) => async (dispatch, getState) => {
-  if (validator.address(spender) !== null || !tokenId) {
+  if (validateAddress(spender) !== null || !tokenId) {
     return null
   }
   const { account } = getState().get(DUCK_SESSION)

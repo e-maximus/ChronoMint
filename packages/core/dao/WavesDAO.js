@@ -10,12 +10,14 @@ import TxModel from '../models/TxModel'
 import TransferExecModel from '../models/TransferExecModel'
 import Amount from '../models/Amount'
 import { wavesAddress } from '../models/validator'
-import { EVENT_NEW_TRANSFER, EVENT_UPDATE_BALANCE } from './constants'
-
-export const BLOCKCHAIN_WAVES = 'WAVES'
-export const WAVES_WAVES_SYMBOL = 'WAVES'
-export const WAVES_WAVES_NAME = 'WAVES'
-export const WAVES_DECIMALS = 8
+import {
+  BLOCKCHAIN_WAVES,
+  EVENT_NEW_TRANSFER,
+  EVENT_UPDATE_BALANCE,
+  WAVES_DECIMALS,
+  WAVES_WAVES_NAME,
+  WAVES_WAVES_SYMBOL,
+} from './constants'
 
 const EVENT_TX = 'tx'
 const EVENT_BALANCE = 'balance'

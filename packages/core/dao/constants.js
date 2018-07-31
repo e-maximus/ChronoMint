@@ -44,8 +44,18 @@ export const LHT = 'LHT'
 
 // #endregion LHTDAO.js
 
-// #region Blockchain names
+// #region Blockchains' names
 
 export const BLOCKCHAIN_ETHEREUM = 'Ethereum'
+export const BLOCKCHAIN_NEM = 'NEM'
+export const BLOCKCHAIN_WAVES = 'WAVES'
 
 // #endregion
+
+// #region WavesDAO.js
+
+export const WAVES_WAVES_SYMBOL = 'WAVES'
+export const WAVES_WAVES_NAME = 'WAVES'
+export const WAVES_DECIMALS = 8
+
+// #endregion WavesDAO.js

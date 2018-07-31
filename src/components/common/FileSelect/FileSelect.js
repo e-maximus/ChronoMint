@@ -22,7 +22,7 @@ import { Translate } from 'react-redux-i18n'
 import globalStyles from 'styles'
 import { ACCEPT_ALL } from '@chronobank/core/models/FileSelect/FileExtension'
 import FileCollection from '@chronobank/core/models/FileSelect/FileCollection'
-import FileModel, { fileConfig } from '@chronobank/core/models/FileSelect/FileModel'
+import FileModel, { type fileConfig } from '@chronobank/core/models/FileSelect/FileModel'
 import ipfs from '@chronobank/core-dependencies/utils/IPFS'
 import FileItem from './FileItem'
 

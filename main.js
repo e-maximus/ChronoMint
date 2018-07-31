@@ -11,9 +11,9 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 // eslint-disable-next-line
-var child = require('child_process').execFile
-var executablePath = "./geth"
-var parameters = [ "-light", "--rpc" ]
+let child = require('child_process').execFile
+let executablePath = "./geth"
+let parameters = [ "-light", "--rpc" ]
 
 const path = require('path')
 const url = require('url')

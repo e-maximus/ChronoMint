@@ -17,6 +17,12 @@ import {
 } from '@chronobank/login/network/constants'
 import { nemProvider } from '@chronobank/login/network/NemProvider'
 import { wavesProvider } from '@chronobank/login/network/WavesProvider'
+import WavesDAO from '@chronobank/core/dao/WavesDAO'
+import {
+  WAVES_DECIMALS,
+  WAVES_WAVES_NAME,
+  WAVES_WAVES_SYMBOL,
+} from '@chronobank/core/dao/constants'
 import BigNumber from 'bignumber.js'
 import { modalsOpenConfirmDialog } from '@chronobank/core-dependencies/redux/modals/actions'
 import { showConfirmTransferModal } from '@chronobank/core-dependencies/redux/ui/actions'

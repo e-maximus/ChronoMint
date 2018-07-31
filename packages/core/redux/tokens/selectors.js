@@ -5,9 +5,11 @@
 
 import { createSelector } from 'reselect'
 import { BLOCKCHAIN_BITCOIN, BLOCKCHAIN_BITCOIN_CASH, BLOCKCHAIN_BITCOIN_GOLD, BLOCKCHAIN_LITECOIN } from '@chronobank/login/network/constants'
-import { BLOCKCHAIN_ETHEREUM } from '../../dao/constants'
-import { BLOCKCHAIN_NEM } from '../../dao/NemDAO'
-import { BLOCKCHAIN_WAVES } from '../../dao/WavesDAO'
+import {
+  BLOCKCHAIN_ETHEREUM,
+  BLOCKCHAIN_NEM,
+  BLOCKCHAIN_WAVES,
+} from '../../dao/constants'
 
 import { DUCK_TOKENS } from './constants'
 import { BCC, BTC, BTG, ETH, LTC, XEM, WAVES } from '../mainWallet/constants'
