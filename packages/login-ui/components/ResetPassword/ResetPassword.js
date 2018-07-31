@@ -13,7 +13,6 @@ import {
 } from '@chronobank/core/models/wallet/persistAccount'
 import {
   getAccountName,
-  getAccountAvatar,
   getAccountAddress,
   getAccountAvatarImg,
 } from '@chronobank/core/redux/persistAccount/utils'

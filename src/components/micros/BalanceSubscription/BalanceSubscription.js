@@ -24,6 +24,7 @@ export default class BalanceSubscription extends Component {
     children: PropTypes.node,
   }
 
+  // FIXME: What is that? componentDidMount returns void
   async componentDidMount () {
     const { wallet } = this.props
 
@@ -39,6 +40,7 @@ export default class BalanceSubscription extends Component {
     }
   }
 
+  // FIXME: What is that? componentDidMount returns void
   async componentWillUnmount () {
     if (this.subscription) {
       const { wallet, listener } = this.subscription

@@ -4,7 +4,6 @@
  */
 
 import PropTypes from 'prop-types'
-import { MuiThemeProvider } from '@material-ui/core'
 import { connect } from 'react-redux'
 import { Translate } from 'react-redux-i18n'
 import React, { Component } from 'react'

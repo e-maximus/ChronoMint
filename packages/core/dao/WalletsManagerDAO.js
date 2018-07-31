@@ -4,13 +4,13 @@
  */
 
 import BigNumber from 'bignumber.js'
-import { BLOCKCHAIN_ETHEREUM } from './constants'
 import AddressesCollection from '../models/wallet/AddressesCollection'
 import AddressModel from '../models/wallet/AddressModel'
 import MultisigEthWalletModel from '../models/wallet/MultisigEthWalletModel'
 import multisigWalletService from '../services/MultisigWalletService'
 import AbstractContractDAO from '../refactor/daos/lib/AbstractContractDAO'
 import {
+  BLOCKCHAIN_ETHEREUM,
   EE_MS_WALLET_ADDED,
   EE_MS_WALLET_REMOVED,
   EE_MS_WALLETS_COUNT,

@@ -1,5 +1,5 @@
 const Joi = require('joi')
-const uniqid = require('uuid')
+const uuid = require('uuid')
 const AbstractModel = require('../../Core/lib/AbstractModel')
 const BlockExecModel = require('./BlockExecModel')
 
@@ -19,7 +19,7 @@ module.exports.schemaFactory = schemaFactory
 module.exports.model = class TxHistoryModel extends AbstractModel {
   constructor (data, options) {
     super(Object.assign({
-      key: uniqid(),
+      key: uuid(),
       isLoading: false,
       isLoaded: false,
       blocks: [],
@@ -33,7 +33,7 @@ module.exports.model = class TxHistoryModel extends AbstractModel {
   loaded ({ blocks, firstBlock }) {
     return new TxHistoryModel({
       ...this,
-      key: uniqid(),
+      key: uuid(),
       isLoaded: true,
       isLoading: false,
       blocks,
@@ -54,7 +54,7 @@ module.exports.model = class TxHistoryModel extends AbstractModel {
   updated ({ blocks, lastBlock, firstBlock }) {
     return new TxHistoryModel({
       ...this,
-      key: uniqid(),
+      key: uuid(),
       blocks,
       lastBlock,
       firstBlock
@@ -72,7 +72,7 @@ module.exports.model = class TxHistoryModel extends AbstractModel {
   loading () {
     return new TxHistoryModel({
       ...this,
-      key: uniqid(),
+      key: uuid(),
       isLoading: true
     })
   }

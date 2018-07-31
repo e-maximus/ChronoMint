@@ -3,5 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import rewards from './reducer'
-export { rewards }
+export rewards from './reducer'

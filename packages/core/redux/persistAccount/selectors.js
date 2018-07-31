@@ -4,7 +4,7 @@
  */
 
 import { createSelector } from 'reselect'
-import { DUCK_NETWORK } from '@chronobank/login/network/constants'
+import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 
 // eslint-disable-next-line import/prefer-default-export
 export const getSelectedNetwork = () => createSelector(

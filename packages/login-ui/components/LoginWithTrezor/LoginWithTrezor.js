@@ -20,7 +20,7 @@ import { connect } from 'react-redux'
 import { Translate } from 'react-redux-i18n'
 import {
   navigateToCreateAccountFromHW,
-} from '@chronobank/login/redux/network/actions'
+} from '@chronobank/login/redux/network/thunks'
 
 import './LoginWithTrezor.scss'
 

@@ -131,8 +131,8 @@ export default class CommonNetworkSelector extends PureComponent {
     }
   }
 
-  async componentDidMount () {
-    await this.props.initCommonNetworkSelector()
+  componentDidMount () {
+    this.props.initCommonNetworkSelector()
   }
 
   handleClickDefaultNetwork (data) {

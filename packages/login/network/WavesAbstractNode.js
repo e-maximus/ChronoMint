@@ -54,7 +54,7 @@ export class WavesBalance {
   }) {
     this.address = address
     this.balance = balance
-    this.assets = assets,
+    this.assets = assets
     Object.freeze(this)
   }
 }

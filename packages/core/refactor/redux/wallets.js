@@ -93,7 +93,7 @@ export default ({ web3 }) => ({
     async createWallet ({ state, commit }, { name, password, seed, mnemonic, numbeOfAccounts = 0 }) {
       const signer = await SignerMemoryModel.create({ web3, seed, mnemonic, numbeOfAccounts })
       const entry = new WalletEntryModel({
-        key: uniqid(),
+        key: uuid(),
         name,
         encrypted: await signer.encrypt(password),
       })
@@ -106,7 +106,7 @@ export default ({ web3 }) => ({
     async createDeviceWallet ({ state, commit }, { name, device, address, path, publicKey }) {
       const signer = await SignerDeviceModel.create({ web3, device, address, path, publicKey })
       const entry = new WalletEntryModel({
-        key: uniqid(),
+        key: uuid(),
         name,
         type: 'device',
         encrypted: await signer.encrypt(),
