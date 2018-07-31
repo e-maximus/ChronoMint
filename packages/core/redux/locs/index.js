@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import locs from './reducer'
-
-export {
-  locs,
-}
+export locs from './reducer'
