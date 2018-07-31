@@ -4,15 +4,17 @@
  */
 
 import Immutable from 'immutable'
+import BigNumber from 'bignumber.js'
 import LOCModel from '../models/LOCModel'
 import LOCNoticeModel, { statuses } from '../models/notices/LOCNoticeModel'
 import type TokenModel from '../models/tokens/TokenModel'
 import tokenService from '../services/TokenService'
-import BigNumber from 'bignumber.js'
 import Amount from '../models/Amount'
 import { LOCManagerABI, MultiEventsHistoryABI } from './abi'
 import AbstractMultisigContractDAO from './AbstractMultisigContractDAO'
-import { LHT } from './LHTDAO'
+import { DEFAULT_TX_OPTIONS, TX_FRONTEND_ERROR_CODES } from './AbstractContractDAO'
+import { LHT } from './constants'
+import TxError from '../models/TxError'
 
 export const standardFuncs = {
   GET_LOC_COUNT: 'getLOCCount',
@@ -44,8 +46,9 @@ const events = {
 /** @namespace result.args.newName */
 
 export default class LOCManagerDAO extends AbstractMultisigContractDAO {
-  constructor (at) {
+  constructor (at, pendingManagerDAO) {
     super(LOCManagerABI, at, MultiEventsHistoryABI)
+    this.pendingManagerDAO = pendingManagerDAO
   }
 
   async getTokenDAO (symbol) {
@@ -178,6 +181,39 @@ export default class LOCManagerDAO extends AbstractMultisigContractDAO {
       publishedHash: loc.publishedHash(),
       expDate: loc.expDateString(),
     })
+  }
+
+  /**
+   * Use this method for all multisig txs.
+   * @see _tx for args description
+   * @param func
+   * @param args
+   * @param infoArgs
+   * @param options
+   * @protected
+   */
+  async _multisigTx (func: string, args: Array = [], infoArgs = null, options = DEFAULT_TX_OPTIONS): Promise<Object> {
+    const dao = this.pendingManagerDAO
+
+    const web3 = await this._web3Provider.getWeb3()
+    const data = await this.getData(func, args)
+    const hash = web3.sha3(data, { encoding: 'hex' })
+
+    const [isDone, receipt] = await Promise.all([
+      this.watchTxEnd(hash),
+      dao.watchTxEnd(hash),
+      await this._tx(func, args, infoArgs, null, {
+        ...options,
+        addDryRunFrom: dao.getInitAddress(),
+        addDryRunOkCodes: this._okCodes,
+      }),
+    ])
+
+    if (!isDone) {
+      throw new TxError('Cancelled via Operations module', TX_FRONTEND_ERROR_CODES.FRONTEND_CANCELLED)
+    }
+
+    return receipt
   }
 
   removeLOC (loc: LOCModel) {

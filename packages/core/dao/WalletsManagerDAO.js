@@ -5,13 +5,16 @@
 
 import BigNumber from 'bignumber.js'
 import { BLOCKCHAIN_ETHEREUM } from './EthereumDAO'
-import type MultisigWalletDAO from './MultisigWalletDAO'
 import AddressesCollection from '../models/wallet/AddressesCollection'
 import AddressModel from '../models/wallet/AddressModel'
 import MultisigEthWalletModel from '../models/wallet/MultisigEthWalletModel'
 import multisigWalletService from '../services/MultisigWalletService'
 import AbstractContractDAO from '../refactor/daos/lib/AbstractContractDAO'
-import { EE_MS_WALLET_ADDED, EE_MS_WALLET_REMOVED, EE_MS_WALLETS_COUNT } from './constants'
+import {
+  EE_MS_WALLET_ADDED,
+  EE_MS_WALLET_REMOVED,
+  EE_MS_WALLETS_COUNT,
+} from './constants'
 
 export default class WalletsManagerDAO extends AbstractContractDAO {
 
@@ -37,7 +40,7 @@ export default class WalletsManagerDAO extends AbstractContractDAO {
     return this._watch(
       'WalletCreated',
       async (result) => {
-        const walletDAO: MultisigWalletDAO = await multisigWalletService.createWalletDAO(result.args.wallet)
+        const walletDAO = await multisigWalletService.createWalletDAO(result.args.wallet)
         const is2FA = await walletDAO.use2FA()
         return this._createWalletModel(result.args.wallet, is2FA, result.transactionHash)
       },
@@ -66,7 +69,7 @@ export default class WalletsManagerDAO extends AbstractContractDAO {
   }
 
   async _createWalletModel (address, is2FA, transactionHash) {
-    const walletDAO: MultisigWalletDAO = await multisigWalletService.createWalletDAO(address, this.web3)
+    const walletDAO = await multisigWalletService.createWalletDAO(address, this.web3)
     const [owners, requiredSignatures, pendingTxList, releaseTime] = await Promise.all([
       walletDAO.getOwners(),
       walletDAO.getRequired(),

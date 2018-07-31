@@ -6,10 +6,9 @@
 import BigNumber from 'bignumber.js'
 import resultCodes from 'chronobank-smart-contracts/common/errors'
 import ethABI from 'ethereumjs-abi'
-import TxError from '../models/TxError'
+// import TxError from '../models/TxError'
 import TxExecModel from '../models/TxExecModel'
-import { DEFAULT_TX_OPTIONS, TX_FRONTEND_ERROR_CODES } from './AbstractContractDAO'
-import contractsManagerDAO from './ContractsManagerDAO'
+// import { DEFAULT_TX_OPTIONS, TX_FRONTEND_ERROR_CODES } from './AbstractContractDAO'
 import AbstractContractDAO from '../refactor/daos/lib/AbstractContractDAO'
 
 export default class AbstractMultisigContractDAO extends AbstractContractDAO {
@@ -31,27 +30,29 @@ export default class AbstractMultisigContractDAO extends AbstractContractDAO {
    * @param options
    * @protected
    */
-  async _multisigTx (func: string, args: Array = [], infoArgs = null, options = DEFAULT_TX_OPTIONS): Promise<Object> {
-    const dao = await contractsManagerDAO.getPendingManagerDAO()
+  // eslint-disable-next-line no-unused-vars
+  async _multisigTx (func: string, args: Array = [], infoArgs = null, options): Promise<Object> {
+    throw new Error('AbstractMultisigContractDao: method _multisigTx must be implemented in ancestor class')
+    // const dao = await contractsManagerDAO.getPendingManagerDAO()
 
-    const web3 = await this._web3Provider.getWeb3()
-    const data = await this.getData(func, args)
-    const hash = web3.sha3(data, { encoding: 'hex' })
+    // const web3 = await this._web3Provider.getWeb3()
+    // const data = await this.getData(func, args)
+    // const hash = web3.sha3(data, { encoding: 'hex' })
 
-    const [isDone, receipt] = await Promise.all([
-      dao.watchTxEnd(hash),
-      await this._tx(func, args, infoArgs, null, {
-        ...options,
-        addDryRunFrom: dao.getInitAddress(),
-        addDryRunOkCodes: this._okCodes,
-      }),
-    ])
+    // const [isDone, receipt] = await Promise.all([
+    //   dao.watchTxEnd(hash),
+    //   await this._tx(func, args, infoArgs, null, {
+    //     ...options,
+    //     addDryRunFrom: dao.getInitAddress(),
+    //     addDryRunOkCodes: this._okCodes,
+    //   }),
+    // ])
 
-    if (!isDone) {
-      throw new TxError('Cancelled via Operations module', TX_FRONTEND_ERROR_CODES.FRONTEND_CANCELLED)
-    }
+    // if (!isDone) {
+    //   throw new TxError('Cancelled via Operations module', TX_FRONTEND_ERROR_CODES.FRONTEND_CANCELLED)
+    // }
 
-    return receipt
+    // return receipt
   }
 
   /**

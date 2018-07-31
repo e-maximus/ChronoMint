@@ -10,7 +10,6 @@ import OperationModel from '../models/OperationModel'
 import type TxExecModel from '../models/TxExecModel'
 import { MultiEventsHistoryABI, PendingManagerABI } from './abi'
 import AbstractContractDAO from './AbstractContractDAO'
-import contractsManagerDAO from './ContractsManagerDAO'
 import {
   OPERATIONS_PER_PAGE,
   PENDING_ID_PREFIX,
@@ -24,19 +23,10 @@ const EVENT_REVOKE = 'Revoke'
 const EVENT_CANCELLED = 'Cancelled'
 
 export default class PendingManagerDAO extends AbstractContractDAO {
-  constructor (at) {
+  constructor (at, multisigDaoList) {
     super(PendingManagerABI, at, MultiEventsHistoryABI)
-
     this._okCodes = [ resultCodes.OK, resultCodes.MULTISIG_ADDED ]
-  }
-
-  multisigDAO () {
-    return [
-      contractsManagerDAO.getUserManagerDAO(),
-      contractsManagerDAO.getLOCManagerDAO(),
-      contractsManagerDAO.getPollInterfaceDAO(),
-      contractsManagerDAO.getPlatformManagerDAO(),
-    ]
+    this.multisigDaoList = multisigDaoList
   }
 
   async getList () {
@@ -191,7 +181,7 @@ export default class PendingManagerDAO extends AbstractContractDAO {
 
   /** @private */
   async _parseData (data): Promise<TxExecModel> {
-    for (let dao of this.multisigDAO()) {
+    for (let dao of this.multisigDaoList) {
       dao = await dao
       const tx = await dao.decodeData(data)
       if (tx !== null) {
