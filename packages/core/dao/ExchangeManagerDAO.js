@@ -4,9 +4,9 @@
  */
 
 import exchangeProvider from '@chronobank/login/network/ExchangeProvider'
+import BigNumber from 'bignumber.js'
 import ExchangeOrderModel from '../models/exchange/ExchangeOrderModel'
 import ExchangesCollection from '../models/exchange/ExchangesCollection'
-import BigNumber from 'bignumber.js'
 import web3Converter from '../utils/Web3Converter'
 import { ExchangeManagerABI, MultiEventsHistoryABI } from './abi'
 import AbstractContractDAO from './AbstractContractDAO'
@@ -41,7 +41,7 @@ export default class ExchangeManagerDAO extends AbstractContractDAO {
 
   async getExchangesForOwner (owner: string) {
     const addresses = await this._call('getExchangesForOwner', [ owner ])
-    return await this.getExchangeData(addresses.filter((address) => !this.isEmptyAddress(address)))
+    return this.getExchangeData(addresses.filter((address) => !this.isEmptyAddress(address)))
   }
 
   async getAssetSymbols () {
@@ -67,7 +67,7 @@ export default class ExchangeManagerDAO extends AbstractContractDAO {
     } else {
       addresses = await this._call('getExchanges', [ fromId, length ])
     }
-    return await this.getExchangeData(addresses.filter((address) => !this.isEmptyAddress(address)))
+    return this.getExchangeData(addresses.filter((address) => !this.isEmptyAddress(address)))
   }
 
   async getExchangeData (exchangesAddresses: Array<string>) {
