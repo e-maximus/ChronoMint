@@ -10,52 +10,82 @@ import {
   ltcProvider,
 } from '@chronobank/login/network/BitcoinProvider'
 import {
-  BLOCKCHAIN_BITCOIN,
   BLOCKCHAIN_BITCOIN_CASH,
   BLOCKCHAIN_BITCOIN_GOLD,
+  BLOCKCHAIN_BITCOIN,
   BLOCKCHAIN_LITECOIN,
 } from '@chronobank/login/network/constants'
+import {
+  change,
+  formValueSelector,
+} from 'redux-form/immutable'
 import { ethereumProvider } from '@chronobank/login/network/EthereumProvider'
-import { change, formValueSelector } from 'redux-form/immutable'
-import { nemProvider } from '@chronobank/login/network/NemProvider'
-import { wavesProvider } from '@chronobank/login/network/WavesProvider'
 import { history } from '@chronobank/core-dependencies/configureStore'
+import { nemProvider } from '@chronobank/login/network/NemProvider'
 import { push } from '@chronobank/core-dependencies/router'
-import { EVENT_APPROVAL_TRANSFER, EVENT_NEW_TRANSFER, EVENT_UPDATE_BALANCE, EVENT_UPDATE_TRANSACTION } from '../../dao/constants'
-import { getDeriveWalletsAddresses, getMultisigWallets } from '../wallet/selectors'
-import { BLOCKCHAIN_ETHEREUM } from '../../dao/EthereumDAO'
-import Amount from '../../models/Amount'
-import ApprovalNoticeModel from '../../models/notices/ApprovalNoticeModel'
-import TransferNoticeModel from '../../models/notices/TransferNoticeModel'
-import BalanceModel from '../../models/tokens/BalanceModel'
-import TokenModel from '../../models/tokens/TokenModel'
-import validator from '../../models/validator'
-import AddressModel from '../../models/wallet/AddressModel'
-import AllowanceModel from '../../models/wallet/AllowanceModel'
-import { TXS_PER_PAGE } from '../../models/wallet/TransactionsCollection'
+import { wavesProvider } from '@chronobank/login/network/WavesProvider'
+
 import { addMarketToken } from '../market/actions'
-import { notify, notifyError } from '../notifier/actions'
-import { DUCK_SESSION } from '../session/constants'
-import { subscribeOnTokens } from '../tokens/actions'
-import { DUCK_TOKENS } from '../tokens/constants'
-import tokenService from '../../services/TokenService'
-import type TxModel from '../../models/TxModel'
-import { TX_DEPOSIT, TX_WITHDRAW_SHARES } from '../../dao/AssetHolderDAO'
-import { TX_APPROVE } from '../../dao/ERC20DAO'
-import OwnerCollection from '../../models/wallet/OwnerCollection'
-import OwnerModel from '../../models/wallet/OwnerModel'
-import { DUCK_ETH_MULTISIG_WALLET, ETH_MULTISIG_BALANCE, ETH_MULTISIG_FETCHED } from '../multisigWallet/constants'
-import DerivedWalletModel from '../../models/wallet/DerivedWalletModel'
-import AddressesCollection from '../../models/wallet/AddressesCollection'
+import { BLOCKCHAIN_ETHEREUM } from '../../dao/constants'
 import { BLOCKCHAIN_NEM } from '../../dao/NemDAO'
 import { BLOCKCHAIN_WAVES } from '../../dao/WavesDAO'
-import WalletModel from '../../models/wallet/WalletModel'
 import { daoByType } from '../../refactor/redux/daos/selectors'
-import { WALLETS_SET_IS_TIME_REQUIRED, WALLETS_UPDATE_WALLET } from '../wallets/constants'
-import { getMainAddresses, getMainEthWallet, getMainWalletForBlockchain, getWallet } from '../wallets/selectors/models'
+import {
+  DUCK_ETH_MULTISIG_WALLET,
+  ETH_MULTISIG_BALANCE,
+  ETH_MULTISIG_FETCHED,
+} from '../multisigWallet/constants'
+import { DUCK_SESSION } from '../session/constants'
+import { DUCK_TOKENS } from '../tokens/constants'
+import {
+  EVENT_APPROVAL_TRANSFER,
+  EVENT_NEW_TRANSFER,
+  EVENT_UPDATE_BALANCE,
+  EVENT_UPDATE_TRANSACTION,
+} from '../../dao/constants'
 import { getAccount } from '../session/selectors/models'
+import {
+  getDeriveWalletsAddresses,
+  getMultisigWallets,
+} from '../wallet/selectors'
+import {
+  getMainAddresses,
+  getMainEthWallet,
+  getMainWalletForBlockchain,
+  getWallet,
+} from '../wallets/selectors/models'
+import {
+  notify,
+  notifyError,
+} from '../notifier/actions'
+import { subscribeOnTokens } from '../tokens/actions'
+import { TX_APPROVE } from '../../dao/ERC20DAO'
+import {
+  TX_DEPOSIT,
+  TX_WITHDRAW_SHARES,
+} from '../../dao/AssetHolderDAO'
+import { TXS_PER_PAGE } from '../../models/wallet/TransactionsCollection'
+import {
+  WALLETS_SET_IS_TIME_REQUIRED,
+  WALLETS_UPDATE_WALLET,
+} from '../wallets/constants'
+import AddressesCollection from '../../models/wallet/AddressesCollection'
+import AddressModel from '../../models/wallet/AddressModel'
 import AllowanceCollection from '../../refactor/models/AllowanceCollection'
+import AllowanceModel from '../../models/wallet/AllowanceModel'
+import Amount from '../../models/Amount'
+import ApprovalNoticeModel from '../../models/notices/ApprovalNoticeModel'
+import BalanceModel from '../../models/tokens/BalanceModel'
+import DerivedWalletModel from '../../models/wallet/DerivedWalletModel'
+import OwnerCollection from '../../models/wallet/OwnerCollection'
+import OwnerModel from '../../models/wallet/OwnerModel'
+import TokenModel from '../../models/tokens/TokenModel'
+import tokenService from '../../services/TokenService'
+import TransferNoticeModel from '../../models/notices/TransferNoticeModel'
 import TxHistoryModel from '../../models/wallet/TxHistoryModel'
+import validator from '../../models/validator'
+import WalletModel from '../../models/wallet/WalletModel'
+
 import {
   // DUCK_MAIN_WALLET,
   BCC,
@@ -112,7 +142,7 @@ const handleToken = (token: TokenModel) => async (dispatch, getState) => {
 
   // subscribe
   tokenDAO
-    .on(EVENT_NEW_TRANSFER, (tx: TxModel) => {
+    .on(EVENT_NEW_TRANSFER, (tx) => {
       const walletsAccounts = getDeriveWalletsAddresses(getState(), token.blockchain())
       const mainWalletAddresses = getMainAddresses(getState())
       const assetDonatorDAO = daoByType('AssetDonator')(getState())
@@ -589,7 +619,7 @@ export const getTransactionsForWallet = ({ wallet, forcedOffset }) => async (dis
 
     txList.sort((a, b) => b.get('time') - a.get('time'))
 
-    for (let tx: TxModel of txList) {
+    for (let tx of txList) {
       if (!blocks[tx.blockNumber()]) {
         blocks[tx.blockNumber()] = { transactions: [] }
       }

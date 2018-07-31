@@ -10,7 +10,7 @@ import BigNumber from 'bignumber.js'
 import TxExecModel from '../../../refactor/models/TxExecModel'
 import web3Converter from '../../../utils/Web3Converter'
 import Amount from '../../../models/Amount'
-import { BLOCKCHAIN_ETHEREUM } from '../../../dao/EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from '../../../dao/constants'
 
 export const DEFAULT_GAS = 4700000
 export const DEFAULT_TX_OPTIONS = {

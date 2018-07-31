@@ -23,7 +23,7 @@ import { DUCK_ETH_MULTISIG_WALLET, FORM_2FA_STEPS, FORM_2FA_WALLET } from '@chro
 import OwnerCollection from '@chronobank/core/models/wallet/OwnerCollection'
 import OwnerModel from '@chronobank/core/models/wallet/OwnerModel'
 import MultisigWalletModel from '@chronobank/core/models/wallet/MultisigWalletModel'
-import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/constants'
 import { getMarket } from '@chronobank/core/redux/market/selectors'
 import { DUCK_SESSION } from '@chronobank/core/redux/session/constants'
 import { prefix } from './lang'

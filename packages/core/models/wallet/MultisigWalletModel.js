@@ -8,7 +8,7 @@ import BalancesCollection from '../tokens/BalancesCollection'
 import AddressesCollection from './AddressesCollection'
 import MultisigWalletPendingTxCollection from './MultisigWalletPendingTxCollection'
 import TransactionsCollection from './TransactionsCollection'
-import { BLOCKCHAIN_ETHEREUM } from '../../dao/EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from '../../dao/constants'
 import { abstractFetchingModel } from '../AbstractFetchingModel'
 import OwnerCollection from './OwnerCollection'
 

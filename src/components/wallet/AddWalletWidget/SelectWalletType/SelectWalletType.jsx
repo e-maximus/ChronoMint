@@ -13,7 +13,7 @@ import { TOKEN_ICONS } from 'assets'
 import { BLOCKCHAIN_BITCOIN, BLOCKCHAIN_LITECOIN } from '@chronobank/login/network/BitcoinProvider'
 import { createNewChildAddress, goToWallets, resetWalletsForm } from '@chronobank/core/redux/mainWallet/actions'
 import { BTC, ETH, LTC, XEM, WAVES } from '@chronobank/core/redux/mainWallet/constants'
-import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/constants'
 import { BLOCKCHAIN_NEM } from '@chronobank/core/dao/NemDAO'
 import { BLOCKCHAIN_WAVES } from '@chronobank/core/dao/WavesDAO'
 

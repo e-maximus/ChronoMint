@@ -6,7 +6,7 @@
 import { REHYDRATE } from 'redux-persist'
 import MainWalletModel from '../../models/wallet/MainWalletModel'
 import TransactionsCollection from '../../models/wallet/TransactionsCollection'
-import * as a from './actions'
+import * as a from './constants'
 
 const initialState = new MainWalletModel()
 

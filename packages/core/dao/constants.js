@@ -43,3 +43,9 @@ export const EVENT_POLL_REMOVED = 'PollRemoved'
 export const LHT = 'LHT'
 
 // #endregion LHTDAO.js
+
+// #region Blockchain names
+
+export const BLOCKCHAIN_ETHEREUM = 'Ethereum'
+
+// #endregion

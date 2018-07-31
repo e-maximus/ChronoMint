@@ -4,7 +4,7 @@
  */
 
 import BigNumber from 'bignumber.js'
-import { BLOCKCHAIN_ETHEREUM } from './EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from './constants'
 import AddressesCollection from '../models/wallet/AddressesCollection'
 import AddressModel from '../models/wallet/AddressModel'
 import MultisigEthWalletModel from '../models/wallet/MultisigEthWalletModel'

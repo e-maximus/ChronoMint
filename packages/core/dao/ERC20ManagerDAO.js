@@ -6,7 +6,8 @@
 import TokenNoticeModel from '../models/notices/TokenNoticeModel'
 import TokenModel from '../models/tokens/TokenModel'
 import AbstractContractDAO from '../refactor/daos/lib/AbstractContractDAO'
-import ethereumDAO, { BLOCKCHAIN_ETHEREUM } from './EthereumDAO'
+import ethereumDAO from './EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from './constants'
 
 export const TX_ADD_TOKEN = 'addToken'
 export const TX_MODIFY_TOKEN = 'setToken'

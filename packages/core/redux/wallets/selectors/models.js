@@ -4,7 +4,7 @@
  */
 
 import { DUCK_WALLETS } from '../constants'
-import { BLOCKCHAIN_ETHEREUM } from '../../../dao/EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from '../../../dao/constants'
 
 export const getWallet = (walletId) => (state) => {
   return state.get(DUCK_WALLETS).list[walletId]

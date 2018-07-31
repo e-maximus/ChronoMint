@@ -13,7 +13,6 @@ import OwnerCollection from '../models/wallet/OwnerCollection'
 import OwnerModel from '../models/wallet/OwnerModel'
 import BlacklistModel from '../models/tokens/BlacklistModel'
 import AbstractContractDAO from '../refactor/daos/lib/AbstractContractDAO'
-console.log('Imported AbstractContractDAO', AbstractContractDAO)
 import ChronoBankPlatformDAO, {
   TX_ISSUE,
   TX_OWNERSHIP_CHANGE,
@@ -31,7 +30,7 @@ import ChronoBankAssetDAO, {
   TX_UNPAUSED,
   TX_UNRESTRICTED,
 } from './ChronoBankAssetDAO'
-import { BLOCKCHAIN_ETHEREUM } from './EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from './constants'
 import web3Converter from '../utils/Web3Converter'
 
 export const TX_ASSET_CREATED = 'AssetCreated'

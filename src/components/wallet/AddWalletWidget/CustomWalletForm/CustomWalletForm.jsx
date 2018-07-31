@@ -14,7 +14,7 @@ import { Field, formPropTypes, formValueSelector, reduxForm } from 'redux-form/i
 import { createNewChildAddress, goToWallets, resetWalletsForm } from '@chronobank/core/redux/mainWallet/actions'
 import { ETH } from '@chronobank/core/redux/mainWallet/constants'
 import { getChronobankTokens } from '@chronobank/core/redux/settings/erc20/tokens/selectors'
-import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/constants'
 import TokenModel from '@chronobank/core/models/tokens/TokenModel'
 import { prefix } from './lang'
 import './CusotmWalletForm.scss'

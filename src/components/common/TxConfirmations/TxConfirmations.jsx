@@ -17,7 +17,7 @@ import {
   BLOCKCHAIN_BITCOIN_GOLD,
   BLOCKCHAIN_LITECOIN,
 } from '@chronobank/login/network/constants'
-import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/constants'
 import { prefix } from './lang'
 import './TxConfirmations.scss'
 

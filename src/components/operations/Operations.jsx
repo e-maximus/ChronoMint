@@ -15,7 +15,7 @@ import { confirmOperation, listOperations, loadMoreCompletedOperations, revokeOp
 import { modalsOpen } from 'redux/modals/actions'
 import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import OperationsSettingsDialog from 'components/dialogs/OperationsSettingsDialog'
-import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/EthereumDAO'
+import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/constants'
 import Value from 'components/common/Value/Value'
 import './Operations.scss'
 
