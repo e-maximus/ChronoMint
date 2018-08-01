@@ -24,6 +24,7 @@ import {
   getWalletsListAddresses,
   getAccountAddress,
 } from './utils'
+import mnemonicProvider from "../../../login/network/mnemonicProvider";
 
 export const DUCK_PERSIST_ACCOUNT = 'persistAccount'
 
@@ -89,26 +90,6 @@ export const validateAccountName = (name) => (dispatch, getState) => {
   const { walletsList } = state.get(DUCK_PERSIST_ACCOUNT)
 
   return !walletsList.find((item) => item.name === name)
-}
-
-export const validateMnemonicForAccount = (mnemonic) => async (dispatch, getState) => {
-  const state = getState()
-  const { selectedWallet } = state.get(DUCK_PERSIST_ACCOUNT)
-  const accounts = new Accounts()
-  accounts.wallet.clear()
-  const addressFromWallet = selectedWallet && getAccountAddress(selectedWallet, true)
-  const account = await accounts.privateKeyToAccount(
-    hdkey
-      .fromMasterSeed(
-        bip39.mnemonicToSeed(mnemonic)
-      )
-      .derivePath(WALLET_HD_PATH)
-      .getWallet()
-      .getPrivateKeyString()
-  )
-  const address = account && account.address && account.address.toLowerCase()
-
-  return addressFromWallet === address
 }
 
 export const resetPasswordAccount = (wallet, mnemonic, password) => async (dispatch) => {

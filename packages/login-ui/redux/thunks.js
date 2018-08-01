@@ -532,23 +532,6 @@ export const onSubmitResetAccountPasswordSuccess = () => (dispatch) => {
   ))
 }
 
-  /*
- * Thunk dispatched by "" screen.
- * TODO: to add description
- * TODO: to remove throws
- * TODO: to rework it
- */
-export const onSubmitRecoverAccountForm = (mnemonic) =>
-  async (dispatch) => {
-    const validForm = await dispatch(PersistAccountActions.validateMnemonicForAccount(mnemonic))
-
-    if (!validForm) {
-      throw new SubmissionError({ _error: 'Mnemonic incorrect for this wallet' })
-    }
-
-    dispatch(NetworkActions.networkSetNewMnemonic(mnemonic))
-  }
-
 /*
  * Thunk dispatched by "" screen.
  * TODO: to add description
