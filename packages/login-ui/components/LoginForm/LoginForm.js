@@ -19,9 +19,11 @@ import { isLocalNode } from '@chronobank/login/network/settings'
 import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import {
   getAccountAddress,
-  getAccountAvatarImg,
   getAccountName,
 } from '@chronobank/core/redux/persistAccount/utils'
+import {
+  getAccountAvatar,
+} from 'redux/persistAccount/utils'
 import {
   DUCK_NETWORK,
 } from '@chronobank/login/redux/network/constants'
@@ -77,8 +79,13 @@ function mapDispatchToProps (dispatch) {
 }
 
 class LoginPage extends React.Component {
+  // FIXME: to provide correct types instead of PropTypes.any below.
+  // FIXME: to fix PropTypes.array and PropTypes.object
   static propTypes = {
     accounts: PropTypes.array,
+    classes: PropTypes.any,
+    error: PropTypes.any,
+    handleSubmit: PropTypes.any,
     initAccountsSignature: PropTypes.func,
     initLoginPage: PropTypes.func,
     isLocalNode: PropTypes.bool,
@@ -87,6 +94,7 @@ class LoginPage extends React.Component {
     selectedAccount: PropTypes.string,
     selectedWallet: PropTypes.object,
     successMessage: PropTypes.string,
+
   }
 
   componentWillMount () {
@@ -112,15 +120,9 @@ class LoginPage extends React.Component {
       classes,
       error,
       handleSubmit,
-      initialValues,
-      isImportMode,
-      isLocalNode,
       isLoginSubmitting,
       navigateToSelectWallet,
-      onSubmit,
-      pristine,
       selectedWallet,
-      valid,
     } = this.props
 
     return (
@@ -128,20 +130,18 @@ class LoginPage extends React.Component {
         <div styleName='page-title'>
           <Translate value='LoginForm.title' />
         </div>
-
-        {this.renderSuccessMessage()}
-
+        {
+          this.renderSuccessMessage()
+        }
         <input type='hidden' name={FORM_LOGIN_PAGE_FIELD_SUCCESS_MESSAGE} />
-
         <div styleName='user-row'>
           <UserRow
             title={getAccountName(selectedWallet)}
             subtitle={getAccountAddress(selectedWallet, true)}
-            avatar={getAccountAvatarImg(selectedWallet)}
+            avatar={getAccountAvatar(selectedWallet)}
             onClick={navigateToSelectWallet}
             linkTitle='My Accounts'
           />
-
           <div styleName='field'>
             <Field
               component={TextField}
@@ -152,35 +152,37 @@ class LoginPage extends React.Component {
               InputProps={{ className: classes.input }}
             />
           </div>
-
           <div styleName='actions'>
             <Button
               styleName='button'
               buttonType='login'
               type='submit'
-              label={isLoginSubmitting
-                ? (
-                  <span styleName='spinner-wrapper'>
-                    <img
-                      src={spinner}
-                      alt=''
-                      width={24}
-                      height={24}
-                    />
-                  </span>
-                )
-                : <Translate value='LoginForm.submitButton' />}
+              label={
+                isLoginSubmitting
+                  ? (
+                    <span styleName='spinner-wrapper'>
+                      <img
+                        src={spinner}
+                        alt=''
+                        width={24}
+                        height={24}
+                      />
+                    </span>
+                  )
+                  : <Translate value='LoginForm.submitButton' />
+              }
               disabled={isLoginSubmitting}
             />
-
-            {error ? (<div styleName='form-error'>{error}</div>) : null}
-
+            {
+              error
+                ? <div styleName='form-error'>{error}</div>
+                : null
+            }
             <Link to='/login/recover-account' href styleName='link'>
               <Translate value='LoginForm.forgotPassword' />
             </Link>
           </div>
         </div>
-
       </form>
     )
   }

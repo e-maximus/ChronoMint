@@ -9,9 +9,6 @@ import uuid from 'uuid/v1'
 import bip39 from 'bip39'
 import profileService from '@chronobank/login/network/ProfileService'
 import {
-  profileImgJPG,
-} from '@chronobank/core-dependencies/assets'
-import {
   WALLET_HD_PATH,
 } from '@chronobank/login/network/constants'
 import {
@@ -51,20 +48,6 @@ export const getAccountName = (account: AccountEntryModel) => {
   }
 
   return account && account.name || ''
-}
-
-export const getAccountAvatarImg = (account) => {
-  if (account && account.profile && account.profile.avatar) {
-    return account.profile.avatar
-  }
-
-  return ''
-}
-
-export const getAccountAvatar = (account: AccountEntryModel) => {
-  const img = getAccountAvatarImg(account)
-
-  return img || profileImgJPG
 }
 
 export const getProfilesForAccounts = (walletsList) => async () => {

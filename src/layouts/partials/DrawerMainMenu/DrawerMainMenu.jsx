@@ -21,7 +21,10 @@ import exitSvg from 'assets/img/exit-white.svg'
 import { SIDES_CLOSE_ALL, sidesPush } from 'redux/sides/actions'
 import { modalsOpen } from 'redux/modals/actions'
 import UpdateProfileDialog from 'components/dialogs/UpdateProvideDialog/UpdateProfileDialog'
-import { getAccountAvatar, getAccountName } from '@chronobank/core/redux/persistAccount/utils'
+import { getAccountName } from '@chronobank/core/redux/persistAccount/utils'
+import {
+  getAccountAvatar,
+} from 'redux/persistAccount/utils'
 import { getWalletsLength } from '@chronobank/core/redux/wallets/selectors/wallets'
 import { getAccountProfileSummary } from '@chronobank/core/redux/session/selectors'
 import MenuAssetsManagerMoreInfo from './MenuAssetsManagerMoreInfo/MenuAssetsManagerMoreInfo'

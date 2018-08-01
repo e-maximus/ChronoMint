@@ -17,10 +17,11 @@ import {
 import { onWalletSelect } from '@chronobank/login-ui/redux/thunks'
 import {
   getAccountAddress,
-  // getAccountAvatar,
-  getAccountAvatarImg,
   getAccountName,
 } from '@chronobank/core/redux/persistAccount/utils'
+import {
+  getAccountAvatar,
+} from 'redux/persistAccount/utils'
 import { AccountEntryModel } from '@chronobank/core/models/wallet/persistAccount'
 import arrow from 'assets/img/icons/prev-white.svg'
 import './AccountSelector.scss'
@@ -82,7 +83,7 @@ export default class AccountSelector extends PureComponent {
               key={i}
               title={getAccountName(w)}
               subtitle={getAccountAddress(w, true)}
-              avatar={getAccountAvatarImg(w)}
+              avatar={getAccountAvatar(w)}
               actionIcon={arrow}
               reverseIcon={true}
               onClick={() => onWalletSelect(w)}
