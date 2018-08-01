@@ -22,7 +22,7 @@ import { daoByType } from '../../refactor/redux/daos/selectors'
 import { cbeWatcher, watcher } from '../watcher/actions'
 import { watchStopMarket } from '../market/actions'
 import { WEB3_SETUP } from '../web3/reducer'
-
+import { DUCK_ETH_MULTISIG_WALLET } from '../multisigWallet/constants'
 import {
   DEFAULT_CBE_URL,
   DEFAULT_USER_URL,
@@ -115,7 +115,7 @@ export const bootstrap = (relogin = true) => async (dispatch, getState) => {
   const localAccount = ls.getLocalAccount()
   const isPassed = await networkService.checkLocalSession(localAccount)
   if (isPassed) {
-    await networkService.restoreLocalSession(localAccount, getState().get('ethMultisigWallet'))
+    await networkService.restoreLocalSession(localAccount, getState().get(DUCK_ETH_MULTISIG_WALLET))
     networkService.createNetworkSession(localAccount, LOCAL_PROVIDER_ID, LOCAL_ID)
     dispatch(login(localAccount))
   } else {

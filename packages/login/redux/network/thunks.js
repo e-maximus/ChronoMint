@@ -11,6 +11,7 @@ import * as PersistAccountActions from '@chronobank/core/redux/persistAccount/ac
 import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import { createAccountEntry } from '@chronobank/core/redux/persistAccount/utils'
 import { login } from '@chronobank/core/redux/session/actions'
+import { DUCK_ETH_MULTISIG_WALLET } from '@chronobank/core/redux/multisigWallet/constants'
 import * as NetworkActions from './actions'
 import { DUCK_NETWORK } from './constants'
 import mnemonicProvider from '../../network/mnemonicProvider'
@@ -213,7 +214,7 @@ export const handlePrivateKeyLogin = (privateKey) =>
     dispatch(NetworkActions.clearErrors())
 
     let state = getState()
-    const multisigWalletState = state.get('ethMultisigWallet')
+    const multisigWalletState = state.get(DUCK_ETH_MULTISIG_WALLET)
     const provider = privateKeyProvider.getPrivateKeyProvider(
       privateKey.slice(2),
       networkService.getProviderSettings(),
@@ -253,7 +254,7 @@ export const handleLoginLocalAccountClick = (account = '') =>
   async (dispatch, getState) => {
     let state = getState()
     const { accounts } = state.get(DUCK_NETWORK)
-    const wallets = state.get('ethMultisigWallet') // FIXME: to use constant
+    const wallets = state.get(DUCK_ETH_MULTISIG_WALLET)
 
     const index = Math.max(accounts.indexOf(account), 0)
     const provider = privateKeyProvider.getPrivateKeyProvider(

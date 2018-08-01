@@ -19,6 +19,7 @@ import coreReducers from '@chronobank/core/redux/ducks'
 import loginReducers from '@chronobank/login/redux/ducks'
 import { loadI18n } from 'redux/i18n/actions'
 import { DUCK_I18N } from 'redux/i18n/constants'
+import { DUCK_ETH_MULTISIG_WALLET } from '@chronobank/core/redux/multisigWallet/constants'
 import saveAccountMiddleWare from '@chronobank/core/redux/session/saveAccountMiddleWare'
 import { DUCK_MAIN_WALLET } from '@chronobank/core/redux/mainWallet/constants'
 import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
@@ -51,12 +52,12 @@ const configureStore = () => {
     if (action.type === SESSION_DESTROY) {
       const i18nState = state.get('i18n')
       const mainWalletsState = state.get(DUCK_MAIN_WALLET)
-      const walletsState = state.get('ethMultisigWallet')
+      const walletsState = state.get(DUCK_ETH_MULTISIG_WALLET)
       const persistAccount = state.get(DUCK_PERSIST_ACCOUNT)
       state = new Immutable.Map()
       state = state
         .set('i18n', i18nState)
-        .set('ethMultisigWallet', walletsState)
+        .set(DUCK_ETH_MULTISIG_WALLET, walletsState)
         .set('mainWallet', mainWalletsState)
         .set('persistAccount', persistAccount)
     }
@@ -117,7 +118,7 @@ export const store = configureStore()
 
 const persistorConfig = {
   key: 'root',
-  whitelist: ['ethMultisigWallet', 'mainWallet', 'persistAccount', 'wallets'],
+  whitelist: [DUCK_ETH_MULTISIG_WALLET, 'mainWallet', 'persistAccount', 'wallets'],
   transforms: [transformer()],
 }
 
