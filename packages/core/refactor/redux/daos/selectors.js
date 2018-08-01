@@ -4,9 +4,9 @@
  */
 
 import { createSelector } from 'reselect'
-// import { DUCK_DAO } from './actions'
+import { DUCK_DAO } from './constants'
 
-export const daosSelector = () => (state) => state.get('dao')
+export const daosSelector = () => (state) => state.get(DUCK_DAO)
 
 export const daoByAddress = (address) => createSelector(
   daosSelector(),
