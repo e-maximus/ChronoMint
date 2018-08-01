@@ -19,6 +19,7 @@ import { loadI18n } from 'redux/i18n/actions'
 import { DUCK_I18N } from 'redux/i18n/constants'
 import saveAccountMiddleWare from '@chronobank/core/redux/session/saveAccountMiddleWare'
 import { DUCK_MAIN_WALLET } from '@chronobank/core/redux/mainWallet/constants'
+import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import ducks from './ducks'
 import routingrReducers from './routing'
@@ -47,13 +48,13 @@ const configureStore = () => {
       const i18nState = state.get('i18n')
       const mainWalletsState = state.get(DUCK_MAIN_WALLET)
       const walletsState = state.get('ethMultisigWallet')
-      const persistAccount = state.get('persistAccount')
+      const persistAccount = state.get(DUCK_PRESIST_ACCOUNT)
       state = new Immutable.Map()
       state = state
         .set('i18n', i18nState)
         .set('ethMultisigWallet', walletsState)
         .set('mainWallet', mainWalletsState)
-        .set('persistAccount', persistAccount)
+        .set(DUCK_PRESIST_ACCOUNT, persistAccount)
     }
     return appReducer(state, action)
   }

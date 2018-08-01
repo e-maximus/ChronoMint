@@ -18,6 +18,7 @@ import {
   getAccountName,
   getAccountAddress,
 } from '@chronobank/core/redux/persistAccount/utils'
+import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import {
   getAccountAvatar,
 } from 'redux/persistAccount/utils'
@@ -41,7 +42,7 @@ import {
 import './RecoverAccount.scss'
 
 function mapStateToProps (state) {
-  const selectedWallet = state.get('persistAccount').selectedWallet
+  const selectedWallet = state.get(DUCK_PRESIST_ACCOUNT).selectedWallet
   return {
     selectedWallet: selectedWallet && new AccountEntryModel(selectedWallet),
   }

@@ -2,12 +2,13 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import spinner from 'assets/img/spinningwheel-1.gif'
+import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 
 import './PersistWrapper.scss'
 
 const mapStateToProps = (state) => {
   return {
-    rehydrated: state.get('persistAccount').rehydrated,
+    rehydrated: state.get(DUCK_PRESIST_ACCOUNT).rehydrated,
   }
 }
 
@@ -25,7 +26,7 @@ class PersistWrapper extends React.Component {
     this.store = context.store
   }
 
-  renderLoader(){
+  renderLoader () {
     return (
       <div styleName='loadingMessage'>
         <img src={spinner} width='24' height='24' alt='' />
