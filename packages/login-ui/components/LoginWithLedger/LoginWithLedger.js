@@ -5,7 +5,7 @@
 
 import ledgerProvider from '@chronobank/login/network/LedgerProvider'
 import { fetchAccount, startLedgerSync, stopLedgerSync } from '@chronobank/login/redux/ledger/actions'
-import { CircularProgress, RaisedButton } from 'material-ui'
+import { CircularProgress } from 'material-ui'
 import networkService from '@chronobank/login/network/NetworkService'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'

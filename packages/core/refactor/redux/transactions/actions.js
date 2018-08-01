@@ -29,14 +29,16 @@ export const acceptConfirm = (acceptCallback) => (tx) => (dispatch) => {
   dispatch(signAndSend(tx, acceptCallback))
 }
 
-export const rejectConfirm = (tx) => (dispatch) => {
+// FIXME: to check tx param. Maybe just remove it?
+export const rejectConfirm = (/*tx*/) => (dispatch) => {
   dispatch({ type: TRANSACTIONS_REMOVE })
 }
 
 export const signAndSend = (tx, acceptCallback) => async (dispatch) => {
   const signedTx = await dispatch(signTx(tx))
   dispatch({
-    type: WATCHER_TX_SET, tx: new CurrentTransactionNotificationModel({
+    type: WATCHER_TX_SET,
+    tx: new CurrentTransactionNotificationModel({
       id: tx.id,
       title: tx.title(),
       date: tx.time,

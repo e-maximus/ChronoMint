@@ -54,7 +54,10 @@ function mapDispatchToProps (dispatch) {
 class LoginPage extends PureComponent {
   static propTypes = {
     initAccountNamePage: PropTypes.func,
+    handleSubmit: PropTypes.func,
     isLoginSubmitting: PropTypes.bool,
+    // FIXME: is it string?
+    error: PropTypes.any,
   }
 
   componentWillMount () {

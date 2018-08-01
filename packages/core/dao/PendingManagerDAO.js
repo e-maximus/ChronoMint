@@ -172,11 +172,12 @@ export default class PendingManagerDAO extends AbstractContractDAO {
     if (!this._memberId) {
       throw new Error('_memberId is not defined')
     }
-    bmp = bmp.toNumber()
-    if (!bmp) {
+    // FIXME: to rename bmp and png to "speaking variables"
+    const png = bmp.toNumber()
+    if (!png) {
       return null
     }
-    return (bmp & (2 ** this._memberId)) !== 0
+    return (png & (2 ** this._memberId)) !== 0
   }
 
   /** @private */
