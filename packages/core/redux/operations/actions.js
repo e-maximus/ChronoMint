@@ -69,7 +69,7 @@ export const confirmOperation = (operation: OperationModel | AbstractFetchingMod
   }
 }
 
-export const revokeOperation = (operation: OperationModel | AbstractFetchingModel) => async dispatch => {
+export const revokeOperation = (operation: OperationModel | AbstractFetchingModel) => async (dispatch) => {
   dispatch(setOperation(operation.isFetching(true)))
   const dao = await contractsManagerDAO.getPendingManagerDAO()
   try {
@@ -90,7 +90,7 @@ export const setupOperationsSettings = () => async (dispatch) => {
 }
 
 // TODO @bshevchenko: dispatch fetching actions
-// noinspection JSUnusedLocalSymbols
+
 export const setRequiredSignatures = (n: number) => async () => {
   const dao = await contractsManagerDAO.getUserManagerDAO()
   const currentSigns = await dao.getSignsRequired()

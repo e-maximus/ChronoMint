@@ -1,14 +1,18 @@
+/**
+ * Copyright 2017–2018, LaborX PTY
+ * Licensed under the AGPL Version 3 license.
+ */
+
 import React from 'react'
 import PropTypes from 'prop-types'
 import classnames from 'classnames'
 import { Link } from 'react-router'
-
-import DEFAULT_AVATAR from 'assets/img/profile-photo-1.jpg'
 import actionIcon from 'assets/img/icons/list.svg'
 
 import css from './UserRow.scss'
 
 export default class UserRow extends React.Component {
+  // FIXME: replace PropTypes.any to correct type
   static propTypes = {
     avatar: PropTypes.string,
     name: PropTypes.string,
@@ -19,8 +23,11 @@ export default class UserRow extends React.Component {
     actionIconClass: PropTypes.string,
     linkTitle: PropTypes.string,
     reverseIcon: PropTypes.bool,
+    title: PropTypes.any,
+    subtitle: PropTypes.any,
   }
 
+  // FIXME: append default values according to propTypes above
   static defaultProps = {
     avatar: '',
     name: '',
@@ -33,7 +40,7 @@ export default class UserRow extends React.Component {
     reverseIcon: false,
   }
 
-  renderDefaultAvatar(){
+  renderDefaultAvatar () {
     return (
       <div styleName='default-avatar-wrapper'>
         <span styleName='default-avatar' className='chronobank-icon'>
@@ -43,7 +50,7 @@ export default class UserRow extends React.Component {
     )
   }
 
-  renderAvatar(){
+  renderAvatar () {
     const { avatar } = this.props
 
     if (!avatar){
@@ -57,11 +64,6 @@ export default class UserRow extends React.Component {
 
   render () {
     const {
-      handleSubmit,
-      error,
-      pristine,
-      invalid,
-      avatar,
       actionIcon,
       hideActionIcon,
       title,
@@ -72,7 +74,9 @@ export default class UserRow extends React.Component {
     } = this.props
 
     return (
-      <div styleName={classnames('userBlock', onClick ? '' : 'userBlockSingle')} onClick={onClick ? onClick : () => {}}>
+      <div
+        styleName={classnames('userBlock', onClick ? '' : 'userBlockSingle')}
+        onClick={onClick ? onClick : () => {}}>
         <div styleName={classnames('userBlockInner')}>
           <div styleName={classnames('userBlockAvatar')}>
             { this.renderAvatar() }
@@ -88,17 +92,24 @@ export default class UserRow extends React.Component {
               </div>) : null}
           </div>
         </div>
-        { !hideActionIcon ? (
-          <div styleName={classnames('actionWrapper')}>
-            <Link
-              styleName={classnames('actionListTrigger', onClick ? '' : 'actionListTriggerDisabled')}
-              onClick={onClick ? onClick : () => {}}
-              title={linkTitle}
-            >
-              <img styleName={classnames(reverseIcon ? 'reverseIcon' : '')} src={actionIcon} alt='' />
-            </Link>
-          </div>
-        ) : null}
+        {
+          !hideActionIcon
+            ? (
+              <div styleName={classnames('actionWrapper')}>
+                <Link
+                  styleName={classnames('actionListTrigger', onClick ? '' : 'actionListTriggerDisabled')}
+                  onClick={onClick ? onClick : () => {}}
+                  title={linkTitle}>
+                  <img
+                    styleName={classnames(reverseIcon ? 'reverseIcon' : '')}
+                    src={actionIcon}
+                    alt=''
+                  />
+                </Link>
+              </div>
+            )
+            : null
+        }
       </div>
     )
   }

@@ -109,7 +109,7 @@ export default class PendingManagerDAO extends AbstractContractDAO {
    * @param isRevoked
    */
   _watchPendingCallback = (callback, isRevoked: boolean = false) => async (result, block, time) => {
-    // noinspection JSUnusedLocalSymbols
+
     const hash = result.args.hash
     const [ data, remained, done, timestamp ] = await this._call('getTx', [ hash ])
     const tx = await this._parseData(data)

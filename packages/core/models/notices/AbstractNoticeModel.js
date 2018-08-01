@@ -9,7 +9,6 @@ import moment from 'moment'
 import uuid from 'uuid/v1'
 import { abstractModel } from '../AbstractModel'
 
-// noinspection JSUnusedLocalSymbols
 export const abstractNoticeModel = (defaultValues) => class AbstractNoticeModel extends abstractModel({ ...defaultValues }) {
   // neither id or time is a default record value
   constructor (data) {

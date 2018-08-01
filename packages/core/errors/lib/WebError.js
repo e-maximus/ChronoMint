@@ -1,4 +1,4 @@
-class WebError extends Error {
+export default class WebError extends Error {
   constructor (message, status) {
     super(message)
     Error.captureStackTrace(this, this.constructor)
@@ -6,5 +6,3 @@ class WebError extends Error {
     this.status = status || 500
   }
 }
-
-module.exports = WebError
