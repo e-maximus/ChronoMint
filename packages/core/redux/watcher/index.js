@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import watcher from './reducer'
-
-export {
-  watcher,
-}
+export default from './reducer'

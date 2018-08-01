@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import monitor from './reducer'
-
-export {
-  monitor,
-}
+export default from './reducer'

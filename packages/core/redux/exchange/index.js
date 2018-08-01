@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import exchange from './reducer'
-
-export {
-  exchange,
-}
+export default from './reducer'

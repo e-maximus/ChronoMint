@@ -3,14 +3,18 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import * as ledger from './ledger/'
-import * as trezor from './trezor/'
-import * as network from './network/'
-import * as monitor from './monitor/'
+import { combineReducers } from 'redux-immutable'
 
-export default {
+import ledger from './ledger'
+import trezor from './trezor'
+import network from './network'
+import monitor from './monitor'
+
+const loginReducers = combineReducers({
   network,
   monitor,
   ledger,
   trezor,
-}
+})
+
+export default loginReducers

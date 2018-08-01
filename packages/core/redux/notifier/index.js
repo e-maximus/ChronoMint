@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import notifier from './reducer'
-
-export {
-  notifier,
-}
+export default from './reducer'

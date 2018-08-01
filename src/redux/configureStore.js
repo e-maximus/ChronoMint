@@ -13,15 +13,15 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistStore } from 'redux-persist-immutable'
 import moment from 'moment'
 import thunk from 'redux-thunk'
-import { reducer as formReducer } from 'redux-form/immutable'
+import { reducer as formReducers } from 'redux-form/immutable'
 import { I18n, i18nReducer, loadTranslations, setLocale } from '@chronobank/core-dependencies/i18n'
 import { loadI18n } from 'redux/i18n/actions'
 import { DUCK_I18N } from 'redux/i18n/constants'
 import saveAccountMiddleWare from '@chronobank/core/redux/session/saveAccountMiddleWare'
 import { DUCK_MAIN_WALLET } from '@chronobank/core/redux/mainWallet/constants'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
-import * as ducks from './ducks'
-import routingReducer from './routing'
+import ducks from './ducks'
+import routingrReducers from './routing'
 import transformer from './serialize'
 import createHistory, { historyMiddleware } from './browserHistoryStore'
 import translations from '../i18n'
@@ -31,30 +31,14 @@ const SESSION_DESTROY = 'session/DESTROY'
 // eslint-disable-next-line no-unused-vars
 let i18nJson // declaration of a global var for the i18n object for a standalone version
 
-const getNestedReducers = (ducks) => {
-  let reducers = {}
-  Object
-    .entries(ducks)
-    .forEach(([key, entry]) => {
-      reducers = {
-        ...reducers,
-        ...(typeof (entry) === 'function'
-          ? { [key]: entry }
-          : getNestedReducers(entry)
-        ),
-      }
-    })
-  return reducers
-}
-
 const configureStore = () => {
   const initialState = new Immutable.Map()
 
   const appReducer = combineReducers({
-    form: formReducer,
+    form: formReducers,
     i18n: i18nReducer,
-    routing: routingReducer,
-    ...getNestedReducers(ducks),
+    routing: routingrReducers,
+    ducks,
   })
 
   const rootReducer = (state, action) => {

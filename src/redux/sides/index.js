@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import sides from './reducer'
-
-export {
-  sides,
-}
+export default from './reducer'

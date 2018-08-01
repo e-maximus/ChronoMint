@@ -14,11 +14,9 @@ const initialState = Immutable.fromJS({
   locationBeforeTransitions: null,
 })
 
-const reducer = (state = initialState, { type, payload }) => {
+export default (state = initialState, { type, payload }) => {
   if (type === LOCATION_CHANGE) {
     return state.merge({ locationBeforeTransitions: payload })
   }
   return state
 }
-
-export default reducer

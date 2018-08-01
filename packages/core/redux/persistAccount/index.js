@@ -3,6 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import persistAccount from './reducer'
-
-export { persistAccount }
+export default from './reducer'

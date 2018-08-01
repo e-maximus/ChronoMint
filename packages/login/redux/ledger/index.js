@@ -3,4 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-export ledger from './reducer'
+export default from './reducer'

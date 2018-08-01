@@ -3,6 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import wallets from './reducer'
-
-export { wallets }
+export default from './reducer'

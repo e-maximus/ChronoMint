@@ -1,7 +1,7 @@
-const WebError = require('./lib/WebError')
-const ValidationError = require('./lib/ValidationError')
+import WebError from './lib/WebError'
+import ValidationError from './lib/ValidationError'
 
-module.exports = {
+export {
+  ValidationError,
   WebError,
-  ValidationError
 }

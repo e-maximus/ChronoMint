@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import session from './reducer'
-
-export {
-  session,
-}
+export default from './reducer'
