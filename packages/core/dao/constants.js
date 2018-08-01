@@ -59,3 +59,26 @@ export const WAVES_WAVES_NAME = 'WAVES'
 export const WAVES_DECIMALS = 8
 
 // #endregion WavesDAO.js
+
+// #region AbstractContractDAO.js
+
+export const TX_FRONTEND_ERROR_CODES = {
+  FRONTEND_UNKNOWN: 'f0',
+  FRONTEND_OUT_OF_GAS: 'f1',
+  FRONTEND_CANCELLED: 'f2',
+  FRONTEND_WEB3_FILTER_FAILED: 'f3',
+  FRONTEND_RESULT_FALSE: 'f4',
+  FRONTEND_RESULT_TRUE: 'f5',
+  FRONTEND_INVALID_RESULT: 'f6',
+}
+
+export const DEFAULT_TX_OPTIONS = {
+  addDryRunFrom: null,
+  addDryRunOkCodes: [],
+  allowNoReturn: false,
+  useDefaultGasLimit: false,
+  additionalAction: null,
+  feeMultiplier: null,
+}
+
+// #endregion AbstractContractDAO.js

@@ -5,7 +5,7 @@
 
 import contractsManagerDAO from '../../dao/ContractsManagerDAO'
 import type LOCManagerDAO from '../../dao/LOCManagerDAO'
-import { TX_FRONTEND_ERROR_CODES } from '../../dao/AbstractContractDAO'
+import { TX_FRONTEND_ERROR_CODES } from '../../dao/constants'
 import LOCModel from '../../models/LOCModel'
 import LOCNoticeModel from '../../models/notices/LOCNoticeModel'
 import type TokenModel from '../../models/tokens/TokenModel'

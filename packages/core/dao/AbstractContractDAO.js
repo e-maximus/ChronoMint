@@ -14,34 +14,20 @@ import AbstractModel from '../models/AbstractModel'
 import TxError from '../models/TxError'
 import TxExecModel from '../models/TxExecModel'
 import web3Converter from '../utils/Web3Converter'
+import {
+  DEFAULT_TX_OPTIONS,
+  TX_FRONTEND_ERROR_CODES,
+} from './constants'
 
-export const EVENT_NEW_BLOCK = 'TokenNewBlock'
-export const DEFAULT_GAS = 4700000
 const DEFAULT_OK_CODES = [resultCodes.OK, true]
 const FILTER_BLOCK_STEP = 100000 // 5 (5 sec./block) - 18 days (15 sec./block respectively) per request
 
-export const TX_FRONTEND_ERROR_CODES = {
-  FRONTEND_UNKNOWN: 'f0',
-  FRONTEND_OUT_OF_GAS: 'f1',
-  FRONTEND_CANCELLED: 'f2',
-  FRONTEND_WEB3_FILTER_FAILED: 'f3',
-  FRONTEND_RESULT_FALSE: 'f4',
-  FRONTEND_RESULT_TRUE: 'f5',
-  FRONTEND_INVALID_RESULT: 'f6',
-}
+export const EVENT_NEW_BLOCK = 'TokenNewBlock'
+export const DEFAULT_GAS = 4700000
 
 const DEFAULT_ERROR_CODES = {
   ...resultCodes,
   ...TX_FRONTEND_ERROR_CODES,
-}
-
-export const DEFAULT_TX_OPTIONS = {
-  addDryRunFrom: null,
-  addDryRunOkCodes: [],
-  allowNoReturn: false,
-  useDefaultGasLimit: false,
-  additionalAction: null,
-  feeMultiplier: null,
 }
 
 export default class AbstractContractDAO extends EventEmitter {
@@ -99,7 +85,9 @@ export default class AbstractContractDAO extends EventEmitter {
     this.subscribeOnReset()
 
     this._uniqId = `${this.constructor.name}-${Math.random()}`
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._events[this._uniqId] = []
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._filterCache[this._uniqId] = {}
   }
 
@@ -108,14 +96,17 @@ export default class AbstractContractDAO extends EventEmitter {
   }
 
   static setup (userAccount: string) {
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._account = userAccount
   }
 
   getAccount () {
+    // eslint-disable-next-line no-underscore-dangle
     return AbstractContractDAO._account
   }
 
   setAccount (account) {
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._account = account
   }
 
@@ -134,6 +125,7 @@ export default class AbstractContractDAO extends EventEmitter {
   }
 
   /** @private  TODO @bshevchenko: get rid of "noinspection JSUnresolvedFunction" */
+  // eslint-disable-next-line complexity
   async _initContract (web3 = null) {
     if (this._at !== null && validator.address(this._at) !== null) {
       throw new Error(`invalid address passed: ${this._at}`)
@@ -154,7 +146,9 @@ export default class AbstractContractDAO extends EventEmitter {
       if (this._eventsJSON && !this._eventsContract && this._eventsJSON !== this._json) {
         let eventsAddress
         const key = web3.sha3(this._eventsJSON)
+        // eslint-disable-next-line no-underscore-dangle
         if (AbstractContractDAO._eventsContracts.hasOwnProperty(key)) {
+          // eslint-disable-next-line no-underscore-dangle
           eventsAddress = AbstractContractDAO._eventsContracts[key]
         } else {
           const events = truffleContract(this._eventsJSON)
@@ -163,6 +157,7 @@ export default class AbstractContractDAO extends EventEmitter {
           // noinspection JSUnresolvedFunction
           const deployedEvents = await events.deployed()
           eventsAddress = deployedEvents.address
+          // eslint-disable-next-line no-underscore-dangle
           AbstractContractDAO._eventsContracts[key] = eventsAddress
         }
 
@@ -404,11 +399,13 @@ export default class AbstractContractDAO extends EventEmitter {
    * @protected
    */
   // eslint-disable-next-line complexity
-  async _tx (func: string,
-             args: Array = [],
-             infoArgs: Object | AbstractModel = null,
-             value: BigNumber = new BigNumber(0),
-             options = DEFAULT_TX_OPTIONS): Object {
+  async _tx (
+    func: string,
+    args: Array = [],
+    infoArgs: Object | AbstractModel = null,
+    value: BigNumber = new BigNumber(0),
+    options = DEFAULT_TX_OPTIONS
+  ): Object {
 
     const {
       from,
@@ -596,6 +593,7 @@ export default class AbstractContractDAO extends EventEmitter {
       throw this._error('_watch event not found', event, filters)
     }
 
+    // eslint-disable-next-line no-underscore-dangle
     const startTime = AbstractContractDAO._eventsWatchStartTime
     const instance = deployed[event](filters, {
       fromBlock: 'latest',
@@ -641,6 +639,7 @@ export default class AbstractContractDAO extends EventEmitter {
    * @see PendingManagerDAO.getCompletedList
    * @protected
    */
+  // eslint-disable-next-line complexity
   async _get (event: string, fromBlock = 0, toBlock = 'latest', filters = {}, total: number = 0, id = ''): Array {
     await this.contract
     const deployed = await this._eventsContract
@@ -695,30 +694,37 @@ export default class AbstractContractDAO extends EventEmitter {
 
   /** @protected */
   _setFilterCache (id, data) {
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._filterCache[this._uniqId][id] = data
   }
 
   /** @protected */
   _getFilterCache (id) {
+    // eslint-disable-next-line no-underscore-dangle
     return AbstractContractDAO._filterCache[this._uniqId][id]
   }
 
   resetFilterCache (id = null) {
     if (id) {
+      // eslint-disable-next-line no-underscore-dangle
       AbstractContractDAO._filterCache[this._uniqId][id] = null
       return
     }
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._filterCache[this._uniqId] = {}
   }
 
   static resetWholeFilterCache () {
+    // eslint-disable-next-line no-underscore-dangle
     for (const k of Object.keys(AbstractContractDAO._filterCache)) {
+      // eslint-disable-next-line no-underscore-dangle
       AbstractContractDAO._filterCache[k] = {}
     }
   }
 
   /** @protected */
   _addFilterEvent (event) {
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._events[this._uniqId].push(event)
   }
 
@@ -733,6 +739,7 @@ export default class AbstractContractDAO extends EventEmitter {
         event.stopWatching(() => {
           i++
           if (i === events.length) {
+            // eslint-disable-next-line no-underscore-dangle
             AbstractContractDAO._eventsWatchStartTime = Date.now()
             resolve()
           }
@@ -742,23 +749,30 @@ export default class AbstractContractDAO extends EventEmitter {
   }
 
   async stopWatching () {
+    // eslint-disable-next-line no-underscore-dangle
     await AbstractContractDAO._stopWatching(this.getWatchedEvents())
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._events[this._uniqId] = []
   }
 
   static async stopWholeWatching () {
+    // eslint-disable-next-line no-underscore-dangle
     await AbstractContractDAO._stopWatching(AbstractContractDAO.getWholeWatchedEvents())
+    // eslint-disable-next-line no-underscore-dangle
     for (const key of Object.keys(AbstractContractDAO._events)) {
+      // eslint-disable-next-line no-underscore-dangle
       AbstractContractDAO._events[key] = []
     }
   }
 
   getWatchedEvents () {
+    // eslint-disable-next-line no-underscore-dangle
     return AbstractContractDAO._events[this._uniqId]
   }
 
   static getWholeWatchedEvents () {
     let r = []
+    // eslint-disable-next-line no-underscore-dangle
     for (const events of Object.values(AbstractContractDAO._events)) {
       r = [...r, ...events]
     }

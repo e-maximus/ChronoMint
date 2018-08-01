@@ -5,12 +5,12 @@
 
 import BigNumber from 'bignumber.js'
 import { ethereumProvider } from '@chronobank/login/network/EthereumProvider'
+import { DEFAULT_TX_OPTIONS } from '@chronobank/core/dao/constants'
 import TokenModel from '../../../models/tokens/TokenModel'
 import AbstractTokenDAO from './AbstractTokenDAO'
 import ERC20DAODefaultABI from '../../../dao/abi/ERC20DAODefaultABI'
 import TxExecModel from '../../models/TxExecModel'
 import Amount from '../../../models/Amount'
-import { DEFAULT_TX_OPTIONS } from './AbstractContractDAO'
 
 const ETH = 'ETH'
 export const DEFAULT_GAS = 4700000
@@ -188,6 +188,7 @@ export default class ERC20TokenDAO extends AbstractTokenDAO {
         blockchain: this.token.blockchain(),
         symbol: this.token.symbol(),
         from,
+        // eslint-disable-next-line no-underscore-dangle
         to: this.contract._address,
         fields: {
           to: {
@@ -237,9 +238,11 @@ export default class ERC20TokenDAO extends AbstractTokenDAO {
         blockchain: this.token.blockchain(),
         symbol: this.token.symbol(),
         from,
+        // eslint-disable-next-line no-underscore-dangle
         to: this.contract._address.toLowerCase(),
         fields: {
           to: {
+            // eslint-disable-next-line no-underscore-dangle
             value: this.contract._address,
             description: 'to',
           },
@@ -275,9 +278,11 @@ export default class ERC20TokenDAO extends AbstractTokenDAO {
         blockchain: this.token.blockchain(),
         symbol: this.token.symbol(),
         from,
+        // eslint-disable-next-line no-underscore-dangle
         to: this.contract._address.toLowerCase(),
         fields: {
           to: {
+            // eslint-disable-next-line no-underscore-dangle
             value: this.contract._address,
             description: 'to',
           },

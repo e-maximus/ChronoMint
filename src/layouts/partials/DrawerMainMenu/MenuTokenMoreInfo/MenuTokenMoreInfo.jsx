@@ -3,7 +3,7 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import { DUCK_MONITOR } from '@chronobank/login/redux/monitor/actions'
+import { DUCK_MONITOR } from '@chronobank/login/redux/monitor/constants'
 import { Link } from 'react-router'
 import { CopyIcon, IPFSImage, QRIcon } from 'components'
 import React, { PureComponent } from 'react'

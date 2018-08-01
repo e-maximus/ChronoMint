@@ -10,12 +10,9 @@ import BigNumber from 'bignumber.js'
 import TxExecModel from '../../../refactor/models/TxExecModel'
 import web3Converter from '../../../utils/Web3Converter'
 import Amount from '../../../models/Amount'
-import { BLOCKCHAIN_ETHEREUM } from '../../../dao/constants'
+import { BLOCKCHAIN_ETHEREUM, DEFAULT_TX_OPTIONS } from '../../../dao/constants'
 
 export const DEFAULT_GAS = 4700000
-export const DEFAULT_TX_OPTIONS = {
-  feeMultiplier: null,
-}
 
 export default class AbstractContractDAO extends EventEmitter {
 
@@ -56,10 +53,12 @@ export default class AbstractContractDAO extends EventEmitter {
   }
 
   static getAccount () {
+    // eslint-disable-next-line no-underscore-dangle
     return AbstractContractDAO._account
   }
 
   static setAccount (account) {
+    // eslint-disable-next-line no-underscore-dangle
     AbstractContractDAO._account = account
   }
 
@@ -166,6 +165,7 @@ export default class AbstractContractDAO extends EventEmitter {
     options: Object = {},
     additionalOptions: Object = {},
   ): Promise {
+    // eslint-disable-next-line no-console
     console.log('Abstract _tx: ', func, args, amount, value, options, additionalOptions)
     this.submit(func, args, amount, value, options, additionalOptions)
   }
@@ -226,6 +226,7 @@ export default class AbstractContractDAO extends EventEmitter {
     const { gasLimit, gasFee, gasPrice } = await this.estimateGas(func, args, value, from, { feeMultiplier: feeMultiplier || 1 })
 
     setImmediate(async () => {
+      // eslint-disable-next-line no-console
       console.log('submit Tx: setImmediate tx: ', this, func, args, amount, value, options, additionalOptions)
       this.emit('submit', new TxExecModel({
         _id: id,
@@ -235,6 +236,7 @@ export default class AbstractContractDAO extends EventEmitter {
         from,
         symbol,
         blockchain: BLOCKCHAIN_ETHEREUM,
+        // eslint-disable-next-line no-underscore-dangle
         to: this.contract._address,
         feeMultiplier,
         value,

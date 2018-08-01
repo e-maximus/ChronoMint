@@ -11,7 +11,7 @@ import CBENoticeModel from '../models/notices/CBENoticeModel'
 import ProfileModel from '../models/ProfileModel'
 import AdditionalActionModel from '../models/AdditionalActionModel'
 import ProfileNoticeModel from '../models/notices/ProfileNoticeModel'
-import { DEFAULT_TX_OPTIONS } from './AbstractContractDAO'
+import { DEFAULT_TX_OPTIONS } from './constants'
 import AbstractContractDAO from '../refactor/daos/lib/AbstractContractDAO'
 
 export const TX_ADD_CBE = 'addCBE'
@@ -237,18 +237,24 @@ export default class UserManagerDAO extends AbstractContractDAO {
   async _decodeArgs (func, args: Object) {
     let profile
     switch (func) {
-      case TX_ADD_CBE:
+      case TX_ADD_CBE: {
+        // eslint-disable-next-line no-underscore-dangle
         profile = new ProfileModel(await this._ipfs(args._hash))
         return {
+          // eslint-disable-next-line no-underscore-dangle
           address: args._key,
           name: profile.name(),
         }
-      case TX_REVOKE_CBE:
+      }
+      case TX_REVOKE_CBE: {
+        // eslint-disable-next-line no-underscore-dangle
         profile = await this.getMemberProfile(args._key)
         return {
+          // eslint-disable-next-line no-underscore-dangle
           address: args._key,
           name: profile.name(),
         }
+      }
       default:
         return args
     }

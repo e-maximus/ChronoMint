@@ -12,8 +12,11 @@ import tokenService from '../services/TokenService'
 import Amount from '../models/Amount'
 import { LOCManagerABI, MultiEventsHistoryABI } from './abi'
 import AbstractMultisigContractDAO from './AbstractMultisigContractDAO'
-import { DEFAULT_TX_OPTIONS, TX_FRONTEND_ERROR_CODES } from './AbstractContractDAO'
-import { LHT } from './constants'
+import {
+  DEFAULT_TX_OPTIONS,
+  LHT,
+  TX_FRONTEND_ERROR_CODES,
+} from './constants'
 import TxError from '../models/TxError'
 
 export const standardFuncs = {

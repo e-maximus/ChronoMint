@@ -52,3 +52,5 @@ export const FORM_2FA_ENABLE = 'Form2FAEnable'
 export const PROFILE_SIDE_PANEL_KEY = 'ProfileSidePanelKey'
 
 export const NOTIFICATION_SIDE_PANEL_KEY = 'NotificationSidePanelKey'
+
+export DEFAULT_AVATAR from 'assets/img/profile-photo-1.jpg'
