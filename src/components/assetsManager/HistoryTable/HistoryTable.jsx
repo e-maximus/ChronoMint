@@ -20,6 +20,7 @@ import { TX_ASSET_CREATED } from '@chronobank/core/dao/AssetsManagerDAO'
 import TransactionsCollection from '@chronobank/core/models/wallet/TransactionsCollection'
 import { TX_PAUSED, TX_RESTRICTED, TX_UNPAUSED, TX_UNRESTRICTED } from '@chronobank/core/dao/ChronoBankAssetDAO'
 
+import { DUCK_I18N } from '../../../redux/i18n/constants'
 import './HistoryTable.scss'
 
 function prefix (token) {
@@ -29,7 +30,7 @@ function prefix (token) {
 function mapStateToProps (state) {
   const assetsManager = state.get(DUCK_ASSETS_MANAGER)
   return {
-    locale: state.get('i18n').locale,
+    locale: state.get(DUCK_I18N).locale,
     transactionsList: assetsManager.transactionsList(),
   }
 }

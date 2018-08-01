@@ -17,6 +17,8 @@ import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import OperationsSettingsDialog from 'components/dialogs/OperationsSettingsDialog'
 import { BLOCKCHAIN_ETHEREUM } from '@chronobank/core/dao/constants'
 import Value from 'components/common/Value/Value'
+
+import { DUCK_I18N } from '../../redux/i18n/constants'
 import './Operations.scss'
 
 function prefix (token) {
@@ -197,7 +199,7 @@ function mapStateToProps (state) {
     required: operations.required,
     selectedNetworkId: network.selectedNetworkId,
     selectedProviderId: network.selectedProviderId,
-    locale: state.get('i18n').locale,
+    locale: state.get(DUCK_I18N).locale,
   }
 }
 

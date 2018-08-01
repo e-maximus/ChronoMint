@@ -50,16 +50,16 @@ const configureStore = () => {
   const rootReducer = (state, action) => {
 
     if (action.type === SESSION_DESTROY) {
-      const i18nState = state.get('i18n')
+      const i18nState = state.get(DUCK_I18N)
       const mainWalletsState = state.get(DUCK_MAIN_WALLET)
       const walletsState = state.get(DUCK_ETH_MULTISIG_WALLET)
       const persistAccount = state.get(DUCK_PERSIST_ACCOUNT)
       state = new Immutable.Map()
       state = state
-        .set('i18n', i18nState)
+        .set(DUCK_I18N, i18nState)
         .set(DUCK_ETH_MULTISIG_WALLET, walletsState)
-        .set('mainWallet', mainWalletsState)
-        .set('persistAccount', persistAccount)
+        .set(DUCK_MAIN_WALLET, mainWalletsState)
+        .set(DUCK_PERSIST_ACCOUNT, persistAccount)
     }
     return appReducer(state, action)
   }
@@ -118,7 +118,7 @@ export const store = configureStore()
 
 const persistorConfig = {
   key: 'root',
-  whitelist: [DUCK_ETH_MULTISIG_WALLET, 'mainWallet', 'persistAccount', 'wallets'],
+  whitelist: [DUCK_ETH_MULTISIG_WALLET, DUCK_MAIN_WALLET, DUCK_PERSIST_ACCOUNT, 'wallets'],
   transforms: [transformer()],
 }
 

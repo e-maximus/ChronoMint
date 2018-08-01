@@ -9,8 +9,10 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import { FULL_DATE }  from '@chronobank/core/models/constants'
 
+import { DUCK_I18N } from '../../../redux/i18n/constants'
+
 const mapStateToProps = (state) => ({
-  locale: state.get('i18n').locale,
+  locale: state.get(DUCK_I18N).locale,
 })
 
 @connect(mapStateToProps)
