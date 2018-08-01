@@ -19,6 +19,7 @@ import './ConfirmMnemonic.scss'
 class ConfirmMnemonic extends Component {
   static propTypes = {
     mnemonic: PropTypes.string,
+    previousPage: PropTypes.func,
   }
 
   static defaultProps = {
@@ -90,7 +91,8 @@ class ConfirmMnemonic extends Component {
   }
 
   render () {
-    const { handleSubmit, error } = this.props
+    const { handleSubmit, error, previousPage } = this.props
+
     return (
       <form styleName='form' name={FORM_CONFIRM_MNEMONIC} onSubmit={handleSubmit}>
         <div>
@@ -135,7 +137,7 @@ class ConfirmMnemonic extends Component {
               <Translate value='ConfirmMnemonic.done' />
             </Button>
 
-            <Link to='/login/mnemonic' href styleName='link'>
+            <Link onClick={previousPage} href styleName='link'>
               <Translate value='ConfirmMnemonic.back' />
             </Link>
           </div>

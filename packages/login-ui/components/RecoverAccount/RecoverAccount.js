@@ -43,7 +43,7 @@ class RecoverAccount extends PureComponent {
   }
 
   render () {
-    const { handleSubmit, error, selectedWallet, navigateToSelectWallet } = this.props
+    const { handleSubmit, error, selectedWallet, navigateToSelectWallet, previousPage } = this.props
 
     const wordsArray = new Array(12).fill()
 
@@ -89,7 +89,7 @@ class RecoverAccount extends PureComponent {
           { error && (<div styleName='form-error'>{error}</div>) }
           <Translate value='RecoverAccount.or' />
           <br />
-          <Link to='/login' href styleName='link'>
+          <Link onClick={previousPage} styleName='link'>
             <Translate value='RecoverAccount.back' />
           </Link>
         </div>

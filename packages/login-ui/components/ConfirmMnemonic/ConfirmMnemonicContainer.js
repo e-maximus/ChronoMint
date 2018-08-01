@@ -11,10 +11,13 @@ import {
 } from '@chronobank/login-ui/redux/actions'
 
 import ConfirmMnemonic from './ConfirmMnemonic'
+import { navigateBack } from "../../redux/actions";
+import { connect } from "react-redux";
 
 export default class ConfirmMnemonicContainer extends Component {
   static propTypes = {
     mnemonic: PropTypes.string,
+    previousPage: PropTypes.func,
   }
 
   static defaultProps = {
@@ -50,8 +53,8 @@ export default class ConfirmMnemonicContainer extends Component {
         onSubmit={this.handleSubmit.bind(this)}
         onSubmitSuccess={this.handleSubmitSuccess.bind(this)}
         onSubmitFail={this.handleSubmitFail.bind(this)}
+        previousPage={this.props.previousPage}
       />
     )
   }
 }
-

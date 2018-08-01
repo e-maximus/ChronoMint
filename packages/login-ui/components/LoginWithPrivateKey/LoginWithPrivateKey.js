@@ -17,7 +17,7 @@ import './LoginWithPrivateKey.scss'
 
 class LoginWithPrivateKey extends PureComponent {
   render () {
-    const { handleSubmit, error } = this.props
+    const { handleSubmit, error, previousPage } = this.props
 
     return (
       <form styleName='form' name={FORM_PRIVATE_KEY_LOGIN_PAGE} onSubmit={handleSubmit}>
@@ -55,7 +55,7 @@ class LoginWithPrivateKey extends PureComponent {
 
           <Translate value='LoginWithPrivateKey.or' />
           <br />
-          <Link to='/login/import-methods' href styleName='link'>
+          <Link onClick={previousPage} href styleName='link'>
             <Translate value='LoginWithPrivateKey.back' />
           </Link>
         </div>

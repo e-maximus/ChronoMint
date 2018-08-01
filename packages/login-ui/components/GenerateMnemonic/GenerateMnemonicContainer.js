@@ -12,24 +12,17 @@ import GenerateMnemonic from './GenerateMnemonic'
 export default class GenerateMnemonicContainer extends Component {
   static propTypes = {
     onProceed: PropTypes.func,
-  }
-
-  constructor () {
-    super()
-
-    this.state = {
-      mnemonic: mnemonicProvider.generateMnemonic(),
-    }
+    mnemonic: PropTypes.string,
   }
 
   onProceed () {
-    this.props.onProceed(this.state.mnemonic)
+    this.props.onProceed()
   }
 
   render () {
     return (
       <GenerateMnemonic
-        mnemonic={this.state.mnemonic}
+        mnemonic={this.props.mnemonic}
         onProceed={this.onProceed.bind(this)}
       />
     )

@@ -18,7 +18,7 @@ import './CreateAccount.scss'
 
 class CreateAccount extends PureComponent {
   render () {
-    const { handleSubmit, error } = this.props
+    const { handleSubmit, error, navigateToSelectWallet } = this.props
 
     return (
       <form styleName='form' name={FORM_CREATE_ACCOUNT} onSubmit={handleSubmit}>
@@ -64,7 +64,7 @@ class CreateAccount extends PureComponent {
           {error && (<div styleName='form-error'>{error}</div>)}
           <Translate value='CreateAccount.or' />
           <br />
-          <Link to='/login/select-account' href styleName='link'>
+          <Link onClick={navigateToSelectWallet} styleName='link'>
             <Translate value='CreateAccount.useAccount' />
           </Link>
         </div>
