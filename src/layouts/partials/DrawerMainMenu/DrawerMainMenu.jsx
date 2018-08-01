@@ -27,7 +27,7 @@ import {
 } from 'redux/persistAccount/utils'
 import { getWalletsLength } from '@chronobank/core/redux/wallets/selectors/wallets'
 import { getAccountProfileSummary } from '@chronobank/core/redux/session/selectors'
-import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
+import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import MenuAssetsManagerMoreInfo from './MenuAssetsManagerMoreInfo/MenuAssetsManagerMoreInfo'
 import { MENU_TOKEN_MORE_INFO_PANEL_KEY } from './MenuTokenMoreInfo/MenuTokenMoreInfo'
 import MenuTokensList from './MenuTokensList/MenuTokensList'
@@ -38,7 +38,7 @@ import './DrawerMainMenu.scss'
 
 function mapStateToProps (state) {
   const { isCBE, profile } = state.get(DUCK_SESSION)
-  const selectedAccount = state.get(DUCK_PRESIST_ACCOUNT).selectedWallet
+  const selectedAccount = state.get(DUCK_PERSIST_ACCOUNT).selectedWallet
   const accountProfileSummary = getAccountProfileSummary(state)
 
   return {

@@ -10,11 +10,14 @@ import trezor from './trezor'
 import network from './network'
 import monitor from './monitor'
 
-const loginReducers = combineReducers({
+const loginReducers = {
   network,
   monitor,
   ledger,
   trezor,
-})
+}
 
 export default loginReducers
+
+// for further development
+export const combinedLoginReducers = combineReducers(loginReducers)

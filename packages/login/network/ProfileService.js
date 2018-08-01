@@ -5,7 +5,7 @@
 
 import EventEmitter from 'events'
 import axios from 'axios'
-import { store } from '@chronobank/core-dependencies/configureStore'
+// import { store } from '@chronobank/core-dependencies/configureStore'
 
 const PROFILE_BACKEND_REST_URL = 'https://backend.profile.tp.ntr1x.com'
 const basePath = '/api/v1'
@@ -27,8 +27,8 @@ const MEDIA_IMAGE_DOWNLOAD = (imageId = '') => `${basePath}/media/image/${imageI
 const PURPOSE_VALUE = 'exchange'
 
 class ProfileService extends EventEmitter {
-  constructor () {
-    super()
+  connectStore (store) {
+    // super()
     this._store = store
     this._dispatch = store.dispatch
   }

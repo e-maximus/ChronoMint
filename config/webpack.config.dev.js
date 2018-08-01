@@ -3,20 +3,21 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-let path = require('path')
-let webpack = require('webpack')
-let babel = require('./babel.dev')
+const path = require('path')
+const webpack = require('webpack')
+const babel = require('./babel.dev')
 const CircularDependencyPlugin = require('circular-dependency-plugin')
 
-let config = require('./webpack.config.base.js')
+const config = require('./webpack.config.base.js')
 
-let HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 process.traceDeprecation = true
 
-let srcAppArg = process.argv.find((e) => e.startsWith('--src-app='))
+const srcAppArg = process.argv.find((e) => e.startsWith('--src-app='))
 const srcApp = srcAppArg ? srcAppArg.substr('--src-app='.length) : 'index'
 
+// Counter for the 'circular-dependency-plugin'
 let numCyclesDetected = 0
 
 module.exports = config.buildConfig(
@@ -36,28 +37,23 @@ module.exports = config.buildConfig(
     },
     babel,
     plugins: [
-      new CircularDependencyPlugin({
-        // `onStart` is called before the cycle detection starts
-        onStart ({ compilation }) {
-          numCyclesDetected = 0
-          console.log('start detecting webpack modules cycles')
-        },
-        // `onDetected` is called for each module that is cyclical
-        onDetected ({ module: webpackModuleRecord, paths, compilation }) {
-          if (!/src\/components|node_modules|src\/layouts/.test(webpackModuleRecord.resource)) {
-            numCyclesDetected++
-            compilation.errors.push(new Error(paths.join(' -> ')))
-          }
-        },
-        // `onEnd` is called before the cycle detection ends
-        onEnd ({ compilation }) {
-          console.log('Detected %s cycles', numCyclesDetected)
-          // compilation.errors.forEach( function (err, index) {
-          //   console.log(index, ')', err.message)
-          // })
-          console.log('end detecting webpack modules cycles')
-        },
-      }),
+      // new CircularDependencyPlugin({
+      //   onStart () {
+      //     numCyclesDetected = 0
+      //     // eslint-disable-next-line no-console
+      //     console.log('start detecting webpack modules cycles')
+      //   },
+      //   onDetected ({ module: webpackModuleRecord, paths, compilation }) {
+      //     if (!/src\/components|node_modules|src\/layouts/.test(webpackModuleRecord.resource)) {
+      //       numCyclesDetected++
+      //       compilation.errors.push(new Error(paths.join(' -> ')))
+      //     }
+      //   },
+      //   onEnd () {
+      //     // eslint-disable-next-line no-console
+      //     console.log('Complete: detecting webpack modules cycles.\nFound %s cycles.', numCyclesDetected)
+      //   },
+      // }),
       new HtmlWebpackPlugin({
         inject: true,
         template: indexHtmlPath,

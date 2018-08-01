@@ -28,7 +28,7 @@ import wallets from './wallets'
 import watcher from './watcher'
 import web3 from './web3'
 
-const coreReducers = combineReducers({
+const coreReducers = {
   assetsHolder,
   assetsManager,
   dao,
@@ -51,6 +51,9 @@ const coreReducers = combineReducers({
   wallets,
   watcher,
   web3,
-})
+}
 
 export default coreReducers
+
+// for further development
+export const combinedCoreReducers = combineReducers(coreReducers)

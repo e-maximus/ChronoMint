@@ -17,7 +17,7 @@ import {
 import { DUCK_NETWORK } from '@chronobank/login/redux/network/constants'
 import styles from 'layouts/Splash/styles'
 import spinner from 'assets/img/spinningwheel-1.gif'
-import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
+import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import {
   onSubmitAccountNameSuccess,
   onSubmitAccountNameFail,
@@ -30,7 +30,7 @@ import validate from './validate'
 import './AccountName.scss'
 
 function mapStateToProps (state) {
-  const selectedWallet = state.get(DUCK_PRESIST_ACCOUNT).selectedWallet
+  const selectedWallet = state.get(DUCK_PERSIST_ACCOUNT).selectedWallet
 
   return {
     selectedWallet: selectedWallet,

@@ -26,7 +26,7 @@ import styles from 'layouts/Splash/styles'
 import {
   onSubmitResetAccountPasswordForm,
 } from '@chronobank/login/redux/network/thunks'
-import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
+import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import {
   FORM_RESET_PASSWORD,
 } from '../../components/constants'
@@ -39,7 +39,7 @@ import validate from './validate'
 import './ResetPassword.scss'
 
 function mapStateToProps (state) {
-  const selectedWallet = state.get(DUCK_PRESIST_ACCOUNT).selectedWallet
+  const selectedWallet = state.get(DUCK_PERSIST_ACCOUNT).selectedWallet
   return {
     selectedWallet: selectedWallet && new AccountEntryModel(selectedWallet),
   }

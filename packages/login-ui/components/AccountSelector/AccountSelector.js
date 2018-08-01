@@ -24,7 +24,7 @@ import {
 } from 'redux/persistAccount/utils'
 import { AccountEntryModel } from '@chronobank/core/models/wallet/persistAccount'
 import arrow from 'assets/img/icons/prev-white.svg'
-import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
+import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import './AccountSelector.scss'
 import { navigateToSelectImportMethod } from '../../redux/actions'
 
@@ -38,7 +38,7 @@ function mapDispatchToProps (dispatch) {
 
 function mapStateToProps (state) {
   return {
-    walletsList: state.get(DUCK_PRESIST_ACCOUNT).walletsList.map(
+    walletsList: state.get(DUCK_PERSIST_ACCOUNT).walletsList.map(
       (wallet) => new AccountEntryModel({ ...wallet }),
     ),
   }

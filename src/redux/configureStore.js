@@ -15,11 +15,13 @@ import moment from 'moment'
 import thunk from 'redux-thunk'
 import { reducer as formReducers } from 'redux-form/immutable'
 import { I18n, i18nReducer, loadTranslations, setLocale } from '@chronobank/core-dependencies/i18n'
+import coreReducers from '@chronobank/core/redux/ducks'
+import loginReducers from '@chronobank/login/redux/ducks'
 import { loadI18n } from 'redux/i18n/actions'
 import { DUCK_I18N } from 'redux/i18n/constants'
 import saveAccountMiddleWare from '@chronobank/core/redux/session/saveAccountMiddleWare'
 import { DUCK_MAIN_WALLET } from '@chronobank/core/redux/mainWallet/constants'
-import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
+import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import ducks from './ducks'
 import routingrReducers from './routing'
@@ -36,10 +38,12 @@ const configureStore = () => {
   const initialState = new Immutable.Map()
 
   const appReducer = combineReducers({
+    ...coreReducers,
+    ...ducks,
+    ...loginReducers,
     form: formReducers,
     i18n: i18nReducer,
     routing: routingrReducers,
-    ducks,
   })
 
   const rootReducer = (state, action) => {
@@ -48,13 +52,13 @@ const configureStore = () => {
       const i18nState = state.get('i18n')
       const mainWalletsState = state.get(DUCK_MAIN_WALLET)
       const walletsState = state.get('ethMultisigWallet')
-      const persistAccount = state.get(DUCK_PRESIST_ACCOUNT)
+      const persistAccount = state.get(DUCK_PERSIST_ACCOUNT)
       state = new Immutable.Map()
       state = state
         .set('i18n', i18nState)
         .set('ethMultisigWallet', walletsState)
         .set('mainWallet', mainWalletsState)
-        .set(DUCK_PRESIST_ACCOUNT, persistAccount)
+        .set('persistAccount', persistAccount)
     }
     return appReducer(state, action)
   }

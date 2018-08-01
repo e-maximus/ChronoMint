@@ -3,10 +3,11 @@
  * Licensed under the AGPL Version 3 license.
  */
 
+export const DUCK_PERSIST_ACCOUNT = 'persistAccount'
+
 export const CUSTOM_NETWORKS_LIST_ADD = 'persistAccount/CUSTOM_NETWORKS_LIST_ADD'
 export const CUSTOM_NETWORKS_LIST_RESET = 'persistAccount/CUSTOM_NETWORKS_LIST_RESET'
 export const CUSTOM_NETWORKS_LIST_UPDATE = 'persistAccount/CUSTOM_NETWORKS_LIST_UPDATE'
-export const DUCK_PERSIST_ACCOUNT = 'persistAccount'
 export const WALLETS_ADD = 'persistAccount/WALLETS_ADD'
 export const WALLETS_LOAD = 'persistAccount/WALLETS_LOAD'
 export const WALLETS_SELECT = 'persistAccount/WALLETS_SELECT'

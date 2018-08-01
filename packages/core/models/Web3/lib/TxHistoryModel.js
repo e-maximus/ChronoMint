@@ -11,7 +11,7 @@ const schemaFactory = () => ({
   blocks: Joi.array().items(Joi.object().type(BlockExecModel.model)),
   lastBlock: Joi.number().allow(null),
   firstBlock: Joi.number().allow(null),
-  cache: Joi.any()
+  cache: Joi.any(),
 })
 
 module.exports.schemaFactory = schemaFactory
@@ -25,7 +25,7 @@ module.exports.model = class TxHistoryModel extends AbstractModel {
       blocks: [],
       lastBlock: null,
       firstBlock: null,
-      cache: {}
+      cache: {},
     }, data), schemaFactory(), options)
     Object.freeze(this)
   }
@@ -37,7 +37,7 @@ module.exports.model = class TxHistoryModel extends AbstractModel {
       isLoaded: true,
       isLoading: false,
       blocks,
-      firstBlock
+      firstBlock,
     })
   }
 
@@ -46,8 +46,8 @@ module.exports.model = class TxHistoryModel extends AbstractModel {
       ...this,
       cache: {
         ...this.cache,
-        [desc.hash]: desc
-      }
+        [desc.hash]: desc,
+      },
     })
   }
 
@@ -57,7 +57,7 @@ module.exports.model = class TxHistoryModel extends AbstractModel {
       key: uuid(),
       blocks,
       lastBlock,
-      firstBlock
+      firstBlock,
     })
   }
 
@@ -73,7 +73,7 @@ module.exports.model = class TxHistoryModel extends AbstractModel {
     return new TxHistoryModel({
       ...this,
       key: uuid(),
-      isLoading: true
+      isLoading: true,
     })
   }
 }

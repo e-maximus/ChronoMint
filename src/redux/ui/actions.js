@@ -7,13 +7,54 @@ import moment from 'moment'
 import { setLocale } from '@chronobank/core-dependencies/i18n'
 import ls from '@chronobank/core-dependencies/utils/LocalStorage'
 import ipfs from '@chronobank/core-dependencies/utils/IPFS'
+import { notify } from '@chronobank/core/redux/notifier/actions'
 import userMonitorService from 'user/monitorService'
+import { TX_FRONTEND_ERROR_CODES } from '@chronobank/core/dao/constants'
 import { modalsOpen } from 'redux/modals/actions'
-import { DUCK_WATCHER, WATCHER_TX_SET } from '@chronobank/core/redux/watcher/constants'
+import { DUCK_WATCHER, WATCHER_TX_SET, WATCHER_TX_END } from '@chronobank/core/redux/watcher/constants'
+import AbstractContractDAO from '@chronobank/core/refactor/daos/lib/AbstractContractDAO'
+import TxError from '@chronobank/core/models/TxError'
 import ConfirmTxDialog from 'components/dialogs/ConfirmTxDialog/ConfirmTxDialog'
 import UserActiveDialog from 'components/dialogs/UserActiveDialog/UserActiveDialog'
+import TransactionErrorNoticeModel from '@chronobank/core/models/notices/TransactionErrorNoticeModel'
 import { CHANGE_WALLET_VIEW } from './reducer'
 import ConfirmTransferDialog from '../../components/dialogs/ConfirmTransferDialog/ConfirmTransferDialog'
+
+export const txHandlingFlow = () => (dispatch) => {
+  AbstractContractDAO.txStart = async (tx, estimateGas, localFeeMultiplier) => {
+    dispatch({ type: WATCHER_TX_SET, tx })
+
+    const { isConfirmed, updatedTx } = await dispatch(showConfirmTxModal(estimateGas, localFeeMultiplier))
+    if (!isConfirmed) {
+      throw new TxError('Cancelled by user from custom tx confirmation modal', TX_FRONTEND_ERROR_CODES.FRONTEND_CANCELLED)
+    }
+
+    // uncomment code below if you want to simulate prolongation of tx mining
+    // const sleep = (seconds) => {
+    //   return new Promise(resolve => {
+    //     setTimeout(() => {
+    //       resolve()
+    //     }, seconds * 1000)
+    //   })
+    // }
+    // const seconds = 10
+    // console.warn('Simulated ' + seconds + ' seconds prolongation of tx mining')
+    // await sleep(seconds)
+    return updatedTx
+  }
+
+  AbstractContractDAO.txGas = (tx) => {
+    dispatch({ type: WATCHER_TX_SET, tx })
+  }
+
+  AbstractContractDAO.txEnd = (tx, e: ?TxError = null) => {
+    dispatch({ type: WATCHER_TX_END, tx })
+
+    if (e && e.codeValue !== TX_FRONTEND_ERROR_CODES.FRONTEND_CANCELLED) {
+      dispatch(notify(new TransactionErrorNoticeModel(tx, e)))
+    }
+  }
+}
 
 export const removeWatchersUserMonitor = () => () => {
   userMonitorService

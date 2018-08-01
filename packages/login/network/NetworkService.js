@@ -9,7 +9,7 @@ import contractsManagerDAO from '@chronobank/core/dao/ContractsManagerDAO'
 import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import { AccountCustomNetwork } from '@chronobank/core/models/wallet/persistAccount'
 import EventEmitter from 'events'
-import { store } from '@chronobank/core-dependencies/configureStore'
+// import { store } from '@chronobank/core-dependencies/configureStore'
 import {
   DUCK_NETWORK,
   NETWORK_ADD_ERROR,
@@ -52,8 +52,10 @@ const ERROR_NO_ACCOUNTS = 'Couldn\'t get any accounts! Make sure your Ethereum c
 // #endregion constants
 
 class NetworkService extends EventEmitter {
-  constructor () {
-    super()
+  connectStore (store) {
+    // super()
+    console.log('NetworkService received store:')
+    console.log(store)
     this._store = store
     this._dispatch = store.dispatch
   }

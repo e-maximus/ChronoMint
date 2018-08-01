@@ -20,7 +20,7 @@ import CopyIcon from 'components/dashboard/MicroIcon/CopyIcon'
 import AvatarSelect from 'components/common/AvatarSelect/AvatarSelect'
 import ProfileImage from 'components/common/ProfileImage/ProfileImage'
 import QRIcon from 'components/dashboard/MicroIcon/QRIcon'
-import { DUCK_PRESIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
+import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import ModalDialog from '../ModalDialog'
 import validate from './validate'
 import './UpdateProfileDialog.scss'
@@ -31,7 +31,7 @@ const FORM_UPDATE_PROFILE_DIALOG = 'UpdateProfileDialog'
 function mapStateToProps (state) {
   const selector = formValueSelector(FORM_UPDATE_PROFILE_DIALOG)
   const session = state.get(DUCK_SESSION)
-  const selectedAccount = state.get(DUCK_PRESIST_ACCOUNT).selectedWallet
+  const selectedAccount = state.get(DUCK_PERSIST_ACCOUNT).selectedWallet
   const accountProfileSummary = getAccountProfileSummary(state)
   const profileSignature = session.profileSignature
 
