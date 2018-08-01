@@ -54,8 +54,6 @@ const ERROR_NO_ACCOUNTS = 'Couldn\'t get any accounts! Make sure your Ethereum c
 class NetworkService extends EventEmitter {
   connectStore (store) {
     // super()
-    console.log('NetworkService received store:')
-    console.log(store)
     this._store = store
     this._dispatch = store.dispatch
   }
