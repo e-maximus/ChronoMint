@@ -11,10 +11,6 @@ import profileService from '@chronobank/login/network/ProfileService'
 import {
   WALLET_HD_PATH,
 } from '@chronobank/login/network/constants'
-// import networkService from '@chronobank/login/network/NetworkService'
-// import web3Provider from '@chronobank/login/network/Web3Provider'
-// import web3Utils from '@chronobank/login/network/Web3Utils'
-// import mnemonicProvider from '@chronobank/login/network/mnemonicProvider'
 import {
   AccountEntryModel,
   AccountProfileModel,
