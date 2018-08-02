@@ -3,6 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import tokens from './reducer'
-
-export { tokens }
+export default from './reducer'

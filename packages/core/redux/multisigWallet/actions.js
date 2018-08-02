@@ -14,7 +14,7 @@ import TokenModel from '../../models/tokens/TokenModel'
 import MultisigWalletPendingTxModel from '../../models/wallet/MultisigWalletPendingTxModel'
 import OwnerModel from '../../models/wallet/OwnerModel'
 import { notify, notifyError } from '../notifier/actions'
-import { DUCK_SESSION } from '../session/actions'
+import { DUCK_SESSION } from '../session/constants'
 import { alternateTxHandlingFlow, subscribeOnTokens } from '../tokens/actions'
 import {
   EE_CONFIRMATION,
@@ -27,7 +27,8 @@ import {
   EE_SINGLE_TRANSACTION,
 } from '../../services/constants'
 import multisigWalletService from '../../services/MultisigWalletService'
-import { ETH, getTxList } from '../mainWallet/actions'
+import { getTxList } from '../mainWallet/actions'
+import { ETH } from '../mainWallet/constants'
 import { getMultisigWallets } from '../wallet/selectors/models'
 import { getEthMultisigWallet, getWallets } from './selectors/models'
 import DerivedWalletModel from '../../models/wallet/DerivedWalletModel'
@@ -36,13 +37,15 @@ import MultisigEthWalletModel from '../../models/wallet/MultisigEthWalletModel'
 import tokenService from '../../services/TokenService'
 import {
   ETH_MULTISIG_2_FA_CONFIRMED,
+  ETH_MULTISIG_PENDING_TX,
+  ETH_MULTISIG_REMOVE,
+  ETH_MULTISIG_SELECT,
   ETH_MULTISIG_BALANCE,
+  ETH_MULTISIG_UPDATE,
   ETH_MULTISIG_FETCHED,
   ETH_MULTISIG_FETCHING,
   ETH_MULTISIG_INIT,
-  ETH_MULTISIG_REMOVE,
-  ETH_MULTISIG_SELECT,
-  ETH_MULTISIG_UPDATE,
+  DUCK_ETH_MULTISIG_WALLET,
   FORM_2FA_STEPS,
   FORM_2FA_WALLET,
 } from './constants'

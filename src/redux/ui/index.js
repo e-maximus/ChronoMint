@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import ui from './reducer'
-
-export {
-  ui,
-}
+export default from './reducer'

@@ -3,7 +3,14 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import * as actions from './actions'
+import {
+  LAST_MARKET_UPDATE,
+  MARKET_ADD_TOKEN,
+  MARKET_INIT,
+  MARKET_UPDATE_PRICES,
+  MARKET_UPDATE_RATES,
+  SET_SELECTED_COIN,
+} from './constants'
 
 export const initialState = {
   isInited: false,

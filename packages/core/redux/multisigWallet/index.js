@@ -3,6 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import ethMultisigWallet from './reducer'
-
-export { ethMultisigWallet }
+export default from './reducer'

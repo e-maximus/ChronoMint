@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import trezor from './reducer'
-
-export {
-  trezor,
-}
+export default from './reducer'

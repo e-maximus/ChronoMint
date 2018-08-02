@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import operations from './reducer'
-
-export {
-  operations,
-}
+export default from './reducer'

@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import voting from './reducer'
-
-export {
-  voting,
-}
+export default from './reducer'

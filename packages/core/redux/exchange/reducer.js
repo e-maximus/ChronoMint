@@ -5,7 +5,7 @@
 
 import ExchangeModel from '../../models/exchange/ExchangeModel'
 import ExchangesCollection from '../../models/exchange/ExchangesCollection'
-import * as a from './actions'
+import * as a from './constants'
 
 export const initialState = new ExchangeModel()
 

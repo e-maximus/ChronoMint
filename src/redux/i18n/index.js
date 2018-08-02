@@ -3,7 +3,5 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import i18n from './reducer'
-
-export { i18n }
+export default from './reducer'
 

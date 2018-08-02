@@ -4,6 +4,11 @@
  */
 
 import ContractDAOModel from '../../models/contracts/ContractDAOModel'
+import { alternateTxHandlingFlow } from '../tokens/actions'
+import { getAccount } from '../session/selectors/models'
+import AbstractContractDAO from '../../dao/AbstractContract3DAO'
+
+//#region CONSTANTS
 import {
   ASSET_HOLDER_LIBRARY,
   ASSET_DONATOR_LIBRARY,
@@ -17,14 +22,15 @@ import {
   WALLETS_MANAGER,
   TOKEN_MANAGMENT_EXTENSION_LIBRARY,
 } from '../../dao/ContractList'
-import { alternateTxHandlingFlow } from '../tokens/actions'
-import { getAccount } from '../session/selectors/models'
-import AbstractContractDAO from '../../dao/AbstractContract3DAO'
+import {
+  // DUCK_DAO,
+  DAOS_REGISTER,
+  DAOS_INITIALIZED,
+} from './constants'
 
-export const DUCK_DAO = 'dao'
-export const DAOS_REGISTER = 'daos/register'
-export const DAOS_INITIALIZED = 'daos/initialized'
+//#endregion
 
+// eslint-disable-next-line import/prefer-default-export
 export const initDAOs = ({ web3 }) => async (dispatch, getState) => {
   const account = getAccount(getState())
   AbstractContractDAO.setAccount(account)

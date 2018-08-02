@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import market from './reducer'
-
-export {
-  market,
-}
+export default from './reducer'

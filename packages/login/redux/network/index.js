@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import network from './reducer'
-
-export {
-  network,
-}
+export default from './reducer'

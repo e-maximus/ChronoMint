@@ -3,14 +3,14 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import * as ledger from './ledger/'
-import * as trezor from './trezor/'
-import * as network from './network/'
-import * as monitor from './monitor/'
+import * as ledger from './ledger'
+import * as monitor from './monitor'
+import * as network from './network'
+import * as trezor from './trezor'
 
 export default {
-  network,
-  monitor,
   ledger,
+  monitor,
+  network,
   trezor,
 }

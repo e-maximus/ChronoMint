@@ -3,6 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import dao from './reducer'
-
-export { dao }
+export default from './reducer'

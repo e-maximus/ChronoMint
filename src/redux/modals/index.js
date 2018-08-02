@@ -3,8 +3,5 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import modals from './reducer'
+export default from './reducer'
 
-export {
-  modals,
-}

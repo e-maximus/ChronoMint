@@ -3,8 +3,4 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import assetsManager from './reducer'
-
-export {
-  assetsManager,
-}
+export default from './reducer'

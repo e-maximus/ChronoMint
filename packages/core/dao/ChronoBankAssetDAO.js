@@ -6,17 +6,22 @@
 import { MultiEventsHistoryABI, ChronoBankAssetABI } from './abi'
 import AbstractContractDAO from './AbstractContractDAO'
 
-export const TX_PAUSE = 'pause'
-export const TX_UNPAUSE = 'unpause'
-export const CALL_PAUSED = 'paused'
-export const TX_RESTRICT = 'restrict'
-export const TX_UNRESTRICT = 'unrestrict'
-export const CALL_BLACKLIST = 'blacklist'
+//#region CONSTANTS
 
-export const TX_RESTRICTED = 'Restricted'
-export const TX_UNRESTRICTED = 'Unrestricted'
-export const TX_PAUSED = 'Paused'
-export const TX_UNPAUSED = 'Unpaused'
+import {
+  CALL_BLACKLIST,
+  CALL_PAUSED,
+  TX_PAUSE,
+  // TX_PAUSED,
+  TX_RESTRICT,
+  // TX_RESTRICTED,
+  TX_UNPAUSE,
+  // TX_UNPAUSED,
+  TX_UNRESTRICT,
+  // TX_UNRESTRICTED,
+} from './constants/ChronoBankAssetDAO'
+
+//#endregion CONSTANTS
 
 export default class ChronoBankAssetDAO extends AbstractContractDAO {
 
