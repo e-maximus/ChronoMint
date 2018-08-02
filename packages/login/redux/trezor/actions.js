@@ -4,7 +4,6 @@
  */
 
 import trezorProvider from '../../network/TrezorProvider'
-import web3Provider from '../../network/Web3Provider'
 import networkService from '../../network/NetworkService'
 import { NETWORK_SET_ACCOUNTS } from '../../redux/network/constants'
 

@@ -10,7 +10,7 @@ import { TX_FRONTEND_ERROR_CODES } from '../../dao/constants'
 import TransactionErrorNoticeModel from '../../models/notices/TransactionErrorNoticeModel'
 import TxError from '../../models/TxError'
 import type TxExecModel from '../../models/TxExecModel'
-import { watchInitTokens, watchPlatformManager } from '../assetsManager/actions'
+import { watchPlatformManager } from '../assetsManager/actions'
 import { watchInitLOC } from '../locs/actions'
 import { initMainWallet } from '../mainWallet/actions'
 import { watchInitMarket } from '../market/actions'
@@ -24,7 +24,6 @@ import { watchInitProfile } from '../session/actions'
 import { initMultisigWalletManager } from '../multisigWallet/actions'
 import { initWallets } from '../wallets/actions'
 import {
-  // DUCK_WATCHER,
   WATCHER_CBE,
   WATCHER_TX_SET,
   WATCHER_TX_END,

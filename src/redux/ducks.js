@@ -3,10 +3,10 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-import drawer from './drawer'
-import modals from './modals'
-import sides from './sides'
-import ui from './ui'
+import drawer from './drawer/reducer'
+import modals from './modals/reducer'
+import sides from './sides/reducer'
+import ui from './ui/reducer'
 
 const appReducers = {
   drawer,

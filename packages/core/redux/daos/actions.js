@@ -9,10 +9,10 @@ import { getAccount } from '../session/selectors/models'
 import AbstractContractDAO from '../../dao/AbstractContract3DAO'
 
 //#region CONSTANTS
+
 import {
   ASSET_HOLDER_LIBRARY,
   ASSET_DONATOR_LIBRARY,
-  // ASSETS_MANAGER_LIBRARY,
   PLATFORMS_MANAGER_LIBRARY,
   CONTRACTS_MANAGER,
   ERC20_MANAGER,
@@ -23,7 +23,6 @@ import {
   TOKEN_MANAGMENT_EXTENSION_LIBRARY,
 } from '../../dao/ContractList'
 import {
-  // DUCK_DAO,
   DAOS_REGISTER,
   DAOS_INITIALIZED,
 } from './constants'

@@ -4,7 +4,6 @@
  */
 
 import Immutable from 'immutable'
-// import { globalWatcher } from '@chronobank/core/redux/watcher/actions'
 import { SESSION_DESTROY } from '@chronobank/core/redux/session/constants'
 import { combineReducers } from 'redux-immutable'
 import { applyMiddleware, compose, createStore } from 'redux'
