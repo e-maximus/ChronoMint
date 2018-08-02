@@ -30,9 +30,10 @@ import {
   CUSTOM_NETWORKS_LIST_UPDATE,
   DUCK_PERSIST_ACCOUNT,
   WALLETS_ADD,
-  WALLETS_LOAD,
+  WALLETS_DESELECT,
   WALLETS_SELECT,
   WALLETS_UPDATE_LIST,
+  WALLETS_LOAD,
 } from './constants'
 
 export const accountAdd = (wallet) => (dispatch) => {

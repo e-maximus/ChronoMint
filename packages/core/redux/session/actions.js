@@ -12,12 +12,10 @@ import profileService from '@chronobank/login/network/ProfileService'
 import { removeWatchersUserMonitor } from '@chronobank/core-dependencies/redux/ui/actions'
 import { daoByType } from '../../redux/daos/selectors'
 import web3Factory from '../../web3/index'
-import ProfileModel from '../../models/ProfileModel'
 import { cbeWatcher, watcher } from '../watcher/actions'
 import { watchStopMarket } from '../market/actions'
 import { notify } from '../notifier/actions'
 import { WEB3_SETUP } from '../web3/reducer'
-import { DUCK_ETH_MULTISIG_WALLET } from '../multisigWallet/constants'
 import {
   DEFAULT_CBE_URL,
   DEFAULT_USER_URL,

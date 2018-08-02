@@ -21,8 +21,6 @@ import ERC20DAO from '../../../../dao/ERC20DAO'
 import { daoByType } from '../../../daos/selectors'
 
 import {
-  // DUCK_SETTINGS_ERC20_TOKENS,
-  // TOKENS_FORM,
   TOKENS_FORM_FETCH,
 } from './constants'
 

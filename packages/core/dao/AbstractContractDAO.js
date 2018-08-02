@@ -184,7 +184,7 @@ export default class AbstractContractDAO extends EventEmitter {
   }
 
   // TODO @bshevchenko: MINT-313 isDeployed (checkCodeConsistency = true): bool {
-  async isDeployed (web3Provider = this._web3Provider): bool {
+  async isDeployed (web3Provider = this._web3Provider): boolean {
     try {
       await this._initContract(web3Provider.getWeb3instance())
       const code = await this.getCode(this.getInitAddress(), 'latest', web3Provider)

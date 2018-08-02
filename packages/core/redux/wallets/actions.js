@@ -23,7 +23,8 @@ import { subscribeOnTokens } from '../tokens/actions'
 import TokenModel from '../../models/tokens/TokenModel'
 import tokenService from '../../services/TokenService'
 import Amount from '../../models/Amount'
-import { BLOCKCHAIN_ETHEREUM, EE_MS_WALLET_ADDED } from '../../dao/constants'
+import { BLOCKCHAIN_ETHEREUM } from '../../dao/constants'
+import { EE_MS_WALLET_ADDED } from '../../dao/constants/WalletsManagerDAO'
 import { getAccount } from '../session/selectors'
 import { updateEthMultisigWalletBalance } from '../multisigWallet/actions'
 import contractsManagerDAO from '../../dao/ContractsManagerDAO'
@@ -32,12 +33,9 @@ import { getWallets } from './selectors/models'
 import MultisigEthWalletModel from '../../models/wallet/MultisigEthWalletModel'
 
 import {
-  // DUCK_WALLETS,
   WALLETS_SET,
   WALLETS_UPDATE_BALANCE,
   WALLETS_TWO_FA_CONFIRMED,
-  // WALLETS_UPDATE_WALLET,
-  // WALLETS_SET_IS_TIME_REQUIRED,
 } from './constants'
 
 let walletsManagerDAO

@@ -17,7 +17,7 @@ import { DUCK_SESSION, logout } from '@chronobank/core/redux/session/actions'
 import { getBlockchainAddressesList } from '@chronobank/core/redux/session/selectors'
 import { sidesCloseAll, sidesPush } from 'redux/sides/actions'
 import MenuTokenMoreInfo from '../MenuTokenMoreInfo/MenuTokenMoreInfo'
-import { MENU_TOKEN_MORE_INFO_PANEL_KEY } from '../../../../redux/sides/constants'
+import { MENU_TOKEN_MORE_INFO_PANEL_KEY } from 'redux/sides/constants'
 import { prefix } from './lang'
 
 import './MenuTokensList.scss'

@@ -6,7 +6,7 @@
 import Tx from 'ethereumjs-tx'
 import { modalsOpenConfirmDialog } from '../../../core-dependencies/redux/modals/actions'
 import { ethereumProvider } from '../../../login/network/EthereumProvider'
-import { WATCHER_TX_SET } from '../watcher/actions'
+import { WATCHER_TX_SET } from '../watcher/constants'
 import CurrentTransactionNotificationModel from '../../models/CurrentTransactionNotificationModel'
 import {
   TRANSACTIONS_NEW,

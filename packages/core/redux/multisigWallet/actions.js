@@ -7,7 +7,7 @@ import BigNumber from 'bignumber.js'
 import { ethereumProvider } from '@chronobank/login/network/EthereumProvider'
 import { change } from 'redux-form/immutable'
 import type MultisigWalletDAO from '../../dao/MultisigWalletDAO'
-import { EE_MS_WALLET_ADDED, EE_MS_WALLET_REMOVED, EE_MS_WALLETS_COUNT } from '../../dao/constants'
+import { EE_MS_WALLET_ADDED, EE_MS_WALLET_REMOVED, EE_MS_WALLETS_COUNT } from '../../dao/constants/WalletsManagerDAO'
 import Amount from '../../models/Amount'
 import WalletNoticeModel, { statuses } from '../../models/notices/WalletNoticeModel'
 import TokenModel from '../../models/tokens/TokenModel'
@@ -28,7 +28,7 @@ import {
 } from '../../services/constants'
 import multisigWalletService from '../../services/MultisigWalletService'
 import { getTxList } from '../mainWallet/actions'
-import { ETH } from '../mainWallet/constants'
+import { ETH } from '../../dao/constants'
 import { getMultisigWallets } from '../wallet/selectors/models'
 import { getEthMultisigWallet, getWallets } from './selectors/models'
 import DerivedWalletModel from '../../models/wallet/DerivedWalletModel'
@@ -37,7 +37,6 @@ import MultisigEthWalletModel from '../../models/wallet/MultisigEthWalletModel'
 import tokenService from '../../services/TokenService'
 import {
   ETH_MULTISIG_2_FA_CONFIRMED,
-  ETH_MULTISIG_PENDING_TX,
   ETH_MULTISIG_REMOVE,
   ETH_MULTISIG_SELECT,
   ETH_MULTISIG_BALANCE,
@@ -45,7 +44,6 @@ import {
   ETH_MULTISIG_FETCHED,
   ETH_MULTISIG_FETCHING,
   ETH_MULTISIG_INIT,
-  DUCK_ETH_MULTISIG_WALLET,
   FORM_2FA_STEPS,
   FORM_2FA_WALLET,
 } from './constants'

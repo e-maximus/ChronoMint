@@ -12,7 +12,8 @@ import { sidesPush } from 'redux/sides/actions'
 import { pendingTransactionsSelector } from '@chronobank/core/redux/mainWallet/selectors/tokens'
 import { DUCK_WATCHER } from '@chronobank/core/redux/watcher/actions'
 
-import NotificationContent, { NOTIFICATION_PANEL_KEY } from 'layouts/partials/NotificationContent/NotificationContent'
+import NotificationContent from 'layouts/partials/NotificationContent/NotificationContent'
+import { NOTIFICATION_PANEL_KEY } from 'redux/sides/constants'
 import LocaleDropDown from 'layouts/partials/LocaleDropDown/LocaleDropDown'
 
 import './HeaderPartial.scss'
