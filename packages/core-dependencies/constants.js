@@ -6,4 +6,4 @@
  */
 /* eslint-disable import/prefer-default-export */
 
-export { FORM_CBE_TOKEN } from 'components/constants'
+export { FORM_CBE_TOKEN } from '../../src/components/constants'
