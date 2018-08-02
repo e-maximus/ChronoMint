@@ -37,23 +37,24 @@ module.exports = config.buildConfig(
     },
     babel,
     plugins: [
-      // new CircularDependencyPlugin({
-      //   onStart () {
-      //     numCyclesDetected = 0
-      //     // eslint-disable-next-line no-console
-      //     console.log('start detecting webpack modules cycles')
-      //   },
-      //   onDetected ({ module: webpackModuleRecord, paths, compilation }) {
-      //     if (!/src\/components|node_modules|src\/layouts/.test(webpackModuleRecord.resource)) {
-      //       numCyclesDetected++
-      //       compilation.errors.push(new Error(paths.join(' -> ')))
-      //     }
-      //   },
-      //   onEnd () {
-      //     // eslint-disable-next-line no-console
-      //     console.log('Complete: detecting webpack modules cycles.\nFound %s cycles.', numCyclesDetected)
-      //   },
-      // }),
+      new CircularDependencyPlugin({
+        onStart () {
+          numCyclesDetected = 0
+          // eslint-disable-next-line no-console
+          console.log('start detecting webpack modules cycles')
+        },
+        onDetected ({ module: webpackModuleRecord, paths, compilation }) {
+          if (!/src\/components|node_modules|src\/layouts/.test(webpackModuleRecord.resource)) {
+          // if (!/node_modules/.test(webpackModuleRecord.resource)) {
+            numCyclesDetected++
+            compilation.errors.push(new Error(paths.join(' -> ')))
+          }
+        },
+        onEnd () {
+          // eslint-disable-next-line no-console
+          console.log('Complete: detecting webpack modules cycles.\nFound %s cycles.', numCyclesDetected)
+        },
+      }),
       new HtmlWebpackPlugin({
         inject: true,
         template: indexHtmlPath,
