@@ -68,28 +68,49 @@ class Transactions extends PureComponent {
               .reverse()
               .valueSeq()
               .map((tx) => this.renderTrx(tx))}
-            {!transactions.size && !isFetching ? (<TableRow>
-              <TableRowColumn>
-                <Translate value='tx.noTransactions' />
-              </TableRowColumn>
-            </TableRow>) : ''}
-            {isFetching
-              ? (<TableRow key='loader'>
-                <TableRowColumn style={{ width: '100%', textAlign: 'center' }} colSpan={4}>
-                  <CircularProgress style={{ margin: '0 auto' }} size={24} thickness={1.5} />
-                </TableRowColumn>
-              </TableRow>) : null}
+            {
+              !transactions.size && !isFetching
+                ? (
+                  <TableRow>
+                    <TableRowColumn>
+                      <Translate value='tx.noTransactions' />
+                    </TableRowColumn>
+                  </TableRow>
+                ) : ''
+            }
+            {
+              isFetching
+                ? (
+                  <TableRow key='loader'>
+                    <TableRowColumn
+                      style={{ width: '100%', textAlign: 'center' }}
+                      colSpan={4}
+                    >
+                      <CircularProgress
+                        style={{ margin: '0 auto' }}
+                        size={24}
+                        thickness={1.5}
+                      />
+                    </TableRowColumn>
+                  </TableRow>
+                ) : null
+            }
           </TableBody>
-          {!isFetching && !endOfList ? <TableFooter adjustForCheckbox={false}>
-            <TableRow>
-              <TableRowColumn>
-                <Button
-                  label={<Translate value='nav.loadMore' />}
-                  onClick={() => this.props.onLoadMore()}
-                />
-              </TableRowColumn>
-            </TableRow>
-          </TableFooter> : ''}
+          {
+            !isFetching && !endOfList
+            ? (
+              <TableFooter adjustForCheckbox={false}>
+                <TableRow>
+                  <TableRowColumn>
+                    <Button
+                      label={<Translate value='nav.loadMore' />}
+                      onClick={() => this.props.onLoadMore()}
+                    />
+                  </TableRowColumn>
+                </TableRow>
+              </TableFooter>
+             ) : ''
+          }
         </Table>
       </Paper>
     )
