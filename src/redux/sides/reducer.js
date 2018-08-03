@@ -23,7 +23,7 @@ const initialState = {
   isProfilePanelOpen: false,
   mainMenuIsOpen: false,
   stack: {
-    [ PROFILE_SIDE_PANEL_KEY ]: {
+    [PROFILE_SIDE_PANEL_KEY]: {
       component: ProfileContent,
       panelKey: PROFILE_SIDE_PANEL_KEY,
       isOpened: false,
@@ -32,13 +32,13 @@ const initialState = {
         width: 300,
       },
     },
-    [ NOTIFICATION_PANEL_KEY ]: {
+    [NOTIFICATION_PANEL_KEY]: {
       component: NotificationContent,
       panelKey: NOTIFICATION_PANEL_KEY,
       isOpened: false,
       anchor: 'right',
     },
-    [ MENU_ASSETS_MANAGER_PANEL_KEY ]: {
+    [MENU_ASSETS_MANAGER_PANEL_KEY]: {
       component: MenuAssetsManagerMoreInfo,
       panelKey: MENU_ASSETS_MANAGER_PANEL_KEY,
       isOpened: false,
