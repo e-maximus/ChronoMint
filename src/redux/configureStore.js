@@ -22,6 +22,9 @@ import { DUCK_I18N } from 'redux/i18n/constants'
 import { DUCK_PERSIST_ACCOUNT } from '@chronobank/core/redux/persistAccount/constants'
 import { DUCK_WALLETS } from '@chronobank/core/redux/wallets/constants'
 import transformer from '@chronobank/core/redux/serialize'
+import { WebSocketService, middlewareWebSocketReducer } from '@chronobank/core/services/WebSocketService'
+import axiosMiddleware from '@chronobank/api/http/middleware'
+import networkSetReducer from '@chronobank/api/networks/reducer'
 import ducks from './ducks'
 import routingReducer from './routing'
 import createHistory, { historyMiddleware } from './browserHistoryStore'
@@ -40,6 +43,8 @@ const configureStore = () => {
     form: formReducer,
     i18n: i18nReducer,
     routing: routingReducer,
+    NETSET: networkSetReducer,
+    ws: middlewareWebSocketReducer,
   })
 
   const rootReducer = (state, action) => {
@@ -61,9 +66,11 @@ const configureStore = () => {
   const composeEnhancers = isDevelopmentEnv
     ? composeWithDevTools({ realtime: true })
     : compose
+
   const middleware = [
     thunk,
     historyMiddleware,
+    axiosMiddleware,
   ]
 
   if (isDevelopmentEnv) {
@@ -92,6 +99,7 @@ const configureStore = () => {
       // 'events/',
       // 'mainWallet/',
       // 'market/',
+      'MIDDLEWARE/WEB_SOCKET/',
       // 'MODALS/',
       // 'persist/',
       // 'persistAccount/',
@@ -116,6 +124,7 @@ const configureStore = () => {
       'events/',
       'mainWallet/',
       'market/',
+      // 'MIDDLEWARE/WEB_SOCKET/',
       'MODALS/',
       'persist/',
       'persistAccount/',
@@ -149,11 +158,8 @@ const configureStore = () => {
     middleware.push(logger)
   }
 
-  // noinspection JSUnresolvedVariable,JSUnresolvedFunction
   const createStoreWithMiddleware = composeEnhancers(
-    applyMiddleware(
-      ...middleware,
-    ),
+    applyMiddleware(...middleware),
   )(createStore)
 
   return createStoreWithMiddleware(
@@ -164,6 +170,7 @@ const configureStore = () => {
 
 export const store = configureStore()
 // store.dispatch(globalWatcher())
+WebSocketService.initWebSocketService(store)
 
 const persistorConfig = {
   key: 'root',

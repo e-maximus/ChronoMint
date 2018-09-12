@@ -3,6 +3,6 @@
  * Licensed under the AGPL Version 3 license.
  */
 
-export const en = {
-  network: 'Network',
-}
+export const DUCK_NETSET = 'NETSET'
+
+export const NETSET_SWITCH = 'NETSET/SWITCH'

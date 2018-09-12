@@ -71,15 +71,6 @@ export const navigateToCreateAccountWithoutImport = () => (dispatch) => {
  * TODO: to add description
  * TODO: to dispatch something, this is not a thunk or action. Really..
  */
-export const initCommonNetworkSelector = () => (dispatch) => {
-  dispatch(NetworkThunks.autoSelect())
-}
-
-/*
- * Thunk dispatched by "" screen.
- * TODO: to add description
- * TODO: to dispatch something, this is not a thunk or action. Really..
- */
 export const onSubmitSubscribeNewsletter = (email) => async () => {
   const publicBackendProvider = new PublicBackendProvider()
 
@@ -95,6 +86,7 @@ export const onSubmitSubscribeNewsletter = (email) => async () => {
  * TODO: to add description
  * TODO: to extract logic from here
  */
+// eslint-disable-next-line complexity
 export const onSubmitLoginForm = (password) => async (dispatch, getState) => {
   dispatch(NetworkActions.networkSetLoginSubmitting())
 
