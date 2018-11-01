@@ -115,7 +115,7 @@ export const initTokens = () => async (dispatch, getState) => {
       })
     })
     .on(EVENT_NEW_ERC20_TOKEN, (token: TokenModel) => {
-      if(token.get('symbol') !== LHT) {
+      if(token.get('symbol') === LHT) {
         // eslint-disable-next-line no-console
         return console.warn(`Unsupported ERC20 token ${token.get('symbol')} received`)
       }
